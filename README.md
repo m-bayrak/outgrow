@@ -6,9 +6,14 @@
 
 ## Watch
 
-[Watch the published animation](https://m-bayrak.github.io/outgrow/) · [Open the source composition](./soul-escape/) · [Read the production handoff](./AGENT-HANDOFF.md)
+[Watch both versions](https://m-bayrak.github.io/outgrow/) · [Read the production handoff](./AGENT-HANDOFF.md)
 
-The GitHub Pages site contains the rendered 1080 × 1920 MP4. The source composition is 60 fps, 25 seconds, and currently has no audio.
+The GitHub Pages site plays two interpretations side by side, both 1080 × 1920, 60 fps, without audio:
+
+| Version | Length | Source | Render |
+| --- | --- | --- | --- |
+| **Codex** | 25 s | [`soul-escape/`](./soul-escape/) | [`docs/outgrow.mp4`](./docs/outgrow.mp4) |
+| **Claude** | 13 s | [`outgrow-v2/`](./outgrow-v2/) | [`docs/outgrow-v2.mp4`](./docs/outgrow-v2.mp4) |
 
 ## Concept
 
@@ -18,12 +23,13 @@ The orange point is a bright, energetic soul. The white concentric contours repr
 
 | Path | Purpose |
 | --- | --- |
-| [`soul-escape/`](./soul-escape/) | Editable Remotion project. |
+| [`soul-escape/`](./soul-escape/) | Codex version: editable Remotion project. |
+| [`outgrow-v2/`](./outgrow-v2/) | Claude version: editable Remotion project. |
 | [`reference-materials/images/`](./reference-materials/images/) | The seven supplied still-image references. |
 | [`reference-materials/videos/`](./reference-materials/videos/) | The seven supplied motion references. |
 | [`REFERENCES.md`](./REFERENCES.md) | What to take from every reference, including time ranges. |
 | [`AGENT-HANDOFF.md`](./AGENT-HANDOFF.md) | Self-contained brief and ready-to-use prompt for a second agent. |
-| [`docs/`](./docs/) | GitHub Pages viewer and rendered MP4. |
+| [`docs/`](./docs/) | GitHub Pages viewer and both rendered MP4s. |
 
 ## Run locally
 
