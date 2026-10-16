@@ -1,3 +1,4 @@
 .cache/
 .remotion/
+.pnpm-store/
 .DS_Store

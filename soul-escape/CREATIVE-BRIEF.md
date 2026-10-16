@@ -1,24 +1,22 @@
-# Soul Escape — перша версія
+# Soul Escape — first implementation brief
 
-Вертикальна анімація 1080 × 1920, 60 fps, 25 секунд. Чорний фон, білі контури, помаранчева душа. Без тексту й озвучення. Звук ще не підібрано.
+Vertical animation: 1080 × 1920, 60 fps, 25 seconds. Pure black ground, white contours, and an orange soul. There is no text, voiceover, or sound in this version.
 
-## Історія
+## Story beats
 
-- 0–1 с: точка всередині концентричних кіл. Коротке накопичення енергії.
-- 1–8 с: різноспрямовані спроби прориву. Пружний супротив оболонки, відскоки, змінний хвіст. У місцях дотику лінії на мить помаранчевіють, імпульс розходиться назовні.
-- 8–11 с: кола витягуються у вісімку, камера підхоплює рух.
-- 11–16 с: обертання й розкриття розетки. Енергія перебудовує контури.
-- 16–21 с: останній поштовх угору; лінії перетікають у симетричні крила. Колір проходить уздовж оболонки.
-- 21–25 с: крилоподібна форма з безперервних контурів, помаранчева крапля й довгий тонкий хвіст. Ледь помітне дихання.
+- **0–1 s:** an orange point sits inside concentric circles and gathers energy.
+- **1–8 s:** attempts to break free in several directions. The shell resists and rebounds. The tail changes with velocity; lines briefly turn orange at contact points and pulses travel through the structure.
+- **8–11 s:** circles lengthen into a figure eight while the camera catches the movement.
+- **11–16 s:** contour geometry rotates and opens into a rosette. Energy reorganises the shell.
+- **16–21 s:** a final upward push turns the shell into symmetric wings; colour travels along the contours.
+- **21–25 s:** the finished winged form holds with a subtle breath, an orange drop, and a long fine tail.
 
-## Референси
+## Creative rules
 
-Старт: верхня ліва картинка «From concentric circles to winged symmetry». Проміжні форми: «Six hypnotic contour pattern studies», «Tiny Seed's Figure-Eight Escape» та три Amber/Rosette зображення. Фінал: «Symmetric_winged_seed_linework», з чистими плавними лініями без розривів.
+The opening should be based on the upper-left panel of `From concentric circles to winged symmetry`. The figure-eight and contour-study images are intermediate vocabulary. The end should echo `Symmetric_winged_seed_linework`: smooth, continuous lines without breaks.
 
-Відео переглянуті по вибірках кадрів у заданих користувачем інтервалах. Прийоми: слідування камери, радіальні хвилі, світловий імпульс уздовж контурів, безперервне перетікання геометрії. Не копіюємо тексти, логотипи й кольори відеоприкладів.
+The intended experience is hypnotic rather than merely decorative. Camera tracking, radial waves, and travelling contact colour make the viewer feel each escape attempt. Reference motion is interpreted as technique, never copied together with its text, logos, or source colour palette.
 
-## Перегляд
+## Editing controls
 
-Відкрити Remotion Studio, композиція SoulEscape. Зміни параметрів доступні через defaultProps у src/Root.tsx: колір, кількість ліній, інтенсивність деформації, рух камери, хвіст.
-
-Анімація повністю залежить від номера кадру; довільний перехід по таймлайну відтворює той самий стан. Референси не змінюються й не завантажуються до зовнішніх сервісів.
+`defaultProps` in `src/Root.tsx` exposes the orange colour, line count, deformation intensity, camera motion, and trails. The animation is fully deterministic from frame number, so arbitrary timeline jumps reproduce the same state.

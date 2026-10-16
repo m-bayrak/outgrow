@@ -1,65 +1,32 @@
-# Soul Escape
+# Soul Escape — Remotion source
 
-Вертикальна моушен-анімація: 1080 × 1920, 60 fps, 25 секунд. Чорний фон, білі контури, помаранчева душа. Перша версія без аудіо.
+This is the editable source for **Outgrow**, an abstract motion piece about an orange soul that outgrows a constricting white shell.
 
-Відкрийте `preview.command`, щоб запустити Studio, і виберіть **SoulEscape**. Пробіл запускає/зупиняє перегляд.
+Read the [root README](../README.md) for the published video and project overview. The complete creative brief, reference mapping, and prompt for a second agent live in [`../AGENT-HANDOFF.md`](../AGENT-HANDOFF.md).
 
-- `src/Root.tsx` — параметри кольору, кількості ліній, інтенсивності, камери й хвоста.
-- `src/motion.ts` — траєкторії, хвилі від контакту та перетворення контурів.
-- `src/SoulEscape.tsx` — шари оболонки, енергії й душі.
-- `CREATIVE-BRIEF.md` — задум і таймінг.
+## Composition
 
-Нижче — стандартна документація шаблону Remotion. У цьому проєкті залежності встановлено через pnpm.
+`SoulEscape` is 1080 × 1920, 60 fps, and 1,500 frames (25 seconds). It has no audio in this version.
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+| File | Responsibility |
+| --- | --- |
+| `src/Root.tsx` | Registers the composition and its editable default props. |
+| `src/motion.ts` | Deterministic trajectory, impacts, shock waves, contour geometry, camera, and orange colour propagation. |
+| `src/SoulEscape.tsx` | SVG layers for the shell, energy, orange protagonist, and tail. |
+| `CREATIVE-BRIEF.md` | Beat-by-beat intent for this first implementation. |
 
-Welcome to your Remotion project!
+## Run
 
-## Commands
-
-**Install Dependencies**
-
-```console
-npm i --loglevel=error
+```bash
+pnpm install
+pnpm dev
 ```
 
-**Start Preview**
+Select `SoulEscape` in Remotion Studio. `preview.command` can launch the Studio on macOS with the prepared local runtime.
 
-```console
-npm run dev
+```bash
+pnpm lint
+pnpm exec remotion render src/index.ts SoulEscape ../docs/outgrow.mp4 --codec=h264 --crf=18
 ```
 
-**Render video**
-
-```console
-npx remotion render
-```
-
-**Upgrade Remotion**
-
-```console
-npx remotion upgrade
-```
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+The composition state is calculated from the frame number only. Scrubbing the timeline, restarting playback, and rendering should therefore produce the same visual state.
