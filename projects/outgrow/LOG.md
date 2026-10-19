@@ -18,3 +18,15 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Restructured the repo into a multi-project studio: `projects/outgrow/` (brief, references, ideas, log, `src/codex`, `src/claude`), `docs/media/outgrow/` with numbered web videos and posters, `project.json` manifest, `scripts/build-site-data.mjs`, `templates/`, `inbox/`.
 - Added `AGENTS.md` (rules for every agent), `CLAUDE.md`, `STYLE.md`.
 - Next: new site with the latest version large and a lineage tree of all versions (mockup first, see `ideas/2026-10-19-versions-site.md`); a reusable Outgrow style skill; file the owner's ChatGPT/Codex materials into `ideas/` and `references/`.
+
+## 2026-10-19 · codex · codex/import-materials
+- Filed five distilled idea records: original motion/review notes, ending composition directions, type-scale/colour iterations, slogan explorations, and proposed Shorts comment-arrow placement.
+- Added 21 reference/review images and rows in references/REFERENCES.md: seven concept/refinement stills, a review contact sheet, nine Codex render samples, the Claude v02 finale, two sourced Shorts UI illustrations, and a generated arrow schematic. The already-filed selected orange-verbs image was verified identical and not duplicated.
+- Appended decisions for the selected trace-of-freedom composition, enlarged type, exact copy and punctuation colours. Source and published media were not changed; existing masters/web renders were not duplicated.
+- No third-party video or private chat was added. Original video URLs/authors remain unresolved in inbox/2026-10-19-outgrow-video-source-links/note.md. Legacy footage remains untouched under the append-only scope.
+- Open: supply verified original video links and authors; decide whether the proposed comment CTA is wanted; continue production from the selected target using the staged workflow in AGENTS.md.
+
+## 2026-10-19 · codex · codex/import-materials
+- Removed the third-party Shorts phone mockup and mobile-browser screenshot from the branch's current files at the owner's request. The import now contains 19 additional images.
+- Kept their reference-table rows and comment-arrow idea, replacing local image links with external source links marked "(external, not stored)".
+- Earlier commits retain the removed files in Git history; this follow-up does not rewrite history. No source code or published media changed.
