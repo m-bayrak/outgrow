@@ -1,0 +1,7 @@
+{
+  "id": "project-id",
+  "title": "Project Title",
+  "statement": "One sentence that the piece is about.",
+  "format": { "width": 1080, "height": 1920, "fps": 60 },
+  "versions": []
+}

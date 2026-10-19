@@ -2,11 +2,11 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "outgrow-v2-studio",
+      "name": "outgrow-claude-studio",
       "runtimeExecutable": "pnpm",
       "runtimeArgs": [
         "--dir",
-        "outgrow-v2",
+        "projects/outgrow/src/claude",
         "exec",
         "remotion",
         "studio",

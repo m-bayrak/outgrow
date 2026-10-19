@@ -2,7 +2,7 @@
 
 This is the editable source for **Outgrow**, an abstract motion piece about an orange soul that outgrows a constricting white shell.
 
-Read the [root README](../README.md) for the published video and project overview. The complete creative brief, reference mapping, and prompt for a second agent live in [`../AGENT-HANDOFF.md`](../AGENT-HANDOFF.md).
+Read the [root README](../../../../README.md) for the published video and project overview. The complete creative brief, reference mapping, and prompt for a second agent live in [`../../BRIEF.md`](../../BRIEF.md).
 
 ## Composition
 
@@ -26,7 +26,7 @@ Select `SoulEscape` in Remotion Studio. `preview.command` can launch the Studio 
 
 ```bash
 pnpm lint
-pnpm exec remotion render src/index.ts SoulEscape ../docs/outgrow.mp4 --codec=h264 --crf=18
+pnpm exec remotion render src/index.ts SoulEscape out/outgrow-codex.mp4 --codec=h264 --crf=18
 ```
 
 The composition state is calculated from the frame number only. Scrubbing the timeline, restarting playback, and rendering should therefore produce the same visual state.

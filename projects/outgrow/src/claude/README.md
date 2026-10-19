@@ -30,5 +30,5 @@ pnpm install
 pnpm dev            # Remotion Studio
 pnpm lint
 scripts/stills.sh   # key stills + out/sheet.png
-pnpm exec remotion render src/index.ts Outgrow ../docs/outgrow-v2.mp4 --codec=h264 --crf=18
+pnpm exec remotion render src/index.ts Outgrow out/outgrow-claude.mp4 --codec=h264 --crf=18
 ```
