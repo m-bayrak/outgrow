@@ -30,3 +30,8 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Removed the third-party Shorts phone mockup and mobile-browser screenshot from the branch's current files at the owner's request. The import now contains 19 additional images.
 - Kept their reference-table rows and comment-arrow idea, replacing local image links with external source links marked "(external, not stored)".
 - Earlier commits retain the removed files in Git history; this follow-up does not rewrite history. No source code or published media changed.
+
+## 2026-10-19 · claude · claude/third-party-rule
+- Merged Codex's import (PR #3) as a squash, so the two removed third-party screenshots never entered `main` history; deleted `codex/import-materials`.
+- `AGENTS.md`: anything made by someone else (video, image, screenshot, app UI, article graphic) is linked in `REFERENCES.md`, never committed; only owner- or agent-made images go in `references/images/`.
+- Next: new site with a version tree (mockup first).

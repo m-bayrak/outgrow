@@ -3,7 +3,7 @@
 This repository is a motion-graphics studio. Several AI agents (Codex, Claude, ChatGPT) work in it for one owner. This file is the single source of rules for all of them. Follow it exactly so that work lands in the right place the first time and nobody has to explain it twice.
 
 - Talk to the owner in **Ukrainian**. Write everything in the repository (code, docs, commit messages, on-screen text) in **English**.
-- This repository is **public**. Never commit personal data, private chats, credentials, or third-party footage (link to it instead, see below).
+- This repository is **public**. Never commit personal data, private chats, credentials, or **anything made by someone else** — videos, images, screenshots, article graphics, fonts outside their licence. Link to it instead (see below).
 
 ## Read before you start
 
@@ -38,9 +38,9 @@ docs/                   GitHub Pages site (served from main/docs)
 | You have | Put it in | Also do |
 | --- | --- | --- |
 | An idea, sketch description, direction | `projects/<p>/ideas/YYYY-MM-DD-<slug>.md` (from [`templates/idea.md`](./templates/idea.md)) | One line in `LOG.md` |
-| A reference image | `projects/<p>/references/images/<descriptive-name>.<ext>` | A row in `references/REFERENCES.md`: what to take from it |
-| A reference video by someone else | **Do not commit the file.** A row in `REFERENCES.md` with the link, author, and the exact time ranges that matter | — |
-| A reference video the owner made | `projects/<p>/references/videos/` | A row in `REFERENCES.md` |
+| An image the owner or an agent made (sketch, generated concept, render still) | `projects/<p>/references/images/<descriptive-name>.<ext>` | A row in `references/REFERENCES.md`: what to take from it |
+| A video the owner made | `projects/<p>/references/videos/` | A row in `REFERENCES.md` |
+| **Anything by someone else**: video, image, screenshot, app UI, article graphic | **Do not commit the file.** A row in `REFERENCES.md` under *External references* with the link, author if known, what to take from it and, for video, the exact time ranges. Mark it "(external, not stored)" | Describe what matters in words; if a visual is essential, make your own schematic instead |
 | A decision ("we do X because Y") | The **Decisions** table in `projects/<p>/BRIEF.md` | One line in `LOG.md` |
 | Code for a piece | `projects/<p>/src/<author>/` (a standalone pnpm + Remotion project) | — |
 | A new published version | See **Publishing a version** | — |
@@ -48,6 +48,8 @@ docs/                   GitHub Pages site (served from main/docs)
 | Anything you cannot place | `inbox/YYYY-MM-DD-<slug>/` with a `note.md` (see `inbox/README.md`) | The next agent files it and empties the folder |
 
 File names: lowercase, words joined by `-`, dates as `YYYY-MM-DD`. Keep the owner's original file name only for references where it carries meaning.
+
+If you are unsure whether something counts as someone else's (for example a screenshot of an app, or an image that shows a real person), treat it as external. Removing a file later does not erase it from Git history, so decide before committing.
 
 ## Publishing a version
 
