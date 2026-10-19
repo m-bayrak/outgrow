@@ -1,13 +1,16 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { LINE_COUNT, type LinePoint, buildLine, lineOpacity } from "./contours";
+import { FLIGHT_START, SEED_POS, flightPoint, flightProgress } from "./ending";
 import { type Vec, TAU, clamp, hash01, rotate } from "./math";
+import { Title } from "./Title";
 import {
   type Camera,
   camera,
   charge,
   finalTail,
   seedness,
+  soulHeading,
   soulPos,
   soulRadius,
   soulVel,
@@ -78,14 +81,16 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
     const vel = soulVel(t);
     const speed = Math.hypot(vel.x, vel.y);
     const seed = seedness(t);
-    const stretch = 1 + Math.min(1.5, speed / 1400) * (1 - seed);
-    const heading = speed > 5 ? Math.atan2(vel.y, vel.x) : -Math.PI / 2;
+    // in flight the seed may stretch again; at rest it keeps its seed shape
+    const stretchable = t >= FLIGHT_START ? 0.7 : 1 - seed;
+    const stretch = 1 + Math.min(1.5, speed / 1400) * stretchable;
+    const heading = soulHeading(t, vel);
     const radius = soulRadius(t) * cam.zoom;
     const soul = {
       ...S(pos),
-      rx: radius * (stretch * (1 - seed) + 1.0 * seed),
-      ry: radius * ((1 / Math.sqrt(stretch)) * (1 - seed) + 0.62 * seed),
-      angle: ((seed > 0.5 ? -Math.PI / 2 : heading) + cam.rot) * (180 / Math.PI),
+      rx: radius * (stretch * (1 - seed) + stretch * seed),
+      ry: radius * ((1 / Math.sqrt(stretch)) * (1 - seed) + (0.62 / Math.sqrt(stretch)) * seed),
+      angle: (heading + cam.rot) * (180 / Math.PI),
       seed,
     };
 
@@ -114,13 +119,23 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
 
     // final: a fine vertical tail drawn down from the seed
     const ft = finalTail(t);
-    const tailTop = S({ x: pos.x, y: pos.y + soulRadius(t) * 0.9 });
-    const tailBottom = S({ x: pos.x, y: pos.y + soulRadius(t) + 2400 * ft });
+    const anchor = t >= FLIGHT_START ? SEED_POS : pos;
+    const tailTop = S({ x: anchor.x, y: anchor.y + soulRadius(Math.min(t, FLIGHT_START)) * 0.9 });
+    const tailBottom = S({ x: anchor.x, y: anchor.y + soulRadius(Math.min(t, FLIGHT_START)) + 2400 * ft });
 
-    return { lines, soul, tail, rays, ft, tailTop, tailBottom };
+    // the trace of freedom: the flight leaves a fine orange line behind it
+    const fp = t >= FLIGHT_START ? flightProgress(t) : 0;
+    const trail: Vec[] = [];
+    if (fp > 0) {
+      const n = Math.max(2, Math.ceil(160 * fp));
+      for (let k = 0; k <= n; k++) trail.push(S(flightPoint((k / n) * fp)));
+    }
+    const trailD = trail.length ? trail.map((p, k) => `${k ? "L" : "M"}${f1(p.x)} ${f1(p.y)}`).join("") : "";
+
+    return { lines, soul, tail, rays, ft, tailTop, tailBottom, trailD };
   }, [t, width, height, fps]);
 
-  const { lines, soul, tail, rays, ft, tailTop, tailBottom } = scene;
+  const { lines, soul, tail, rays, ft, tailTop, tailBottom, trailD } = scene;
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
@@ -170,6 +185,10 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
           />
         ) : null}
 
+        {trailD ? (
+          <path d={trailD} fill="none" stroke={orange} strokeWidth={lineWidth} strokeLinecap="round" strokeLinejoin="round" />
+        ) : null}
+
         {tail ? <path d={tail} fill={orange} opacity={0.85 * (1 - soul.seed)} /> : null}
 
         {rays.map((r, k) =>
@@ -183,6 +202,7 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
           <path d={soulShape(soul.rx, soul.ry, soul.seed)} fill={orange} />
         </g>
       </svg>
+      <Title t={t} orange={orange} width={width} height={height} />
     </AbsoluteFill>
   );
 };

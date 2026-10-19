@@ -7,7 +7,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="Outgrow"
         component={Outgrow}
-        durationInFrames={780}
+        durationInFrames={990}
         fps={60}
         width={1080}
         height={1920}
