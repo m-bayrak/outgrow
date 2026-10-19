@@ -200,7 +200,8 @@ const renderPrompts = (item) => {
     const details = el("details", { class: "prompt" });
     const label = p.author === "owner" ? "Owner's request" : `Prompt for ${p.tool}`;
     const summary = el("summary", {}, label);
-    summary.append(el("span", { class: "prompt-title" }, p.title.replace(/^Owner('s)? /i, "")));
+    const short = p.title.replace(/^Owner('s)?\s+(request\s+(for|to)\s+)?/i, "");
+    summary.append(el("span", { class: "prompt-title" }, short.charAt(0).toUpperCase() + short.slice(1)));
     details.append(summary);
     details.append(el("pre", { class: "prompt-text" }, p.text));
     const link = el("a", { class: "prompt-file", href: `${REPO}/blob/main/${p.file}` }, "Prompt file");

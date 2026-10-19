@@ -53,3 +53,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - `scripts/build-site-data.mjs` now reads `projects/<p>/prompts/*.md` and attaches each prompt to the versions and studies in its `used_for`; no manual links in `project.json`. 17 items have prompts; 02, 03 and r1 have none on record.
 - The site shows them under the chosen item as collapsible entries (owner's requests first, then tool prompts) with a link to the file. Site data is always revalidated, so new items appear without a stale cache.
 - `AGENTS.md`: where prompts go and the required front matter.
+
+## 2026-10-20 · claude · claude/prompts-02-03
+- Added the prompts behind versions 02 and 03 from Claude's session: the owner's request to rebuild from scratch, the production brief handed between Claude sessions, the owner's approvals, and the owner's request for the text ending. Verbatim, with English translations; local file paths replaced by repository paths.
+- Updated the coverage note in `prompts/README.md`. Prompts now attach to 19 items; only r1 (a review sheet) has none.
