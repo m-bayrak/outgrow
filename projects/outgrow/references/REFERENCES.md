@@ -34,3 +34,45 @@ All files below were supplied for this project and are stored next to this file 
 | Klickpin pin 2674081026469844, "Dollar Tree DIY Ideas Inspiration for Holiday" (typography motion) | ~00:05–00:09: a glowing spark lands and a word is born from it ("Question", "grow"); letters pop with overshoot; brief selection marks around the word. Used for the text ending. |
 
 The motion references above were added before the rule in `AGENTS.md` that third-party footage is linked rather than committed. New ones go in this table with a link and time ranges.
+
+## 2026-10-19 import: ending concepts and review images
+
+The seven original still references and selected orange-verbs target above already exist and are not duplicated. Image-generated studies are concept references, not exact font files or pixel-identical animation renders.
+
+| Image | What to take from it |
+| --- | --- |
+| [ending-01-beyond-frame.png](./images/ending-01-beyond-frame.png) | Generated concept: oversized asymmetric wings and headline in negative space. |
+| [ending-02-between-wings.png](./images/ending-02-between-wings.png) | Generated concept: symmetric passage between contour wings. |
+| [ending-03-under-pressure.png](./images/ending-03-under-pressure.png) | Generated concept: typography held inside a resisting contour shell. |
+| [ending-04-trace-of-freedom.png](./images/ending-04-trace-of-freedom.png) | Generated concept: selected direction before text enlargement; soul and S-trace above low wings. |
+| [ending-04-large-type.png](./images/ending-04-large-type.png) | Generated refinement: larger white lettering over four lines. |
+| [ending-04-orange-objects.png](./images/ending-04-orange-objects.png) | Superseded colour study: orange noun phrases; final target uses orange verbs instead. |
+| [ending-05-words-as-shell.png](./images/ending-05-words-as-shell.png) | Generated concept: large typography as a structure threaded by contours. |
+| [codex-v01-review-contact-sheet.jpg](./images/codex-v01-review-contact-sheet.jpg) | Codex version 01 QA: nine sampled half-resolution frames with timestamps. |
+| [codex-v01-frame-0000.png](./images/codex-v01-frame-0000.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [codex-v01-frame-0114.png](./images/codex-v01-frame-0114.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [codex-v01-frame-0210.png](./images/codex-v01-frame-0210.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [codex-v01-frame-0450.png](./images/codex-v01-frame-0450.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [codex-v01-frame-0600.png](./images/codex-v01-frame-0600.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [codex-v01-frame-0780.png](./images/codex-v01-frame-0780.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [codex-v01-frame-1020.png](./images/codex-v01-frame-1020.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [codex-v01-frame-1140.png](./images/codex-v01-frame-1140.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [codex-v01-frame-1380.png](./images/codex-v01-frame-1380.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
+| [claude-v02-final-frame.jpg](./images/claude-v02-final-frame.jpg) | Extracted finale of the local 13-second Claude version 02; basis for ending studies. |
+| [shorts-mobile-browser-1080x2240.png](./images/shorts-mobile-browser-1080x2240.png) | Real mobile-browser Shorts screenshot, 1080 × 2240, from [Mozilla Support](https://support.mozilla.org/si/questions/1465550), 2024. Browser/OS chrome included; not a native-app placement template. |
+| [shorts-phone-mockup.webp](./images/shorts-phone-mockup.webp) | Phone mockup in a 1600 × 900 image from [PPC Land](https://ppc.land/youtube-brings-gemini-omni-and-personal-avatars-to-shorts-at-google-i-o/). Illustrative UI, not a 9:16 video viewport. |
+| [shorts-comment-arrow-schematic.png](./images/shorts-comment-arrow-schematic.png) | AI-generated arrow-placement schematic; not measured or authoritative YouTube UI. |
+
+## Third-party motion sources: attribution pending
+
+No new third-party footage is included. Original public URLs and authors were not provided and could not be verified by title; unresolved records are tracked in [inbox](../../../inbox/2026-10-19-outgrow-video-source-links/note.md). Do not substitute guessed links. The original table above preserves the supplied titles and timing observations.
+
+| Supplied title | Original link / author | Relevant time ranges and purpose |
+| --- | --- | --- |
+| Claude made this amazing motion design in 15 minute | Unverified / unknown | 00:01–00:02: bold compact sans-serif weight (the words “Your night.”); whole clip: pacing. Exact font unverified; use Inter Tight 800 for production. |
+| I Told Claude Code to Make a Motion Graphics Video… and This Happened | Unverified / unknown | 00:09–00:13: camera pursuit. |
+| I use Claude with Opus 5.5 to create a motion video, and the result is insane | Unverified / unknown | 00:00–00:08: radiating sound-wave-like lines. |
+| Motion Design Made With Code | Unverified / unknown | 00:18–00:20 colour travel; 00:21–00:25 appearing/disappearing shapes; 00:33–00:36 hypnotic contours; 00:38–00:40 glowing line into depth. |
+| Simple Motion Graphics with Opus 5.5 | Unverified / unknown | Whole clip; no precise range supplied: graphic treatment and pacing. |
+| WTF? | Unverified / unknown | Whole clip; no precise range supplied: dynamic graphic energy. |
+| Motion Design Showreel with Sonnet 5.5, On par with Opus 5.5 | Unverified / unknown | 00:00–00:05 radiating lines; 01:15–01:20 rapid concealed form transitions; 01:30–01:37 circles from a point. |

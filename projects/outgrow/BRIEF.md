@@ -92,3 +92,5 @@ Newest last. Every agent adds a row when a direction is settled with the owner.
 | 2026-10-19 | Extend the Claude version with a text ending instead of a separate clip. | The story needs a conclusion. |
 | 2026-10-19 | On-screen text: **Break** / the shape. / **Keep** / becoming. Verbs orange and burst in on impact; the rest is written by a gliding spark that ends as the full stop. | Matches the target frame `references/images/trace-of-freedom-orange-verbs.png`. |
 | 2026-10-19 | Every visible step is published as a new version; nothing in `docs/media/` is overwritten. | The site shows progress as a lineage. |
+| 2026-10-19 | Of five ending studies, refine the trace-of-freedom layout: low cropped wings, an upward orange soul with an S-shaped trace, and large left-aligned text. | Preserves visual continuity while leaving black space for readable copy. |
+| 2026-10-19 | Enlarge the selected headline into four lines: Break / the shape. / Keep / becoming. Only Break and Keep are orange; all other letters and both periods are white. | Final owner-approved colour assignment supersedes the orange-noun study and improves single-screen Shorts readability. |
