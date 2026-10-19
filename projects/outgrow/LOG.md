@@ -47,3 +47,9 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Documented actual image inputs, settings and superseded variants. Ukrainian creative wording is retained at the owner's request; metadata and editorial notes are English. Long rich-text excerpts are labelled as transcriptions, not byte-identical message markup.
 - Recorded that t3 was edited from t2 even though its conceptual parent in project.json is t1. No manifest, source, media or site files changed.
 - Missing: generating prompts for supplied c1–c7 images and original Claude execution prompts for versions 02–03 are unavailable here; no reconstructed text is presented as an exact prompt. The existing BRIEF handoff is not claimed to be Claude's execution prompt.
+
+## 2026-10-20 · claude · claude/prompts-on-site
+- Merged Codex's prompt archive (PR #6).
+- `scripts/build-site-data.mjs` now reads `projects/<p>/prompts/*.md` and attaches each prompt to the versions and studies in its `used_for`; no manual links in `project.json`. 17 items have prompts; 02, 03 and r1 have none on record.
+- The site shows them under the chosen item as collapsible entries (owner's requests first, then tool prompts) with a link to the file. Site data is always revalidated, so new items appear without a stale cache.
+- `AGENTS.md`: where prompts go and the required front matter.

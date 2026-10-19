@@ -191,6 +191,24 @@ const render = (project, nodes, selectedId) => {
   }
 };
 
+/** The words behind an item: the owner's requests first, then the exact tool prompts. */
+const renderPrompts = (item) => {
+  const box = byId("prompts");
+  box.replaceChildren();
+  const prompts = [...(item.prompts ?? [])].sort((a, b) => (a.author === "owner" ? 0 : 1) - (b.author === "owner" ? 0 : 1));
+  for (const p of prompts) {
+    const details = el("details", { class: "prompt" });
+    const label = p.author === "owner" ? "Owner's request" : `Prompt for ${p.tool}`;
+    const summary = el("summary", {}, label);
+    summary.append(el("span", { class: "prompt-title" }, p.title.replace(/^Owner('s)? /i, "")));
+    details.append(summary);
+    details.append(el("pre", { class: "prompt-text" }, p.text));
+    const link = el("a", { class: "prompt-file", href: `${REPO}/blob/main/${p.file}` }, "Prompt file");
+    details.append(link);
+    box.append(details);
+  }
+};
+
 let current = "";
 
 const select = (project, nodes, id, fromClick = false) => {
@@ -223,13 +241,14 @@ const select = (project, nodes, id, fromClick = false) => {
     source.textContent = "Original image";
   }
 
+  renderPrompts(n);
   current = n.id;
   render(project, nodes, n.id);
   if (fromClick) history.replaceState(null, "", `#${n.id}`);
 };
 
 const main = async () => {
-  const data = await fetch("data/projects.json").then((r) => r.json());
+  const data = await fetch("data/projects.json", { cache: "no-cache" }).then((r) => r.json()); // always revalidate, so new versions show up at once
   const wanted = new URLSearchParams(location.search).get("p");
   const project = data.projects.find((p) => p.id === wanted) ?? data.projects[0];
   const nodes = nodesOf(project);

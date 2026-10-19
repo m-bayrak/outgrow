@@ -39,6 +39,49 @@ for (const p of projects) {
   }
 }
 
+// Prompts: every projects/<p>/prompts/*.md with front matter is attached to the
+// versions and studies named in its `used_for`, so nothing is linked by hand.
+const parsePrompt = (text, file) => {
+  const fm = text.match(/^---\n([\s\S]*?)\n---\n/);
+  if (!fm) return null;
+  const meta = {};
+  for (const line of fm[1].split("\n")) {
+    const m = line.match(/^(\w+):\s*(.*)$/);
+    if (m) meta[m[1]] = m[2].trim();
+  }
+  let usedFor = [];
+  try {
+    usedFor = JSON.parse(meta.used_for ?? "[]");
+  } catch {
+    problems.push(`${file}: used_for must be a JSON array like ["e1","e2"]`);
+  }
+  const title = text.match(/^# (.+)$/m)?.[1]?.trim() ?? file;
+  const body = text.match(/## Prompt\s+```text\n([\s\S]*?)\n```/)?.[1];
+  if (!body) problems.push(`${file}: needs a "## Prompt" section with a \`\`\`text block`);
+  return { file, title, date: meta.date, author: meta.author, tool: meta.tool, usedFor, text: body ?? "" };
+};
+
+for (const p of projects) {
+  const dir = join(root, "projects", p.id, "prompts");
+  if (!existsSync(dir)) continue;
+  const prompts = readdirSync(dir)
+    .filter((f) => f.endsWith(".md") && f !== "README.md")
+    .sort()
+    .map((f) => parsePrompt(readFileSync(join(dir, f), "utf8"), `projects/${p.id}/prompts/${f}`))
+    .filter(Boolean);
+  const items = new Map([...p.versions, ...p.studies].map((x) => [x.id, x]));
+  for (const pr of prompts) {
+    for (const id of pr.usedFor) {
+      const item = items.get(id);
+      if (!item) {
+        problems.push(`${pr.file}: used_for names unknown id ${id}`);
+        continue;
+      }
+      (item.prompts ??= []).push({ file: pr.file, title: pr.title, date: pr.date, author: pr.author, tool: pr.tool, text: pr.text });
+    }
+  }
+}
+
 if (problems.length) {
   console.error(problems.map((m) => `✗ ${m}`).join("\n"));
   process.exit(1);
@@ -47,4 +90,5 @@ if (problems.length) {
 mkdirSync(join(docs, "data"), { recursive: true });
 writeFileSync(join(docs, "data", "projects.json"), JSON.stringify({ projects }, null, 2) + "\n");
 const count = (key) => projects.reduce((n, p) => n + p[key].length, 0);
-console.log(`docs/data/projects.json: ${projects.length} project(s), ${count("versions")} version(s), ${count("studies")} stud${count("studies") === 1 ? "y" : "ies"}`);
+const linked = projects.reduce((n, p) => n + [...p.versions, ...p.studies].filter((x) => x.prompts).length, 0);
+console.log(`docs/data/projects.json: ${projects.length} project(s), ${count("versions")} version(s), ${count("studies")} stud${count("studies") === 1 ? "y" : "ies"}, prompts on ${linked} item(s)`);
