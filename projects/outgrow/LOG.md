@@ -35,3 +35,9 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Merged Codex's import (PR #3) as a squash, so the two removed third-party screenshots never entered `main` history; deleted `codex/import-materials`.
 - `AGENTS.md`: anything made by someone else (video, image, screenshot, app UI, article graphic) is linked in `REFERENCES.md`, never committed; only owner- or agent-made images go in `references/images/`.
 - Next: new site with a version tree (mockup first).
+
+## 2026-10-20 · claude · claude/versions-site
+- New site (`docs/index.html`, `site.css`, `site.js`): the chosen item large on the left; on the right the title and a lineage tree growing up from the brief, the chosen item's ancestry drawn as an orange trace. Built entirely from `docs/data/projects.json`.
+- Studies: `project.json` now lists 17 stills (concepts, Codex review sheet, five ending studies, type and colour refinements, the comment-arrow proposal) with parent, group and status; version 03 is `basedOn` the orange-verbs target. Web copies in `docs/media/outgrow/studies/` via `scripts/encode-studies.mjs`; `build-site-data.mjs` validates them.
+- `AGENTS.md`: how to show a study on the site.
+- Next: a reusable Outgrow style skill; a home page listing projects once there is more than one.

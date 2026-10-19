@@ -10,7 +10,7 @@
   "versions": [
     {
       "id": "01",
-      "title": "Codex",
+      "title": "First interpretation",
       "author": "codex",
       "date": "2026-10-16",
       "parent": null,
@@ -23,7 +23,7 @@
     },
     {
       "id": "02",
-      "title": "Claude — wings",
+      "title": "Wings",
       "author": "claude",
       "date": "2026-10-17",
       "parent": null,
@@ -36,7 +36,7 @@
     },
     {
       "id": "03",
-      "title": "Claude — text ending",
+      "title": "Text ending",
       "author": "claude",
       "date": "2026-10-19",
       "parent": "02",
@@ -45,7 +45,209 @@
       "poster": "media/outgrow/03-claude-text.jpg",
       "source": "projects/outgrow/src/claude",
       "commit": "585104d",
-      "summary": "The soul flies an S-curve out of the wings; a spark writes Break / the shape. / Keep / becoming."
+      "summary": "The soul flies an S-curve out of the wings; a spark writes Break / the shape. / Keep / becoming.",
+      "basedOn": "t3"
+    }
+  ],
+  "studies": [
+    {
+      "id": "c1",
+      "title": "Transformation map",
+      "author": "owner",
+      "date": "2026-10-16",
+      "parent": null,
+      "group": "Concept stills",
+      "status": "chosen",
+      "image": "media/outgrow/studies/c1.jpg",
+      "source": "projects/outgrow/references/images/From concentric circles to winged symmetry.png",
+      "note": "The whole arc on one sheet: concentric rings, a stretched oval, a pinch, and the winged form."
+    },
+    {
+      "id": "c2",
+      "title": "Seed in a silent shell",
+      "author": "owner",
+      "date": "2026-10-16",
+      "parent": null,
+      "group": "Concept stills",
+      "status": "explored",
+      "image": "media/outgrow/studies/c2.jpg",
+      "source": "projects/outgrow/references/images/Amber Seed in a Silent Shell-1.png",
+      "note": "Stillness before the first attempt. Motion only; not its blue or gold."
+    },
+    {
+      "id": "c3",
+      "title": "Contour vocabulary",
+      "author": "owner",
+      "date": "2026-10-16",
+      "parent": null,
+      "group": "Concept stills",
+      "status": "explored",
+      "image": "media/outgrow/studies/c3.jpg",
+      "source": "projects/outgrow/references/images/Six hypnotic contour pattern studies.png",
+      "note": "Spirals, pinches, figure eights and ribbons for the middle of the film."
+    },
+    {
+      "id": "c4",
+      "title": "Figure-eight escape",
+      "author": "owner",
+      "date": "2026-10-16",
+      "parent": null,
+      "group": "Concept stills",
+      "status": "explored",
+      "image": "media/outgrow/studies/c4.jpg",
+      "source": "projects/outgrow/references/images/Tiny Seed's Figure-Eight Escape.png",
+      "note": "The soul slipping through an asymmetric figure eight."
+    },
+    {
+      "id": "c5",
+      "title": "Orbital bloom",
+      "author": "owner",
+      "date": "2026-10-16",
+      "parent": null,
+      "group": "Concept stills",
+      "status": "explored",
+      "image": "media/outgrow/studies/c5.jpg",
+      "source": "projects/outgrow/references/images/Amber Rosette in Orbital Bloom-5.png",
+      "note": "Radial expansion for a possible rosette stage."
+    },
+    {
+      "id": "c6",
+      "title": "Ruptured shell",
+      "author": "owner",
+      "date": "2026-10-16",
+      "parent": null,
+      "group": "Concept stills",
+      "status": "explored",
+      "image": "media/outgrow/studies/c6.jpg",
+      "source": "projects/outgrow/references/images/Ruptured Shell, Blooming Rosette-4.png",
+      "note": "Breakthrough energy: a bloom inside a shell that starts to tear."
+    },
+    {
+      "id": "c7",
+      "title": "Winged seed",
+      "author": "owner",
+      "date": "2026-10-16",
+      "parent": null,
+      "group": "Concept stills",
+      "status": "chosen",
+      "image": "media/outgrow/studies/c7.jpg",
+      "source": "projects/outgrow/references/images/Symmetric_winged_seed_linework.png_2K_20261016192546.jpg",
+      "note": "The final form: clean symmetric wings around a vertical orange seed."
+    },
+    {
+      "id": "r1",
+      "title": "Review sheet",
+      "author": "codex",
+      "date": "2026-10-16",
+      "parent": "01",
+      "status": "explored",
+      "image": "media/outgrow/studies/r1.jpg",
+      "source": "projects/outgrow/references/images/codex-v01-review-contact-sheet.jpg",
+      "note": "Nine sampled frames of version 01, used to check the beats before publishing."
+    },
+    {
+      "id": "e1",
+      "title": "Beyond the frame",
+      "author": "codex",
+      "date": "2026-10-19",
+      "parent": "02",
+      "group": "Ending studies",
+      "status": "explored",
+      "image": "media/outgrow/studies/e1.jpg",
+      "source": "projects/outgrow/references/images/ending-01-beyond-frame.png",
+      "note": "Oversized asymmetric wings run off the edges; the words sit in the black space."
+    },
+    {
+      "id": "e2",
+      "title": "Between the wings",
+      "author": "codex",
+      "date": "2026-10-19",
+      "parent": "02",
+      "group": "Ending studies",
+      "status": "explored",
+      "image": "media/outgrow/studies/e2.jpg",
+      "source": "projects/outgrow/references/images/ending-02-between-wings.png",
+      "note": "A symmetric passage between the wings frames the headline."
+    },
+    {
+      "id": "e3",
+      "title": "Under pressure",
+      "author": "codex",
+      "date": "2026-10-19",
+      "parent": "02",
+      "group": "Ending studies",
+      "status": "explored",
+      "image": "media/outgrow/studies/e3.jpg",
+      "source": "projects/outgrow/references/images/ending-03-under-pressure.png",
+      "note": "A resisting shell wraps tightly around the words."
+    },
+    {
+      "id": "e4",
+      "title": "Trace of freedom",
+      "author": "codex",
+      "date": "2026-10-19",
+      "parent": "02",
+      "group": "Ending studies",
+      "status": "chosen",
+      "image": "media/outgrow/studies/e4.jpg",
+      "source": "projects/outgrow/references/images/ending-04-trace-of-freedom.png",
+      "note": "Wings low, an orange S-trace rising to the soul, text on the left. Chosen for refinement."
+    },
+    {
+      "id": "e5",
+      "title": "Words as shell",
+      "author": "codex",
+      "date": "2026-10-19",
+      "parent": "02",
+      "group": "Ending studies",
+      "status": "explored",
+      "image": "media/outgrow/studies/e5.jpg",
+      "source": "projects/outgrow/references/images/ending-05-words-as-shell.png",
+      "note": "Huge type becomes the structure the soul threads through."
+    },
+    {
+      "id": "t1",
+      "title": "Larger type",
+      "author": "codex",
+      "date": "2026-10-19",
+      "parent": "e4",
+      "status": "chosen",
+      "image": "media/outgrow/studies/t1.jpg",
+      "source": "projects/outgrow/references/images/ending-04-large-type.png",
+      "note": "The headline grows to four left-aligned lines: Break / the shape. / Keep / becoming."
+    },
+    {
+      "id": "t2",
+      "title": "Orange nouns",
+      "author": "codex",
+      "date": "2026-10-19",
+      "parent": "t1",
+      "status": "superseded",
+      "image": "media/outgrow/studies/t2.jpg",
+      "source": "projects/outgrow/references/images/ending-04-orange-objects.png",
+      "note": "Colour test with the nouns in orange. Dropped in favour of orange verbs."
+    },
+    {
+      "id": "t3",
+      "title": "Orange verbs",
+      "author": "owner",
+      "date": "2026-10-19",
+      "parent": "t1",
+      "status": "chosen",
+      "image": "media/outgrow/studies/t3.jpg",
+      "source": "projects/outgrow/references/images/trace-of-freedom-orange-verbs.png",
+      "note": "Only Break and Keep in orange. The target frame for version 03."
+    },
+    {
+      "id": "a1",
+      "title": "Comment arrow",
+      "author": "codex",
+      "date": "2026-10-19",
+      "parent": "03",
+      "status": "proposed",
+      "image": "media/outgrow/studies/a1.jpg",
+      "source": "projects/outgrow/references/images/shorts-comment-arrow-schematic.png",
+      "note": "A curved orange arrow toward the comment button. Proposed, not in the film."
     }
   ]
 }
