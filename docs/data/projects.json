@@ -1,0 +1,55 @@
+{
+  "projects": [
+    {
+      "id": "outgrow",
+      "title": "Outgrow",
+      "statement": "Growth sometimes requires stepping beyond the boundaries that have become too confining.",
+      "format": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 60
+      },
+      "versions": [
+        {
+          "id": "01",
+          "title": "Codex",
+          "author": "codex",
+          "date": "2026-10-16",
+          "parent": null,
+          "duration": 25,
+          "video": "media/outgrow/01-codex.mp4",
+          "poster": "media/outgrow/01-codex.jpg",
+          "source": "projects/outgrow/src/codex",
+          "commit": "21c7b15",
+          "summary": "First interpretation: concentric shell, repeated strikes, figure eight and rosette, winged form."
+        },
+        {
+          "id": "02",
+          "title": "Claude — wings",
+          "author": "claude",
+          "date": "2026-10-17",
+          "parent": null,
+          "duration": 13,
+          "video": "media/outgrow/02-claude-wings.mp4",
+          "poster": "media/outgrow/02-claude-wings.jpg",
+          "source": "projects/outgrow/src/claude",
+          "commit": "cb9e2b2",
+          "summary": "Faster rework: one continuous set of 24 lines morphs from rings to wings; reactive camera."
+        },
+        {
+          "id": "03",
+          "title": "Claude — text ending",
+          "author": "claude",
+          "date": "2026-10-19",
+          "parent": "02",
+          "duration": 16.5,
+          "video": "media/outgrow/03-claude-text.mp4",
+          "poster": "media/outgrow/03-claude-text.jpg",
+          "source": "projects/outgrow/src/claude",
+          "commit": "585104d",
+          "summary": "The soul flies an S-curve out of the wings; a spark writes Break / the shape. / Keep / becoming."
+        }
+      ]
+    }
+  ]
+}

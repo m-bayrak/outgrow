@@ -1,6 +1,6 @@
-# Outgrow — production handoff for a second agent
+# Outgrow — brief
 
-This document is the complete remote brief for making a new interpretation of **Outgrow**. Read [`REFERENCES.md`](./REFERENCES.md) and inspect the supplied assets before writing animation code.
+The complete brief for **Outgrow**: concept, art direction, timing and the decisions taken so far. It also works as a self-contained handoff for any agent making a new interpretation. Read [`references/REFERENCES.md`](./references/REFERENCES.md) and inspect the supplied assets before writing animation code.
 
 ## Core statement
 
@@ -49,10 +49,10 @@ The film is an abstract inner story. An orange object is a soul: alive, bright, 
 
 ## Technical starting point
 
-The included implementation is a Remotion composition named `SoulEscape` in [`soul-escape/src/Root.tsx`](./soul-escape/src/Root.tsx).
+Two lineages exist: [`src/codex/`](./src/codex/) (version 01) and [`src/claude/`](./src/claude/) (versions 02–03, see its README). The original implementation is a Remotion composition named `SoulEscape` in [`src/codex/src/Root.tsx`](./src/codex/src/Root.tsx).
 
-- [`motion.ts`](./soul-escape/src/motion.ts) contains deterministic seed trajectories, impact pulses, camera motion, contour path generation, and colour fragments.
-- [`SoulEscape.tsx`](./soul-escape/src/SoulEscape.tsx) composes the white shell, impact waves, orange fragments, seed, and trails.
+- [`motion.ts`](./src/codex/src/motion.ts) contains deterministic seed trajectories, impact pulses, camera motion, contour path generation, and colour fragments.
+- [`SoulEscape.tsx`](./src/codex/src/SoulEscape.tsx) composes the white shell, impact waves, orange fragments, seed, and trails.
 - Parameters are defined in `defaultProps`: `orange`, `lineCount`, `intensity`, `cameraMotion`, and `showTrails`.
 - Every frame must be deterministic from its frame number, so scrubbing and rendering reproduce the same result.
 
@@ -78,3 +78,17 @@ Use the reference assets and the detailed mapping in REFERENCES.md. Do not repro
 - [ ] The middle section changes shape and camera scale enough to sustain attention.
 - [ ] The final linework is symmetric, smooth, and unbroken.
 - [ ] The composition renders deterministically at 1080 × 1920 and 60 fps.
+
+## Decisions
+
+Newest last. Every agent adds a row when a direction is settled with the owner.
+
+| Date | Decision | Why |
+| --- | --- | --- |
+| 2026-10-16 | Palette is black, white and one orange (`#ff6a00`) only. | Keeps the soul the single point of energy. |
+| 2026-10-17 | Claude's version rebuilds from scratch, ~13 s instead of 25 s. | Shorts need denser pacing. |
+| 2026-10-17 | The same lines carry from rings to wings; no line is ever replaced. | The shell does not vanish; it becomes the wings. |
+| 2026-10-17 | The finale keeps a narrow vertical waist with the seed above the node. | Matches the winged-seed reference. |
+| 2026-10-19 | Extend the Claude version with a text ending instead of a separate clip. | The story needs a conclusion. |
+| 2026-10-19 | On-screen text: **Break** / the shape. / **Keep** / becoming. Verbs orange and burst in on impact; the rest is written by a gliding spark that ends as the full stop. | Matches the target frame `references/images/trace-of-freedom-orange-verbs.png`. |
+| 2026-10-19 | Every visible step is published as a new version; nothing in `docs/media/` is overwritten. | The site shows progress as a lineage. |

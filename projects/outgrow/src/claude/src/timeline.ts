@@ -21,8 +21,9 @@ import {
   progress,
   smooth,
 } from "./math";
+import { FINAL_CAM, FLIGHT_END, FLIGHT_START, SEED_POS, cameraHandoff, flightPos, flightTangent } from "./ending";
 
-export const DURATION = 13;
+export const DURATION = 16.5;
 
 /** The film's beats, used for stills and for reasoning about timing. */
 export const BEATS = {
@@ -82,7 +83,7 @@ const tailPath: Key<Vec>[] = [
   { t: 8.25, v: { x: 0, y: -210 }, ease: inCubic },
   { t: 8.9, v: { x: 0, y: -300 }, ease: outExpo },
   { t: 10.5, v: { x: 0, y: -330 }, ease: inOutCubic },
-  { t: DURATION, v: { x: 0, y: -330 } },
+  { t: FLIGHT_START, v: SEED_POS },
 ];
 
 /** Inside the figure eight and rosette the soul runs its own orbit. */
@@ -104,7 +105,8 @@ const orbit = (t: number): Vec => {
 export const soulPos = (t: number): Vec => {
   if (t <= 4.95) return keyedVec(keyedPath, t);
   if (t < 7.45) return orbit(t);
-  return keyedVec(tailPath, t);
+  if (t < FLIGHT_START) return keyedVec(tailPath, t);
+  return flightPos(t);
 };
 
 /** Velocity in world px per second (central difference on the pure path). */
@@ -143,6 +145,10 @@ export const tailAmount = (t: number) =>
       { t: 7.4, v: 0.7 },
       { t: 8.3, v: 1 },
       { t: 9.5, v: 0 },
+      { t: FLIGHT_START, v: 0 },
+      { t: FLIGHT_START + 0.25, v: 0.9 },
+      { t: FLIGHT_END, v: 0.6 },
+      { t: FLIGHT_END + 0.15, v: 0 },
     ],
     t,
   );
@@ -155,7 +161,9 @@ export const soulRadius = (t: number) => {
       { t: 3.4, v: 18 },
       { t: 7.4, v: 21 },
       { t: 8.3, v: 26 },
-      { t: 11, v: 58 },
+      { t: 10.6, v: 58 },
+      { t: FLIGHT_START + 0.3, v: 40 },
+      { t: FLIGHT_END, v: 36 },
     ],
     t,
   );
@@ -165,6 +173,19 @@ export const soulRadius = (t: number) => {
 
 /** 0 → round soul, 1 → final upright seed. */
 export const seedness = (t: number) => smooth(progress(t, 9.0, 10.8));
+
+/** Direction the soul's blunt end points: up while it is a seed, then along its flight. */
+export const soulHeading = (t: number, vel: Vec): number => {
+  if (t >= FLIGHT_START + 0.12) {
+    const speed = Math.hypot(vel.x, vel.y);
+    if (t < FLIGHT_END && speed > 30) return Math.atan2(vel.y, vel.x);
+    const tan = flightTangent(1);
+    return Math.atan2(tan.y, tan.x);
+  }
+  if (t >= 9.0) return -Math.PI / 2;
+  const speed = Math.hypot(vel.x, vel.y);
+  return speed > 5 ? Math.atan2(vel.y, vel.x) : -Math.PI / 2;
+};
 
 // ---------------------------------------------------------------- shell shape
 
@@ -212,7 +233,7 @@ export const WAVES: Wave[] = [
   { t: 6.1, origin: { x: 0, y: 0 }, amp: 18, speed: 1000, tint: 0.5 },
   { t: 8.25, origin: soulPos(8.25), amp: 46, speed: 1500, tint: 1 },
   { t: 10.3, origin: { x: 0, y: -60 }, amp: 18, speed: 1300, tint: 0.45 },
-  { t: 11.7, origin: { x: 0, y: -60 }, amp: 12, speed: 1100, tint: 0.35 },
+  { t: FLIGHT_END, origin: flightPos(FLIGHT_END), amp: 16, speed: 1300, tint: 0.5 },
 ];
 
 // ---------------------------------------------------------------- camera
@@ -282,6 +303,16 @@ export const camera = (t: number): Camera => {
     const env = (imp.strength >= 1 ? 15 : 4) * imp.strength * Math.exp(-dt / 0.045);
     sx += env * Math.sin(dt * 170 + imp.angle * 3);
     sy += env * Math.cos(dt * 210 + imp.angle * 5);
+  }
+  // after the wings form, the camera hands over to the final framing as the soul flies
+  const h = cameraHandoff(t);
+  if (h > 0) {
+    return {
+      center: mix(center, FINAL_CAM.center, h),
+      zoom: lerp(zoom, FINAL_CAM.zoom, h),
+      rot: lerp(rot, FINAL_CAM.rot, h),
+      shake: { x: sx, y: sy },
+    };
   }
   return { center, zoom, rot, shake: { x: sx, y: sy } };
 };
