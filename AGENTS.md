@@ -26,6 +26,7 @@ projects/<project>/
   BRIEF.md              concept, rules, decisions log
   LOG.md                append-only work log shared by all agents
   ideas/                one Markdown file per idea
+  prompts/              the exact prompts and requests behind each version and study
   references/           images/, videos/, REFERENCES.md
   src/<author>/         one Remotion project per lineage (codex, claude, …)
 docs/                   GitHub Pages site (served from main/docs)
@@ -41,6 +42,7 @@ docs/                   GitHub Pages site (served from main/docs)
 | An image the owner or an agent made (sketch, generated concept, render still) | `projects/<p>/references/images/<descriptive-name>.<ext>` | A row in `references/REFERENCES.md`: what to take from it |
 | A video the owner made | `projects/<p>/references/videos/` | A row in `REFERENCES.md` |
 | **Anything by someone else**: video, image, screenshot, app UI, article graphic | **Do not commit the file.** A row in `REFERENCES.md` under *External references* with the link, author if known, what to take from it and, for video, the exact time ranges. Mark it "(external, not stored)" | Describe what matters in words; if a visual is essential, make your own schematic instead |
+| A prompt or request that produced something (image prompt, the owner's creative request, an agent brief) | `projects/<p>/prompts/YYYY-MM-DD-<slug>.md`: front matter `date`, `author`, `tool`, `used_for` (a JSON array of version/study ids, e.g. `["e1","e4"]`), a `# Title`, and the text verbatim in a `## Prompt` section inside a ` ```text ` block. Keep non-English originals verbatim and add `## Translation` | One line in `LOG.md`. The site attaches it automatically through `used_for` |
 | A decision ("we do X because Y") | The **Decisions** table in `projects/<p>/BRIEF.md` | One line in `LOG.md` |
 | Code for a piece | `projects/<p>/src/<author>/` (a standalone pnpm + Remotion project) | — |
 | A new published version | See **Publishing a version** | — |
@@ -80,6 +82,7 @@ Studies are the stills between versions. They hang on the same lineage tree as s
    - `image`: `media/<p>/studies/<id>.jpg`; `source`: the path of the original in `references/images/`; `note`: one or two plain sentences.
    A version can name the study it was built from with `basedOn`.
 3. Run `node scripts/encode-studies.mjs` (makes the 720 px web copy) and `node scripts/build-site-data.mjs`.
+4. If a prompt produced it, put the prompt in `prompts/` with the study's id in `used_for`; the site shows it under the study.
 
 ## Working together
 

@@ -254,6 +254,64 @@ h1 {
   color: var(--quiet);
 }
 
+.prompts {
+  margin-top: 20px;
+  max-width: 52ch;
+}
+
+.prompt {
+  border-top: 1px solid var(--branch);
+}
+
+.prompt:last-child {
+  border-bottom: 1px solid var(--branch);
+}
+
+.prompt summary {
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+}
+
+.prompt-title {
+  display: block;
+  margin-left: 1.2em;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--quiet);
+}
+
+.prompt summary::-webkit-details-marker {
+  display: none;
+}
+
+.prompt summary::before {
+  content: "+";
+  display: inline-block;
+  width: 1.2em;
+  color: var(--accent);
+}
+
+.prompt[open] summary::before {
+  content: "\2212";
+}
+
+.prompt-text {
+  margin: 0 0 10px;
+  white-space: pre-wrap;
+  font: 400 15px/1.55 var(--font);
+  color: var(--line);
+}
+
+.prompt-file {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--quiet);
+}
+
 .player[hidden] {
   display: none;
 }

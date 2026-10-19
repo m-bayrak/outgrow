@@ -21,7 +21,41 @@
           "poster": "media/outgrow/01-codex.jpg",
           "source": "projects/outgrow/src/codex",
           "commit": "21c7b15",
-          "summary": "First interpretation: concentric shell, repeated strikes, figure eight and rosette, winged form."
+          "summary": "First interpretation: concentric shell, repeated strikes, figure eight and rosette, winged form.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-contact-colour.md",
+              "title": "Owner contact-colour addition",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "А ще можна додати ефект коли помаранчевий обєет торкається ліній тоді вони стають на мить помаранчевими"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-image-reference-roles.md",
+              "title": "Owner reference-image roles",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зліва зверху початковий референт картинка із якого все починається, далі картинки це форма перетворення які можуть бути.. “From concentric circles to winged symmetry”\n\nЕфеути перетворення які можуть бути “Amber Seed in a Silent Shell-1”, “Amber Rosette in Orbital Bloom-5”, “Ruptured Shell, Blooming Rosette-4”\n\nМожливі проміжні резульиати “Six hypnotic contour pattern studies”, “Tiny Seed's Figure-Eight Escape”\n\nКінцевий референт приблизний, але лінії повинні бути прямими без розривів “Symmetric_winged_seed_linework.png_2K_20261016192546”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-motion-references.md",
+              "title": "Owner motion-reference directions",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Це які ефекти да динаміка мені подобається і яя вважаю що вона діє гіпнотично. Саме гіпнотичний резульитат потрібен.\n\n1. Ось такого роду анімація, динаміка та швидкість змін та таймінг мені подобається.. **“Claude made this amazing motion design in 15 minute”.**Це створює гіпнотичний ефект та дозволяє користувачам довше проглядати шорти\n2. Тут із 9 по 13 сек чудово камера ходить за зображенням що створює гіпнотичний ефект та динаміку та цікавість.. “I Told Claude Code to Make a Motion Graphics Video… and This Happened”\n3. До від 0 до 8ї секунди подобається ефкти ніби звукової хвилі ліні відходять від обʼєкта і через весь екран, створюючи динаміку і цікавий ефект звукової хвилі.. “**I use Claude with Opus 5.5 to create a motion video, and the result is insane**”\n4. 18..20 сек по лініях розходиться колір цікавий живий ефект,\n   21-25 секунд із фігури зявляються ні звідки і в нікуди цікавий ефект\n   33-36 візуальні гіпнотичні лінії простий фігур, цікавий ефект,\n   38-40 сек цікаво світиться лінія і перехід у простір “Motion Design Made With Code”\n5. Такі графіка і дизайн, і динаміка цікаві.. “Simple Motion Graphics with Opus 5.5”, “WTF?”\n\n6. 0-5 сек цікаво лінії розходяться ефект,\n1:15-1:20 ціувіий швидкий непомітний перехід при якому змінюються фігура, можна використовувати там де погано лінійно рухами можна промальовувати,\n1:30-1:37 від крапки лінії-кола розходяться цікавий ефект.. “Motion Design Showreel with Sonnet 5.5 | On par with Opus 5.5”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-soul-and-shell.md",
+              "title": "Owner soul-and-shell description",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Потрібно щоб була динаміка.\n\nКольри використовувати білий чорни та оражевий\nРеференси додав.\n\nОранжева точка може трохи зростати, при польоті у неї може зявлятись хвіст.\n\nХвіст може бути виразними і довгим, може бути коротким, може бути напівпрозорий або взагалі не бути.\n\nВід оранжевого обʼєкту можуть йти помаранчеві лінії тонкі.\n\nМожуть оранжовіти білі лінії.\n\nОсновний задум що оранжевий обʼєкт це як душа замкнена в тілі чи в буденності.\n\nІ щоб вийти їй на новий рівень потрібно вирватись.\n\nІ водночас коли вона виривається білі кола створюють супротив.\n\nЩе можна якось показати ефект звукової хвилі, коли від обʼєкта оранжевого поступово деформуються лінії білі.\n\nАле під час рухів і спроб прорвати оболонку оранжевий обєет робить певні ефекти які описав вище.\n\nТоюто це покахує що душа яскарав і повна енергії.\n\nПісля цих спроб оранж обєект знаходить сидл і поступово лінії направляються за ним."
+            }
+          ]
         },
         {
           "id": "02",
@@ -62,7 +96,25 @@
           "status": "chosen",
           "image": "media/outgrow/studies/c1.jpg",
           "source": "projects/outgrow/references/images/From concentric circles to winged symmetry.png",
-          "note": "The whole arc on one sheet: concentric rings, a stretched oval, a pinch, and the winged form."
+          "note": "The whole arc on one sheet: concentric rings, a stretched oval, a pinch, and the winged form.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-image-reference-roles.md",
+              "title": "Owner reference-image roles",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зліва зверху початковий референт картинка із якого все починається, далі картинки це форма перетворення які можуть бути.. “From concentric circles to winged symmetry”\n\nЕфеути перетворення які можуть бути “Amber Seed in a Silent Shell-1”, “Amber Rosette in Orbital Bloom-5”, “Ruptured Shell, Blooming Rosette-4”\n\nМожливі проміжні резульиати “Six hypnotic contour pattern studies”, “Tiny Seed's Figure-Eight Escape”\n\nКінцевий референт приблизний, але лінії повинні бути прямими без розривів “Symmetric_winged_seed_linework.png_2K_20261016192546”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-soul-and-shell.md",
+              "title": "Owner soul-and-shell description",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Потрібно щоб була динаміка.\n\nКольри використовувати білий чорни та оражевий\nРеференси додав.\n\nОранжева точка може трохи зростати, при польоті у неї може зявлятись хвіст.\n\nХвіст може бути виразними і довгим, може бути коротким, може бути напівпрозорий або взагалі не бути.\n\nВід оранжевого обʼєкту можуть йти помаранчеві лінії тонкі.\n\nМожуть оранжовіти білі лінії.\n\nОсновний задум що оранжевий обʼєкт це як душа замкнена в тілі чи в буденності.\n\nІ щоб вийти їй на новий рівень потрібно вирватись.\n\nІ водночас коли вона виривається білі кола створюють супротив.\n\nЩе можна якось показати ефект звукової хвилі, коли від обʼєкта оранжевого поступово деформуються лінії білі.\n\nАле під час рухів і спроб прорвати оболонку оранжевий обєет робить певні ефекти які описав вище.\n\nТоюто це покахує що душа яскарав і повна енергії.\n\nПісля цих спроб оранж обєект знаходить сидл і поступово лінії направляються за ним."
+            }
+          ]
         },
         {
           "id": "c2",
@@ -74,7 +126,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/c2.jpg",
           "source": "projects/outgrow/references/images/Amber Seed in a Silent Shell-1.png",
-          "note": "Stillness before the first attempt. Motion only; not its blue or gold."
+          "note": "Stillness before the first attempt. Motion only; not its blue or gold.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-image-reference-roles.md",
+              "title": "Owner reference-image roles",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зліва зверху початковий референт картинка із якого все починається, далі картинки це форма перетворення які можуть бути.. “From concentric circles to winged symmetry”\n\nЕфеути перетворення які можуть бути “Amber Seed in a Silent Shell-1”, “Amber Rosette in Orbital Bloom-5”, “Ruptured Shell, Blooming Rosette-4”\n\nМожливі проміжні резульиати “Six hypnotic contour pattern studies”, “Tiny Seed's Figure-Eight Escape”\n\nКінцевий референт приблизний, але лінії повинні бути прямими без розривів “Symmetric_winged_seed_linework.png_2K_20261016192546”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-soul-and-shell.md",
+              "title": "Owner soul-and-shell description",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Потрібно щоб була динаміка.\n\nКольри використовувати білий чорни та оражевий\nРеференси додав.\n\nОранжева точка може трохи зростати, при польоті у неї може зявлятись хвіст.\n\nХвіст може бути виразними і довгим, може бути коротким, може бути напівпрозорий або взагалі не бути.\n\nВід оранжевого обʼєкту можуть йти помаранчеві лінії тонкі.\n\nМожуть оранжовіти білі лінії.\n\nОсновний задум що оранжевий обʼєкт це як душа замкнена в тілі чи в буденності.\n\nІ щоб вийти їй на новий рівень потрібно вирватись.\n\nІ водночас коли вона виривається білі кола створюють супротив.\n\nЩе можна якось показати ефект звукової хвилі, коли від обʼєкта оранжевого поступово деформуються лінії білі.\n\nАле під час рухів і спроб прорвати оболонку оранжевий обєет робить певні ефекти які описав вище.\n\nТоюто це покахує що душа яскарав і повна енергії.\n\nПісля цих спроб оранж обєект знаходить сидл і поступово лінії направляються за ним."
+            }
+          ]
         },
         {
           "id": "c3",
@@ -86,7 +156,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/c3.jpg",
           "source": "projects/outgrow/references/images/Six hypnotic contour pattern studies.png",
-          "note": "Spirals, pinches, figure eights and ribbons for the middle of the film."
+          "note": "Spirals, pinches, figure eights and ribbons for the middle of the film.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-image-reference-roles.md",
+              "title": "Owner reference-image roles",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зліва зверху початковий референт картинка із якого все починається, далі картинки це форма перетворення які можуть бути.. “From concentric circles to winged symmetry”\n\nЕфеути перетворення які можуть бути “Amber Seed in a Silent Shell-1”, “Amber Rosette in Orbital Bloom-5”, “Ruptured Shell, Blooming Rosette-4”\n\nМожливі проміжні резульиати “Six hypnotic contour pattern studies”, “Tiny Seed's Figure-Eight Escape”\n\nКінцевий референт приблизний, але лінії повинні бути прямими без розривів “Symmetric_winged_seed_linework.png_2K_20261016192546”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-soul-and-shell.md",
+              "title": "Owner soul-and-shell description",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Потрібно щоб була динаміка.\n\nКольри використовувати білий чорни та оражевий\nРеференси додав.\n\nОранжева точка може трохи зростати, при польоті у неї може зявлятись хвіст.\n\nХвіст може бути виразними і довгим, може бути коротким, може бути напівпрозорий або взагалі не бути.\n\nВід оранжевого обʼєкту можуть йти помаранчеві лінії тонкі.\n\nМожуть оранжовіти білі лінії.\n\nОсновний задум що оранжевий обʼєкт це як душа замкнена в тілі чи в буденності.\n\nІ щоб вийти їй на новий рівень потрібно вирватись.\n\nІ водночас коли вона виривається білі кола створюють супротив.\n\nЩе можна якось показати ефект звукової хвилі, коли від обʼєкта оранжевого поступово деформуються лінії білі.\n\nАле під час рухів і спроб прорвати оболонку оранжевий обєет робить певні ефекти які описав вище.\n\nТоюто це покахує що душа яскарав і повна енергії.\n\nПісля цих спроб оранж обєект знаходить сидл і поступово лінії направляються за ним."
+            }
+          ]
         },
         {
           "id": "c4",
@@ -98,7 +186,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/c4.jpg",
           "source": "projects/outgrow/references/images/Tiny Seed's Figure-Eight Escape.png",
-          "note": "The soul slipping through an asymmetric figure eight."
+          "note": "The soul slipping through an asymmetric figure eight.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-image-reference-roles.md",
+              "title": "Owner reference-image roles",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зліва зверху початковий референт картинка із якого все починається, далі картинки це форма перетворення які можуть бути.. “From concentric circles to winged symmetry”\n\nЕфеути перетворення які можуть бути “Amber Seed in a Silent Shell-1”, “Amber Rosette in Orbital Bloom-5”, “Ruptured Shell, Blooming Rosette-4”\n\nМожливі проміжні резульиати “Six hypnotic contour pattern studies”, “Tiny Seed's Figure-Eight Escape”\n\nКінцевий референт приблизний, але лінії повинні бути прямими без розривів “Symmetric_winged_seed_linework.png_2K_20261016192546”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-soul-and-shell.md",
+              "title": "Owner soul-and-shell description",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Потрібно щоб була динаміка.\n\nКольри використовувати білий чорни та оражевий\nРеференси додав.\n\nОранжева точка може трохи зростати, при польоті у неї може зявлятись хвіст.\n\nХвіст може бути виразними і довгим, може бути коротким, може бути напівпрозорий або взагалі не бути.\n\nВід оранжевого обʼєкту можуть йти помаранчеві лінії тонкі.\n\nМожуть оранжовіти білі лінії.\n\nОсновний задум що оранжевий обʼєкт це як душа замкнена в тілі чи в буденності.\n\nІ щоб вийти їй на новий рівень потрібно вирватись.\n\nІ водночас коли вона виривається білі кола створюють супротив.\n\nЩе можна якось показати ефект звукової хвилі, коли від обʼєкта оранжевого поступово деформуються лінії білі.\n\nАле під час рухів і спроб прорвати оболонку оранжевий обєет робить певні ефекти які описав вище.\n\nТоюто це покахує що душа яскарав і повна енергії.\n\nПісля цих спроб оранж обєект знаходить сидл і поступово лінії направляються за ним."
+            }
+          ]
         },
         {
           "id": "c5",
@@ -110,7 +216,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/c5.jpg",
           "source": "projects/outgrow/references/images/Amber Rosette in Orbital Bloom-5.png",
-          "note": "Radial expansion for a possible rosette stage."
+          "note": "Radial expansion for a possible rosette stage.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-image-reference-roles.md",
+              "title": "Owner reference-image roles",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зліва зверху початковий референт картинка із якого все починається, далі картинки це форма перетворення які можуть бути.. “From concentric circles to winged symmetry”\n\nЕфеути перетворення які можуть бути “Amber Seed in a Silent Shell-1”, “Amber Rosette in Orbital Bloom-5”, “Ruptured Shell, Blooming Rosette-4”\n\nМожливі проміжні резульиати “Six hypnotic contour pattern studies”, “Tiny Seed's Figure-Eight Escape”\n\nКінцевий референт приблизний, але лінії повинні бути прямими без розривів “Symmetric_winged_seed_linework.png_2K_20261016192546”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-soul-and-shell.md",
+              "title": "Owner soul-and-shell description",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Потрібно щоб була динаміка.\n\nКольри використовувати білий чорни та оражевий\nРеференси додав.\n\nОранжева точка може трохи зростати, при польоті у неї може зявлятись хвіст.\n\nХвіст може бути виразними і довгим, може бути коротким, може бути напівпрозорий або взагалі не бути.\n\nВід оранжевого обʼєкту можуть йти помаранчеві лінії тонкі.\n\nМожуть оранжовіти білі лінії.\n\nОсновний задум що оранжевий обʼєкт це як душа замкнена в тілі чи в буденності.\n\nІ щоб вийти їй на новий рівень потрібно вирватись.\n\nІ водночас коли вона виривається білі кола створюють супротив.\n\nЩе можна якось показати ефект звукової хвилі, коли від обʼєкта оранжевого поступово деформуються лінії білі.\n\nАле під час рухів і спроб прорвати оболонку оранжевий обєет робить певні ефекти які описав вище.\n\nТоюто це покахує що душа яскарав і повна енергії.\n\nПісля цих спроб оранж обєект знаходить сидл і поступово лінії направляються за ним."
+            }
+          ]
         },
         {
           "id": "c6",
@@ -122,7 +246,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/c6.jpg",
           "source": "projects/outgrow/references/images/Ruptured Shell, Blooming Rosette-4.png",
-          "note": "Breakthrough energy: a bloom inside a shell that starts to tear."
+          "note": "Breakthrough energy: a bloom inside a shell that starts to tear.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-image-reference-roles.md",
+              "title": "Owner reference-image roles",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зліва зверху початковий референт картинка із якого все починається, далі картинки це форма перетворення які можуть бути.. “From concentric circles to winged symmetry”\n\nЕфеути перетворення які можуть бути “Amber Seed in a Silent Shell-1”, “Amber Rosette in Orbital Bloom-5”, “Ruptured Shell, Blooming Rosette-4”\n\nМожливі проміжні резульиати “Six hypnotic contour pattern studies”, “Tiny Seed's Figure-Eight Escape”\n\nКінцевий референт приблизний, але лінії повинні бути прямими без розривів “Symmetric_winged_seed_linework.png_2K_20261016192546”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-soul-and-shell.md",
+              "title": "Owner soul-and-shell description",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Потрібно щоб була динаміка.\n\nКольри використовувати білий чорни та оражевий\nРеференси додав.\n\nОранжева точка може трохи зростати, при польоті у неї може зявлятись хвіст.\n\nХвіст може бути виразними і довгим, може бути коротким, може бути напівпрозорий або взагалі не бути.\n\nВід оранжевого обʼєкту можуть йти помаранчеві лінії тонкі.\n\nМожуть оранжовіти білі лінії.\n\nОсновний задум що оранжевий обʼєкт це як душа замкнена в тілі чи в буденності.\n\nІ щоб вийти їй на новий рівень потрібно вирватись.\n\nІ водночас коли вона виривається білі кола створюють супротив.\n\nЩе можна якось показати ефект звукової хвилі, коли від обʼєкта оранжевого поступово деформуються лінії білі.\n\nАле під час рухів і спроб прорвати оболонку оранжевий обєет робить певні ефекти які описав вище.\n\nТоюто це покахує що душа яскарав і повна енергії.\n\nПісля цих спроб оранж обєект знаходить сидл і поступово лінії направляються за ним."
+            }
+          ]
         },
         {
           "id": "c7",
@@ -134,7 +276,25 @@
           "status": "chosen",
           "image": "media/outgrow/studies/c7.jpg",
           "source": "projects/outgrow/references/images/Symmetric_winged_seed_linework.png_2K_20261016192546.jpg",
-          "note": "The final form: clean symmetric wings around a vertical orange seed."
+          "note": "The final form: clean symmetric wings around a vertical orange seed.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-image-reference-roles.md",
+              "title": "Owner reference-image roles",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зліва зверху початковий референт картинка із якого все починається, далі картинки це форма перетворення які можуть бути.. “From concentric circles to winged symmetry”\n\nЕфеути перетворення які можуть бути “Amber Seed in a Silent Shell-1”, “Amber Rosette in Orbital Bloom-5”, “Ruptured Shell, Blooming Rosette-4”\n\nМожливі проміжні резульиати “Six hypnotic contour pattern studies”, “Tiny Seed's Figure-Eight Escape”\n\nКінцевий референт приблизний, але лінії повинні бути прямими без розривів “Symmetric_winged_seed_linework.png_2K_20261016192546”"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-soul-and-shell.md",
+              "title": "Owner soul-and-shell description",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Потрібно щоб була динаміка.\n\nКольри використовувати білий чорни та оражевий\nРеференси додав.\n\nОранжева точка може трохи зростати, при польоті у неї може зявлятись хвіст.\n\nХвіст може бути виразними і довгим, може бути коротким, може бути напівпрозорий або взагалі не бути.\n\nВід оранжевого обʼєкту можуть йти помаранчеві лінії тонкі.\n\nМожуть оранжовіти білі лінії.\n\nОсновний задум що оранжевий обʼєкт це як душа замкнена в тілі чи в буденності.\n\nІ щоб вийти їй на новий рівень потрібно вирватись.\n\nІ водночас коли вона виривається білі кола створюють супротив.\n\nЩе можна якось показати ефект звукової хвилі, коли від обʼєкта оранжевого поступово деформуються лінії білі.\n\nАле під час рухів і спроб прорвати оболонку оранжевий обєет робить певні ефекти які описав вище.\n\nТоюто це покахує що душа яскарав і повна енергії.\n\nПісля цих спроб оранж обєект знаходить сидл і поступово лінії направляються за ним."
+            }
+          ]
         },
         {
           "id": "r1",
@@ -157,7 +317,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/e1.jpg",
           "source": "projects/outgrow/references/images/ending-01-beyond-frame.png",
-          "note": "Oversized asymmetric wings run off the edges; the words sit in the black space."
+          "note": "Oversized asymmetric wings run off the edges; the words sit in the black space.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-e1-beyond-frame.md",
+              "title": "Beyond the frame",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Create ONE polished vertical 9:16 typography keyframe for Outgrow. Image 1 is actual final animation frame: retain its distinctive white continuous nested four-petal wing contours, orange seed, black ground. Image 2 references ONLY type weight and style: very bold compact clean sans serif like 'Your night.' Ignore its green colors. Exact headline, mandatory punctuation: 'Break the shape. Keep becoming.' No other words. VARIANT 1 OUTSIDE THE FRAME: dramatically enlarged white contour wings crop beyond left and bottom edges, diagonal visual flow, large clear black negative space upper middle for bold white headline on 3 lines 'Break the shape.' / 'Keep' / 'becoming.' Orange seed near last line as protagonist. Elegant restrained orange glow. All letters fully legible, typography dominates with generous margins; never place busy lines behind text. Palette black white vivid orange only. No UI, watermark, frame, mockup or extra labels. A finished graphic still for mobile Shorts."
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-five-variants.md",
+              "title": "Owner headline and five variants",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "**Break the shape. Keep becoming.**\nось цей надпис повинен бути, зроби ті 5 варіантів які ти запропонував"
+            }
+          ]
         },
         {
           "id": "e2",
@@ -169,7 +347,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/e2.jpg",
           "source": "projects/outgrow/references/images/ending-02-between-wings.png",
-          "note": "A symmetric passage between the wings frames the headline."
+          "note": "A symmetric passage between the wings frames the headline.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-e2-between-wings.md",
+              "title": "Between the wings",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "ONE finished vertical 9:16 Outgrow typography keyframe, black white orange only. Reference1 actual finale white nested four-wing contours and orange soul. Reference2 ONLY heavy compact clean sans-serif typography style. VARIANT2 PASSAGE BETWEEN WINGS: exact mirror symmetric white contour curtains curve down both sides and open up a broad tall black central passage. Huge bold white headline in the passage reading exactly 'Break the shape. Keep becoming.' on four centered lines 'Break' / 'the shape.' / 'Keep' / 'becoming.' Adequate dark clearance around every letter. Small vivid orange seed above the headline at top center, fine orange vertical trail towards headline. Camera feels inside the contour wings, minimal immersive depth. White contours concentrated at lateral edges, not crossing text. Central typography at y30–60% of frame, generous mobile margins. No other words, icons, mockup, border, watermark."
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-five-variants.md",
+              "title": "Owner headline and five variants",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "**Break the shape. Keep becoming.**\nось цей надпис повинен бути, зроби ті 5 варіантів які ти запропонував"
+            }
+          ]
         },
         {
           "id": "e3",
@@ -181,7 +377,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/e3.jpg",
           "source": "projects/outgrow/references/images/ending-03-under-pressure.png",
-          "note": "A resisting shell wraps tightly around the words."
+          "note": "A resisting shell wraps tightly around the words.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-e3-under-pressure.md",
+              "title": "Text under pressure",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Create ONE vertical 9:16 finished graphic keyframe for Outgrow. Reference1 actual white continuous nested wing-petal contours orange seed black background. Reference2 ONLY bold compact sans-serif type weight. VARIANT3 TEXT UNDER PRESSURE: giant bold white typography reads exactly 'Break the shape. Keep becoming.' stacked in three compact lines 'Break the shape.' / 'Keep' / 'becoming.' at center. Dense smooth white contour loops tightly embrace text from above and below like an elastic horizontal shell stretched around a black rectangular negative space, with pinched edges, without obscuring letters. Orange seed at right edge of shell pushes contours outward; local few lines glow orange at collision. Dynamic tension, diagonally stretched fabric-like precise lines, high-end editorial type, strongly different from symmetric vertical corridor. Pure black white orange, generous margins, no extra words, watermark, UI, border."
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-five-variants.md",
+              "title": "Owner headline and five variants",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "**Break the shape. Keep becoming.**\nось цей надпис повинен бути, зроби ті 5 варіантів які ти запропонував"
+            }
+          ]
         },
         {
           "id": "e4",
@@ -193,7 +407,25 @@
           "status": "chosen",
           "image": "media/outgrow/studies/e4.jpg",
           "source": "projects/outgrow/references/images/ending-04-trace-of-freedom.png",
-          "note": "Wings low, an orange S-trace rising to the soul, text on the left. Chosen for refinement."
+          "note": "Wings low, an orange S-trace rising to the soul, text on the left. Chosen for refinement.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-e4-trace-freedom.md",
+              "title": "Trace of freedom",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "ONE beautiful vertical 9:16 final typography keyframe. Outgrow. Reference1 visual family white fine nested four-petal wing contours orange soul black ground. Reference2 ONLY typography: very bold compact clean sans serif. VARIANT4 TRACE OF FREEDOM: minimal airy composition, small vivid orange seed flies up at x65% y20% with elegant very thin curved orange tail descending towards bottom. White wing contours have fallen away below, only enlarged cropped flowing fragments occupying bottom quarter and far lower-left edge. Most of image calm pure black. Large bold white left-aligned headline at x12% y42%, exact text 'Break the shape. Keep becoming.' on three lines 'Break the shape.' / 'Keep' / 'becoming.' Text fully legible with generous safe margins. Feeling liberated, quiet after energy, confident editorial composition. No additional text, icons, border, UI, watermark. Palette only black white vivid orange."
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-five-variants.md",
+              "title": "Owner headline and five variants",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "**Break the shape. Keep becoming.**\nось цей надпис повинен бути, зроби ті 5 варіантів які ти запропонував"
+            }
+          ]
         },
         {
           "id": "e5",
@@ -205,7 +437,25 @@
           "status": "explored",
           "image": "media/outgrow/studies/e5.jpg",
           "source": "projects/outgrow/references/images/ending-05-words-as-shell.png",
-          "note": "Huge type becomes the structure the soul threads through."
+          "note": "Huge type becomes the structure the soul threads through.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-e5-words-shell.md",
+              "title": "Words as a new shell",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Create ONE finished vertical 9:16 graphic typography keyframe Outgrow. Reference1 gives white nested continuous contour wings orange seed pure black. Reference2 only compact very bold sans-serif font style. VARIANT5 WORDS AS A NEW SHELL: monumental stacked bold white lettering occupying central 60 percent frame reads exactly 'Break the shape. Keep becoming.' arranged 'Break' / 'the shape.' / 'Keep' / 'becoming.' Sculptural white contour ribbons weave BEHIND the letter shapes, emerging between lines and curling out at top left and bottom right, visually treating words as structure through which the orange soul escapes. Tiny vivid orange seed shoots diagonally through the generous gap between 'the shape.' and 'Keep', with elegant thin orange arc trail threading letter gaps. Keep all words fully readable and correctly spelled, no extra title OUTGROW. Much bolder typographic composition than regular centered headline with decorative border. Black white orange only. Precise fine continuous lines, high contrast, editorial sophisticated, no logo, no UI, no watermark."
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-five-variants.md",
+              "title": "Owner headline and five variants",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "**Break the shape. Keep becoming.**\nось цей надпис повинен бути, зроби ті 5 варіантів які ти запропонував"
+            }
+          ]
         },
         {
           "id": "t1",
@@ -216,7 +466,25 @@
           "status": "chosen",
           "image": "media/outgrow/studies/t1.jpg",
           "source": "projects/outgrow/references/images/ending-04-large-type.png",
-          "note": "The headline grows to four left-aligned lines: Break / the shape. / Keep / becoming."
+          "note": "The headline grows to four left-aligned lines: Break / the shape. / Keep / becoming.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-larger-letters.md",
+              "title": "Owner larger-type request",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "збільш букви"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-t1-large-type.md",
+              "title": "Enlarge the headline",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Edit this exact vertical graphic. Increase the white headline letter size substantially, approximately 40 percent larger, preserving the same bold clean sans serif font weight. Reflow exact text as four left-aligned lines: 'Break' / 'the shape.' / 'Keep' / 'becoming.' All text must fit with comfortable margins and remain completely readable. Keep the overall text block around the middle-left of frame, spanning roughly y30% to y61%, allowing it to extend a little downward into the existing empty black space. Preserve the original black background, orange seed at upper right, delicate orange curved trail and white contour wings at bottom. Do not enlarge the entire image or the decorative elements. Only enlarge and reflow lettering; exact sentence and punctuation: 'Break the shape. Keep becoming.' No extra text."
+            }
+          ]
         },
         {
           "id": "t2",
@@ -227,7 +495,25 @@
           "status": "superseded",
           "image": "media/outgrow/studies/t2.jpg",
           "source": "projects/outgrow/references/images/ending-04-orange-objects.png",
-          "note": "Colour test with the nouns in orange. Dropped in favour of orange verbs."
+          "note": "Colour test with the nouns in orange. Dropped in favour of orange verbs.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-orange-objects.md",
+              "title": "Owner first colour assignment",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Зроби наступні слова помаранчевого колору такого як колір крапки..\n\"the shape\"\n\"becoming.\"\n\nЗверний увагу останнє слово стає помаранчевим разом із крапкою"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-t2-orange-objects.md",
+              "title": "Orange noun phrases",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Precisely edit only text colors in this exact image. Preserve typography, font, size, placement, line breaks, black background, white contour wings, orange seed and curved trail unchanged. Text has four lines: Break / the shape. / Keep / becoming. Change letters 'the shape' on second line to the exact vivid orange hue of the orange seed in the supplied image, BUT keep the period after shape WHITE. Change entire fourth line 'becoming.' including its final period to that same orange. Keep first line 'Break' WHITE and third line 'Keep' WHITE. Flat solid orange lettering, no added glow on text. Do not alter composition or wording. The final period after becoming MUST be orange; period after shape MUST be white."
+            }
+          ]
         },
         {
           "id": "t3",
@@ -238,7 +524,25 @@
           "status": "chosen",
           "image": "media/outgrow/studies/t3.jpg",
           "source": "projects/outgrow/references/images/trace-of-freedom-orange-verbs.png",
-          "note": "Only Break and Keep in orange. The target frame for version 03."
+          "note": "Only Break and Keep in orange. The target frame for version 03.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-orange-verbs.md",
+              "title": "Owner final colour assignment",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "**“Break”** і **“Keep” зроби помаранчевого кольору, інші букви і крапки залиш білими**"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-t3-orange-verbs.md",
+              "title": "Orange action words",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Edit ONLY the headline colors in this exact image. Preserve all geometry, font, letter size, position, line spacing, composition, black background, white contour wings, orange seed and orange curved trail. Required four lines and colors: line1 'Break' ORANGE matching the orange seed; line2 'the shape.' completely WHITE including the period; line3 'Keep' ORANGE matching the orange seed; line4 'becoming.' completely WHITE including the period and the dot over the i. No other letters or punctuation orange. Solid flat text fills, no text glow. Exact wording 'Break the shape. Keep becoming.' Do not change any other detail."
+            }
+          ]
         },
         {
           "id": "a1",
@@ -249,7 +553,25 @@
           "status": "proposed",
           "image": "media/outgrow/studies/a1.jpg",
           "source": "projects/outgrow/references/images/shorts-comment-arrow-schematic.png",
-          "note": "A curved orange arrow toward the comment button. Proposed, not in the film."
+          "note": "A curved orange arrow toward the comment button. Proposed, not in the film.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-a1-comment-arrow.md",
+              "title": "Comment-arrow schematic",
+              "date": "2026-10-19",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Use case: ui-mockup. Asset type: a visual placement-reference image for an AI prompt. Primary request: Create a clean vertical 9:16 short-video interface template, neutral and unbranded, similar in layout to a short-form video app. A black full-screen video area. Along the right edge, a vertical column of simple white outline icons: like/heart at upper right, a speech-bubble comment icon directly below it, a share arrow below, then a small circular profile placeholder. Add realistic but generic engagement numbers beside or below the icons. A thick bright orange curved arrow begins near the center-left and points precisely to the speech-bubble comment icon. Add a small high-legibility orange label beside the arrow tip reading exactly: \"COMMENT ICON\". The comment icon must be visually isolated and unmistakable. Minimal high-contrast infographic style, crisp UI geometry, no logo, no watermark, no other text, no app branding. Composition: leave ample empty black space in the middle so the arrow is easy to understand."
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-comment-arrow.md",
+              "title": "Owner comment-arrow reference request",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "мені потрібно картинка шаблон дисплея шортс із даними щоб я міг дати ШІ приклад щоб він рпозумів як розмістити стрілку щоб вона вказувала на іконку коментар"
+            }
+          ]
         }
       ]
     }
