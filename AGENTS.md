@@ -8,7 +8,7 @@ This repository is a motion-graphics studio. Several AI agents (Codex, Claude, C
 ## Read before you start
 
 1. This file.
-2. [`STYLE.md`](./STYLE.md) — the visual and motion language. Mandatory for new pieces.
+2. [`STYLE.md`](./STYLE.md) — the visual and motion language. Mandatory for new pieces. For making a piece, also read [`skills/outgrow-style/SKILL.md`](./skills/outgrow-style/SKILL.md): the working process, tuned code recipes and known traps.
 3. The project you are touching: `projects/<project>/BRIEF.md`, then `projects/<project>/LOG.md` (the latest entries tell you what the other agents just did and what is next).
 
 ## Repository map
@@ -21,6 +21,7 @@ README.md               front page for people
 inbox/                  fallback drop zone when you cannot tell where something belongs
 templates/              starting files for new projects and ideas
 scripts/                repo-level tools (site data, media encoding)
+skills/outgrow-style/   the style as a reusable agent skill (process, recipes, reference source)
 projects/<project>/
   project.json          manifest: title, statement, every published version
   BRIEF.md              concept, rules, decisions log
