@@ -59,8 +59,8 @@ The seven original still references and selected orange-verbs target above alrea
 | [codex-v01-frame-1140.png](./images/codex-v01-frame-1140.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
 | [codex-v01-frame-1380.png](./images/codex-v01-frame-1380.png) | Codex version 01 render sample; frame number in filename, 60 fps. Archival review image, not a new published version. |
 | [claude-v02-final-frame.jpg](./images/claude-v02-final-frame.jpg) | Extracted finale of the local 13-second Claude version 02; basis for ending studies. |
-| [shorts-mobile-browser-1080x2240.png](./images/shorts-mobile-browser-1080x2240.png) | Real mobile-browser Shorts screenshot, 1080 × 2240, from [Mozilla Support](https://support.mozilla.org/si/questions/1465550), 2024. Browser/OS chrome included; not a native-app placement template. |
-| [shorts-phone-mockup.webp](./images/shorts-phone-mockup.webp) | Phone mockup in a 1600 × 900 image from [PPC Land](https://ppc.land/youtube-brings-gemini-omni-and-personal-avatars-to-shorts-at-google-i-o/). Illustrative UI, not a 9:16 video viewport. |
+| [Real mobile-browser screenshot — Mozilla Support](https://support.mozilla.org/si/questions/1465550) (external, not stored) | Real mobile-browser Shorts screenshot, 1080 × 2240, published in 2024. Browser/OS chrome included; not a native-app placement template. |
+| [Phone mockup — PPC Land](https://ppc.land/youtube-brings-gemini-omni-and-personal-avatars-to-shorts-at-google-i-o/) (external, not stored) | Phone mockup in a 1600 × 900 image. Illustrative UI, not a 9:16 video viewport. |
 | [shorts-comment-arrow-schematic.png](./images/shorts-comment-arrow-schematic.png) | AI-generated arrow-placement schematic; not measured or authoritative YouTube UI. |
 
 ## Third-party motion sources: attribution pending

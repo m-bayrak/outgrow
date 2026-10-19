@@ -25,3 +25,8 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Appended decisions for the selected trace-of-freedom composition, enlarged type, exact copy and punctuation colours. Source and published media were not changed; existing masters/web renders were not duplicated.
 - No third-party video or private chat was added. Original video URLs/authors remain unresolved in inbox/2026-10-19-outgrow-video-source-links/note.md. Legacy footage remains untouched under the append-only scope.
 - Open: supply verified original video links and authors; decide whether the proposed comment CTA is wanted; continue production from the selected target using the staged workflow in AGENTS.md.
+
+## 2026-10-19 · codex · codex/import-materials
+- Removed the third-party Shorts phone mockup and mobile-browser screenshot from the branch's current files at the owner's request. The import now contains 19 additional images.
+- Kept their reference-table rows and comment-arrow idea, replacing local image links with external source links marked "(external, not stored)".
+- Earlier commits retain the removed files in Git history; this follow-up does not rewrite history. No source code or published media changed.
