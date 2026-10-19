@@ -44,6 +44,7 @@ docs/                   GitHub Pages site (served from main/docs)
 | A decision ("we do X because Y") | The **Decisions** table in `projects/<p>/BRIEF.md` | One line in `LOG.md` |
 | Code for a piece | `projects/<p>/src/<author>/` (a standalone pnpm + Remotion project) | — |
 | A new published version | See **Publishing a version** | — |
+| A still that shows a step of the process (concept, layout or colour study, review sheet) | The image in `references/images/` as above, then see **Showing a study on the site** | — |
 | A new project | Copy `templates/project/` to `projects/<new-id>/`, fill it in | A row in the root `README.md` |
 | Anything you cannot place | `inbox/YYYY-MM-DD-<slug>/` with a `note.md` (see `inbox/README.md`) | The next agent files it and empties the folder |
 
@@ -65,6 +66,20 @@ Every visible step forward is a **new** version. Never overwrite or delete an ex
 4. Run `node scripts/build-site-data.mjs` and commit the regenerated `docs/data/projects.json`.
 5. Append to `LOG.md`.
 6. Masters are not committed. When the owner asks, attach the master to a GitHub Release tagged `<p>-<NN>`.
+
+## Showing a study on the site
+
+Studies are the stills between versions. They hang on the same lineage tree as small dots.
+
+1. Make sure the image is in `projects/<p>/references/images/` (owner- or agent-made only).
+2. Add an entry to `studies` in `projects/<p>/project.json`:
+   - `id`: short and unique in the project (e.g. `e6`); `title`; `author`; `date`;
+   - `parent`: the version or study it grew from, or `null` for the brief;
+   - `group`: optional; studies with the same group and parent share one row (e.g. "Ending studies");
+   - `status`: `chosen`, `explored`, `superseded` or `proposed`;
+   - `image`: `media/<p>/studies/<id>.jpg`; `source`: the path of the original in `references/images/`; `note`: one or two plain sentences.
+   A version can name the study it was built from with `basedOn`.
+3. Run `node scripts/encode-studies.mjs` (makes the 720 px web copy) and `node scripts/build-site-data.mjs`.
 
 ## Working together
 

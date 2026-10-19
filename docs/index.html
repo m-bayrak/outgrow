@@ -4,107 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Vertical motion pieces made in code: black ground, white linework, one orange soul." />
     <title>Outgrow</title>
-    <style>
-      :root {
-        color-scheme: dark;
-        --bg: #000;
-        --text: #fff;
-        --muted: rgba(255, 255, 255, 0.55);
-        --accent: #ff6a00;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        min-height: 100svh;
-        background: var(--bg);
-        color: var(--text);
-        font-family: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 24px 16px 32px;
-        gap: 20px;
-      }
-      header { text-align: center; }
-      h1 {
-        margin: 0;
-        font-size: 15px;
-        font-weight: 600;
-        letter-spacing: 0.32em;
-        text-transform: uppercase;
-      }
-      header p {
-        margin: 8px 0 0;
-        color: var(--muted);
-        font-size: 13px;
-      }
-      main {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 28px;
-        width: 100%;
-      }
-      figure {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-      }
-      h2 {
-        margin: 0;
-        font-size: 22px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-      }
-      h2::before {
-        content: "";
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        margin-right: 10px;
-        border-radius: 50%;
-        background: var(--accent);
-        vertical-align: middle;
-      }
-      video {
-        display: block;
-        width: min(calc(100vw - 32px), calc((100svh - 170px) * 0.5625));
-        aspect-ratio: 9 / 16;
-        background: #000;
-        object-fit: contain;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-      }
-      figcaption {
-        color: var(--muted);
-        font-size: 13px;
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="site.css?v=2" />
   </head>
   <body>
-    <header>
-      <h1>Outgrow</h1>
-      <p>Growth sometimes requires stepping beyond the boundaries that have become too confining.</p>
-    </header>
-    <main>
-      <figure>
-        <h2>Codex</h2>
-        <video controls autoplay muted loop playsinline preload="metadata" poster="media/outgrow/01-codex.jpg" aria-label="Outgrow, Codex version">
-          <source src="media/outgrow/01-codex.mp4" type="video/mp4" />
-          Your browser does not support video playback.
-        </video>
-        <figcaption>25 s · 1080 × 1920 · 60 fps</figcaption>
-      </figure>
-      <figure>
-        <h2>Claude</h2>
-        <video controls autoplay muted loop playsinline preload="metadata" poster="media/outgrow/03-claude-text.jpg" aria-label="Outgrow, Claude version">
-          <source src="media/outgrow/03-claude-text.mp4" type="video/mp4" />
-          Your browser does not support video playback.
-        </video>
-        <figcaption>16.5 s · 1080 × 1920 · 60 fps</figcaption>
-      </figure>
+    <main class="project">
+      <section class="stage">
+        <video
+          id="player"
+          class="player"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+          preload="metadata"
+        ></video>
+        <img id="still" class="player still" alt="" hidden />
+      </section>
+
+      <section class="story">
+        <header class="intro">
+          <h1 id="title">Outgrow</h1>
+          <p id="statement" class="statement"></p>
+        </header>
+
+        <nav class="lineage" aria-label="Versions">
+          <div id="tree" class="tree"></div>
+          <div class="detail">
+            <h2 id="detail-title"></h2>
+            <p id="summary" class="summary"></p>
+            <a id="source" class="source" href="https://github.com/m-bayrak/outgrow"></a>
+          </div>
+        </nav>
+
+        <footer class="links">
+          <a href="https://github.com/m-bayrak/outgrow">Source on GitHub</a>
+          <a href="https://github.com/m-bayrak/outgrow/blob/main/STYLE.md">Style</a>
+        </footer>
+      </section>
     </main>
+
+    <noscript>
+      <p class="noscript">This page needs JavaScript to list the versions. The videos are in <a href="https://github.com/m-bayrak/outgrow/tree/main/docs/media">docs/media</a>.</p>
+    </noscript>
+
+    <script src="site.js?v=2" type="module"></script>
   </body>
 </html>
