@@ -57,3 +57,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-10-20 · claude · claude/prompts-02-03
 - Added the prompts behind versions 02 and 03 from Claude's session: the owner's request to rebuild from scratch, the production brief handed between Claude sessions, the owner's approvals, and the owner's request for the text ending. Verbatim, with English translations; local file paths replaced by repository paths.
 - Updated the coverage note in `prompts/README.md`. Prompts now attach to 19 items; only r1 (a review sheet) has none.
+
+## 2026-10-20 · claude · claude/outgrow-style-skill
+- Added the reusable skill `skills/outgrow-style/`: the working process with the owner, the style (copy of `STYLE.md`), tuned recipes (contour field, soul, impacts and waves, camera, flight to a target frame, typography, pacing), a lessons table of past traps and fixes, the Claude lineage source as a reference implementation, and the `stills.sh` / `strip.sh` checking scripts.
+- Linked into `~/.claude/skills/outgrow-style` on the owner's machine; `AGENTS.md` and `CLAUDE.md` point agents to it.
