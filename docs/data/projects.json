@@ -68,7 +68,33 @@
           "poster": "media/outgrow/02-claude-wings.jpg",
           "source": "projects/outgrow/src/claude",
           "commit": "cb9e2b2",
-          "summary": "Faster rework: one continuous set of 24 lines morphs from rings to wings; reactive camera."
+          "summary": "Faster rework: one continuous set of 24 lines morphs from rings to wings; reactive camera.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-claude-v02-production-brief.md",
+              "title": "Claude's production brief for version 02",
+              "date": "2026-10-16",
+              "author": "claude",
+              "tool": "Claude Code (handoff to a new session)",
+              "text": "Продовжуй роботу над Outgrow v2 у цій новій сесії (її створено, щоб підвантажились плагіни Remotion, Generative Art і video-shotcraft). Спілкуйся з користувачем українською.\n\n1. Перевір, що скіли плагінів Generative Art (genart) і video-shotcraft тепер доступні, і прочитай їхні інструкції (особливо рецепти камери з video-shotcraft і перевірку детермінізму з genart). Локальні скіли Remotion лежать у ~/.claude/skills/remotion-*.\n2. Перед першою правкою файлів виклич propose_branch (пропозиція: feat/outgrow-v2) і дотримуйся відповіді.\n3. Створи новий Remotion-проєкт у ~/code/outgrow/outgrow-v2/ (Node 26 і pnpm 12 уже встановлено через brew; corepack немає). Стару soul-escape/ не чіпай. Композиція 1080×1920, 60 fps, ~14 с.\n4. Реалізуй систему контурів за погодженим описом: ті самі безперервні лінії від кілець до крил (кожен контур — одна замкнена/безрозривна крива; форма = суміш цілей коло → овал → вісімка з защемленням → спіраль/розетка → крила, плюс поле деформацій від ударів і хвиль), помаранчева душа з хвостом, помаранчеві спалахи на лініях у місці удару, звукові хвилі, камера реагує (панчі, трекінг, відʼїзд). Палітра лише чорний/білий/помаранчевий. Кожен кадр детермінований від номера кадру.\n5. Відрендери 6–8 ключових стоп-кадрів (по одному на кожен біт розкадрування: гачок, удар, боротьба/вісімка, спіраль/розетка, прорив, розкриття, фінал), сам переглянь їх, порівняй з reference-materials/images і виправ очевидне.\n6. Покажи користувачу контакт-лист стоп-кадрів (SendUserFile) і запитай, чи затверджує форму, перш ніж переходити до руху. Не роби фінальний рендер MP4 і не пуш без явного дозволу.\n\nГотово, коли користувач отримав контакт-лист затверджуваних стоп-кадрів, а код у outgrow-v2/ збирається (pnpm lint без помилок)."
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-16-owner-rebuild-from-scratch.md",
+              "title": "Owner's request to rebuild from scratch",
+              "date": "2026-10-16",
+              "author": "owner",
+              "tool": "Claude Code",
+              "text": "1. Незнаю. Як краще вийде так і робити\n2. Частково виходить зовні\n3. Беру з них лише принцип перетворення. Так\n\n\nДумаю що потрібно щоб ти із нуля робив анімацію.\nПотрібно щоб вона була більш динамічна, можливо менше секунд.\nАле перед тим як візьмеш в робоиу дай опис.\n\nІ потрібно ще скілів докачати щоб краше ти робив Motion"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-17-owner-v02-approvals.md",
+              "title": "Owner's approvals for version 02",
+              "date": "2026-10-17",
+              "author": "owner",
+              "tool": "Claude Code",
+              "text": "Форму затверджую, переходь до руху: запусти прев'ю і доводь динаміку.\n\nДинаміка подобається. Зроби фінальний рендер 1080×1920 і закоміть у гілку."
+            }
+          ]
         },
         {
           "id": "03",
@@ -82,7 +108,17 @@
           "source": "projects/outgrow/src/claude",
           "commit": "585104d",
           "summary": "The soul flies an S-curve out of the wings; a spark writes Break / the shape. / Keep / becoming.",
-          "basedOn": "t3"
+          "basedOn": "t3",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-19-owner-text-ending.md",
+              "title": "Owner's request for the text ending",
+              "date": "2026-10-19",
+              "author": "owner",
+              "tool": "Claude Code",
+              "text": "Ось опорний кадр до якого прямуємо.\n[target frame: projects/outgrow/references/images/trace-of-freedom-orange-verbs.png]\nІз останньої анімації що ти зробив потрібно перейти до фігури яка в цьому кадрі. Думаю якось фігура зміститься щоб долучилась що вона внизу, а потім помаранчевий обʼєкт-душа підлітає по такій кривій вгору і завмирає.\nДалі із помаранчевої душі вилітає інша така сам і де вона приземляється чи стрибає там зявляються слова.\nОсь схожі ефекти як тут на 6 чи 8 секунді\n[typography reference video: see \"External references\" in projects/outgrow/references/REFERENCES.md]\n\nУсе має бути динамічно, як ти і робив для шортс\nАле спочатку дай відповідь, як ти хрохкмів і які варіанти пропонуєш?\n\n1. Продовжуємо старе\n2. Так\n3. «удар» для дієслів і «ковзання» для решти."
+            }
+          ]
         }
       ],
       "studies": [

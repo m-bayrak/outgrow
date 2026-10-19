@@ -41,7 +41,7 @@ Read current BRIEF.md and STYLE.md first. Historical prompts record what actuall
 
 - **c1–c7:** supplied images; original generating prompts are not available in this conversation. Reference-role and narrative descriptions are preserved, not represented as their generating prompts.
 - **01:** the original owner brief and contact-colour instruction are available. This animation was implemented directly in code; no separate single tool prompt generated it.
-- **02–03:** Claude's original execution prompts are not present in this conversation. Existing BRIEF.md, ideas/2026-10-19-text-ending.md, LOG.md and source document intent; this archive does not claim those are verbatim Claude prompts.
+- **02–03:** added later by Claude from its own session: the owner's requests and approvals verbatim ([rebuild from scratch](./2026-10-16-owner-rebuild-from-scratch.md), [approvals](./2026-10-17-owner-v02-approvals.md), [text ending](./2026-10-19-owner-text-ending.md)) and the [production brief](./2026-10-16-claude-v02-production-brief.md) one Claude session handed to the next. Local file paths in the owner's text are replaced with repository paths. Claude's own descriptions and plans between these messages are not prompts and are summarised in BRIEF.md and ideas/.
 - **r1:** a render-review contact sheet made using FFmpeg/PIL, not image generation; there is no text-to-image prompt.
 - **e1–e5, t1–t3, a1:** all nine actual image-generation prompt strings are preserved here.
 - **External typography sample:** a temporary three-frame sheet from 1–2 seconds of “Claude made this amazing motion design in 15 minute”; no third-party sheet is committed. Original URL remains unresolved in references/REFERENCES.md.
