@@ -140,7 +140,25 @@
           "master": {
             "url": "https://github.com/m-bayrak/outgrow/releases/download/outgrow-04/outgrow-04-claude-comments-master.mp4",
             "size": 38528876
-          }
+          },
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-20-owner-comment-bubble-refinement.md",
+              "title": "Owner request for an enlarged comment icon",
+              "date": "2026-10-20",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Ця найцікавіша ідея.\nАле кінець стрілки потрібно забрати.\nТи і так цікаво зобразив напрямок фокусу.\nА втому місці потрібно намалювати іконку коментаря оранжевого кольору.\nІ конка повинна бути розміщена в місці щоб вона частково попадала і на айфон і на андроїд.\nТакож вона повинна бути більшою за стандартний розмір іконки, щоб збільшити вірошіодність попадання\nНадпис “comment” зробити помаранчевим"
+            },
+            {
+              "file": "projects/outgrow/prompts/2026-10-20-owner-comments-continuation.md",
+              "title": "Owner request for a comments continuation",
+              "date": "2026-10-20",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Ось так виглядають скріншоти на айфон та андроїд\nIphone IMG_2535.PNG\nAndroid Screenshot_20261019-125029_YouTube.jpg\n\nНас цікавить іконка коментарі. Потрібно щоб на неї вказував вказівник.\nІ буде надпис коротка типу.. “Розкриття сенсу відео в коментарі”, але потрібно на англ. і потрібен короткі альтернативи.\n\nОсь тут я наклав ці скріпи і визначив середню відстань куди можна вказувати.\nIMG_2535 (1).png\n\nЦе має бути продовженням анімації. Останній кадр анімації можеш взяти із останнього відео що клод зробив в локальній папці.\n\nСтилі використовуємо ті що в нашій анімації.\nЩо гадаєш і які є ідеї?"
+            }
+          ]
         }
       ],
       "studies": [
@@ -640,7 +658,17 @@
           "status": "chosen",
           "image": "media/outgrow/studies/m1.jpg",
           "source": "projects/outgrow/references/images/meaning-in-the-comments-target.png",
-          "note": "Target frame for the comments ending. In the film the bubble moves slightly down and left, the text sits lower and the soul's trace is gone, so the bubble is the focus."
+          "note": "Target frame for the comments ending. In the film the bubble moves slightly down and left, the text sits lower and the soul's trace is gone, so the bubble is the focus.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-20-owner-comment-bubble-refinement.md",
+              "title": "Owner request for an enlarged comment icon",
+              "date": "2026-10-20",
+              "author": "owner",
+              "tool": "Codex",
+              "text": "Ця найцікавіша ідея.\nАле кінець стрілки потрібно забрати.\nТи і так цікаво зобразив напрямок фокусу.\nА втому місці потрібно намалювати іконку коментаря оранжевого кольору.\nІ конка повинна бути розміщена в місці щоб вона частково попадала і на айфон і на андроїд.\nТакож вона повинна бути більшою за стандартний розмір іконки, щоб збільшити вірошіодність попадання\nНадпис “comment” зробити помаранчевим"
+            }
+          ]
         }
       ]
     }
