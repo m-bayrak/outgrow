@@ -86,3 +86,9 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-10-20 · claude · claude/comments-studies
 - Built on Codex's `codex/latest-ideas` (PR #12): its four concept stills are now studies on the site. Under 03, group "Comment pointer studies": p1 soul pointer (explored), p2 period pointer (explored), p3 contour pointer (chosen); b1 first bubble (superseded) grew from p3, and m1 now hangs from b1, so the tree reads 03 → p3 → b1 → m1 → 04.
 - Web copies in `docs/media/outgrow/studies/`; site data rebuilt.
+
+## 2026-10-20 · claude · claude/comments-v5
+- Version 05 "Comment button" (parent 04, 24.9 s). Owner's phone check showed the 04 bubble level with the Like button; measured on iPhone and Android in frame pixels (comment button centre x 954–995, y 1254–1280; action column from x ≈ 927), the bubble now sits at centre (830, 1265), 150 × 118, right edge 905.
+- The separate guide lines are gone: `finale.ts` `pullLine` draws the left wing's top edge (lines 12–23, samples 363–383) out into a hairpin fan that converges on the bubble; each line stays one closed curve. The wings sink 100 px during the inhale (`ending.ts` `finalCamAt`), and the text sits 100 px lower.
+- Published `docs/media/outgrow/05-claude-comment-button.{mp4,jpg}`; decision row in `BRIEF.md`. The phone screenshots are third-party UI with personal details and are not stored; only the measurements are recorded.
+- Open: no release for 05 yet (the owner did not ask); re-check on both phones after upload.

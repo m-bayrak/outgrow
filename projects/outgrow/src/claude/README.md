@@ -1,6 +1,6 @@
 # Outgrow v2
 
-A 24.6-second, 1080 × 1920, 60 fps rework of **Outgrow**: denser pacing, a camera that reacts, and one continuous set of lines that travels from rings to wings.
+A 24.9-second, 1080 × 1920, 60 fps rework of **Outgrow**: denser pacing, a camera that reacts, and one continuous set of lines that travels from rings to wings.
 
 ## How it works
 
@@ -8,7 +8,7 @@ A 24.6-second, 1080 × 1920, 60 fps rework of **Outgrow**: denser pacing, a came
 - [`src/timeline.ts`](./src/timeline.ts) — the score: soul path, impacts, waves, shape track, camera (chase, crash punches, shake, final pull-back).
 - [`src/ending.ts`](./src/ending.ts) — the ending: the soul's S-curve flight, the final camera and the spark's hops.
 - [`src/Title.tsx`](./src/Title.tsx) — the closing words: verbs burst out where the spark lands, the rest is written as it glides; then the soul inhales them.
-- [`src/finale.ts`](./src/finale.ts) and [`src/Comments.tsx`](./src/Comments.tsx) — the comments ending (version 04), in screen space: the soul writes the new words, the guiding lines, the bubble, typing dots and the calm pulse.
+- [`src/finale.ts`](./src/finale.ts) and [`src/Comments.tsx`](./src/Comments.tsx) — the comments ending (version 04), in screen space: the soul writes the new words, the wing's top edge drawn out into lines, the bubble, typing dots and the calm pulse.
 - [`src/shapes.ts`](./src/shapes.ts) — the soul and tail outlines shared by both.
 - [`src/Outgrow.tsx`](./src/Outgrow.tsx) — projects everything through the camera and draws it as SVG.
 
@@ -24,11 +24,11 @@ Every frame is a pure function of its frame number (no `Math.random`, no clock),
 | 11–12.4 s | The soul flies an S-curve upward; the camera rises with it and the wings sink |
 | 12.6–15.3 s | A spark writes **Break** / the shape. / **Keep** / becoming. and settles as the full stop |
 | 15.3–16.0 s | Hold |
-| 16.0–17.0 s | The soul inhales the words, growing with each letter |
+| 16.0–17.1 s | The soul inhales the words, growing with each letter; the wings sink 100 px |
 | 17.1–19.0 s | It writes Meaning / in the, and lands on **comments.** with an impact |
-| 19.0–20.5 s | It dives into the lines at the lower left; orange runs along them to the converge point |
-| 20.5–22.6 s | The bubble is drawn; the soul re-forms inside, bursts, becomes three typing dots, then the bubble's bars |
-| 22.6–24.6 s | Calm pulse, thin arcs toward YouTube's real comment button |
+| 19.0–20.75 s | It touches the left wing's top edge, which stretches into a fan of lines to the bubble; orange runs along them |
+| 20.8–22.9 s | The bubble is drawn, level with YouTube's comment button; the soul re-forms inside, bursts, becomes three typing dots, then the bubble's bars |
+| 22.9–24.9 s | Calm pulse, thin arcs toward YouTube's real comment button |
 
 ## Run
 

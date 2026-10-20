@@ -69,6 +69,19 @@
         "url": "https://github.com/m-bayrak/outgrow/releases/download/outgrow-04/outgrow-04-claude-comments-master.mp4",
         "size": 38528876
       }
+    },
+    {
+      "id": "05",
+      "title": "Comment button",
+      "author": "claude",
+      "date": "2026-10-20",
+      "parent": "04",
+      "duration": 24.9,
+      "video": "media/outgrow/05-claude-comment-button.mp4",
+      "poster": "media/outgrow/05-claude-comment-button.jpg",
+      "source": "projects/outgrow/src/claude",
+      "commit": "cd07f78",
+      "summary": "The bubble sits level with YouTube's real comment button, and the left wing's top edge stretches into the lines that lead to it; the text sits lower."
     }
   ],
   "studies": [
