@@ -92,3 +92,4 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - The separate guide lines are gone: `finale.ts` `pullLine` draws the left wing's top edge (lines 12–23, samples 363–383) out into a hairpin fan that converges on the bubble; each line stays one closed curve. The wings sink 100 px during the inhale (`ending.ts` `finalCamAt`), and the text sits 100 px lower.
 - Published `docs/media/outgrow/05-claude-comment-button.{mp4,jpg}`; decision row in `BRIEF.md`. The phone screenshots are third-party UI with personal details and are not stored; only the measurements are recorded.
 - Open: no release for 05 yet (the owner did not ask); re-check on both phones after upload.
+- Release `outgrow-05` holds the master (24.9 s, 38.7 MB); version 05 links it as "Download master".
