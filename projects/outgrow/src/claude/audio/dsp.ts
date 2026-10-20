@@ -1,6 +1,6 @@
 // Small deterministic synthesis kit for the Outgrow sound effects.
-// No samples: every sound is built from sines, seeded noise, plucked-string
-// delay lines and resonant filters. Same code, same numbers, same audio.
+// No samples: every sound is built from sines, seeded noise, decaying partials
+// and resonant filters. Same code, same numbers, same audio.
 
 export const SR = 48000;
 
@@ -119,68 +119,6 @@ export const reverse = (x: Float64Array) => Float64Array.from(x).reverse();
 
 // ---------------------------------------------------------------- voices
 
-/**
- * A soft, low, heartbeat-like thump: a sine whose pitch falls from f0 to f1,
- * with a felt-mallet click on top.
- */
-export const thump = (o: { f0: number; f1: number; t60: number; click?: number; seed?: number }) => {
-  const n = len(o.t60 + 0.05);
-  const out = new Float64Array(n);
-  let ph = 0;
-  for (let i = 0; i < n; i++) {
-    const t = i / SR;
-    const f = o.f1 + (o.f0 - o.f1) * Math.exp(-t / 0.035);
-    ph += (2 * Math.PI * f) / SR;
-    // second and third harmonics give it body on phone speakers, which cannot play the fundamental
-    out[i] = (Math.sin(ph) + 0.45 * Math.sin(2 * ph + 0.4) + 0.15 * Math.sin(3 * ph + 1.1)) * adEnv(i, 0.004, o.t60);
-  }
-  const click = o.click ?? 0.3;
-  if (click > 0) {
-    const c = svf(noise(0.03, o.seed ?? 7), 900, 0.8, "low");
-    for (let i = 0; i < c.length; i++) out[i] += c[i] * click * 3 * adEnv(i, 0.0008, 0.025);
-  }
-  // gentle tape-like saturation: rounder, a little warmer, and fewer sharp peaks for the same weight
-  const drive = 2;
-  for (let i = 0; i < n; i++) out[i] = Math.tanh(drive * out[i]) / Math.tanh(drive);
-  return out;
-};
-
-/**
- * A plucked string (Karplus–Strong): a burst of filtered noise circulating in
- * a tuned delay line. `bright` 0..1 sets the pluck's hardness, `t60` the ring.
- */
-export const pluck = (o: { freq: number; t60: number; bright?: number; seed: number; seconds?: number }) => {
-  const n = len(o.seconds ?? o.t60);
-  const out = new Float64Array(n);
-  const bright = o.bright ?? 0.5;
-  const period = SR / o.freq - 0.5; // the averaging filter adds half a sample
-  const size = Math.ceil(period) + 2;
-  const line = new Float64Array(size);
-  const exc = svf(noise(1 / o.freq, o.seed), 300 + 9000 * bright * bright, 0.7, "low");
-  const g = Math.pow(10, -3 / (o.freq * o.t60));
-  // loss filter mix: 0.5 is the classic average; closer to 1 keeps highs longer
-  const s = 0.5 + 0.35 * bright;
-  let w = 0;
-  let prev = 0;
-  for (let i = 0; i < n; i++) {
-    const rd = w - period;
-    const r0 = Math.floor(rd);
-    const fr = rd - r0;
-    const a = line[(((r0 % size) + size) % size)];
-    const b = line[((((r0 + 1) % size) + size) % size)];
-    const delayed = a * (1 - fr) + b * fr;
-    const y = g * (s * delayed + (1 - s) * prev);
-    prev = delayed;
-    const v = y + (i < exc.length ? exc[i] : 0);
-    line[w % size] = v;
-    out[i] = v;
-    w++;
-  }
-  // soften the very start so the pluck never clicks
-  for (let i = 0; i < Math.min(n, 48); i++) out[i] *= i / 48;
-  return out;
-};
-
 export type Partial = { f: number; a: number; t60: number };
 
 /** Sum of exponentially decaying sines: glass, wood, bells. */
@@ -215,21 +153,109 @@ export const warmTone = (o: { freq: number; seconds: number; detune?: number; ha
   return out;
 };
 
-/** A tone whose frequency follows f(t), with harmonics that brighten with b(t). */
-export const glide = (o: { seconds: number; f: (t: number) => number; b: (t: number) => number; harmonics?: number; seed: number }) => {
+// ---------------------------------------------------------------- close, tactile voices (version 06 direction)
+
+/**
+ * Fine crackle: sparse tiny clicks, like a thin shell or paper giving way close
+ * to the ear. `density(t)` is clicks per second; each click is band-limited and
+ * placed in the stereo field at random within `width`.
+ */
+export const crackle = (o: { seconds: number; density: (t: number) => number; seed: number; tone?: number; width?: number }) => {
   const n = len(o.seconds);
-  const out = new Float64Array(n);
-  const h = o.harmonics ?? 8;
+  const L = new Float64Array(n);
+  const R = new Float64Array(n);
   const r = rng(o.seed);
-  const phases = Array.from({ length: h }, () => (r() + 1) * Math.PI);
+  const tone = o.tone ?? 3200;
+  const width = o.width ?? 0.8;
+  const grain = svf(noise(0.012, o.seed + 1), tone, 1.8, "band");
+  let t = 0;
+  while (t < o.seconds) {
+    const d = Math.max(0.5, o.density(t));
+    // exponential gaps: a Poisson process, seeded
+    t += -Math.log(1 - (r() + 1) / 2.0001) / d;
+    if (t >= o.seconds) break;
+    const i0 = Math.round(t * SR);
+    const a = Math.pow((r() + 1) / 2, 2.2) * (o.density(t) > 0 ? 1 : 0);
+    const p = r() * width;
+    const gl = Math.cos(((p + 1) * Math.PI) / 4);
+    const gr = Math.sin(((p + 1) * Math.PI) / 4);
+    const glen = 60 + Math.floor(((r() + 1) / 2) * 300);
+    const off = Math.floor(((r() + 1) / 2) * (grain.length - glen - 1));
+    for (let k = 0; k < glen && i0 + k < n; k++) {
+      const v = grain[off + k] * a * Math.exp(-k / (glen * 0.25));
+      L[i0 + k] += v * gl;
+      R[i0 + k] += v * gr;
+    }
+  }
+  return { L, R };
+};
+
+/** A soft knock with a fingertip on a small wooden box: low wooden partials and a muffled touch. */
+export const knock = (o: { f: number; t60?: number; seed: number }) => {
+  const t60 = o.t60 ?? 0.12;
+  const out = modal(
+    [
+      { f: o.f, a: 1, t60 },
+      { f: o.f * 2.29, a: 0.45, t60: t60 * 0.6 },
+      { f: o.f * 3.85, a: 0.18, t60: t60 * 0.35 },
+    ],
+    0.0025,
+    o.seed,
+  );
+  const touch = svf(noise(0.02, o.seed + 3), 1300, 0.7, "low");
+  for (let i = 0; i < touch.length; i++) out[i] += touch[i] * 1.2 * adEnv(i, 0.0015, 0.018);
+  return out;
+};
+
+/** A kalimba tine, played softly with the thumb: a clear note with a faint high overtone. */
+export const tine = (o: { freq: number; t60?: number; seed: number }) => {
+  const t60 = o.t60 ?? 1.4;
+  return modal(
+    [
+      { f: o.freq, a: 1, t60 },
+      { f: o.freq * 2.01, a: 0.06, t60: t60 * 0.4 },
+      { f: o.freq * 5.95, a: 0.07, t60: t60 * 0.12 },
+    ],
+    0.004,
+    o.seed,
+  );
+};
+
+/** One soft pencil stroke on paper: grainy band-passed noise with a little wobble. */
+export const scratch = (o: { seconds: number; seed: number; tone?: number }) => {
+  const x = svf(noise(o.seconds, o.seed), o.tone ?? 3600, 1.2, "band");
+  const r = rng(o.seed + 9);
+  let g = 0;
+  for (let i = 0; i < x.length; i++) {
+    // paper grain: a jittery, smoothed amplitude
+    if (i % 96 === 0) g = 0.5 + 0.5 * Math.abs(r());
+    const t = i / x.length;
+    x[i] *= g * Math.sin(Math.PI * Math.min(1, t * 1.6)) * (1 - t * 0.3);
+  }
+  return x;
+};
+
+/** A soft, round water drop: a quick upward pitch blip. */
+export const drop = (o: { f0: number; f1: number; t60?: number }) => {
+  const n = len((o.t60 ?? 0.09) + 0.02);
+  const out = new Float64Array(n);
   let ph = 0;
   for (let i = 0; i < n; i++) {
     const t = i / SR;
-    ph += (2 * Math.PI * o.f(t)) / SR;
-    const b = o.b(t);
-    let v = 0;
-    for (let k = 1; k <= h; k++) v += (Math.sin(k * ph + phases[k - 1]) * Math.pow(b, k - 1)) / k;
-    out[i] = v;
+    ph += (2 * Math.PI * (o.f1 + (o.f0 - o.f1) * Math.exp(-t / 0.01))) / SR;
+    out[i] = Math.sin(ph) * adEnv(i, 0.0015, o.t60 ?? 0.09);
   }
+  return out;
+};
+
+/** A muted key press: a small plastic tap and its quieter release. */
+export const keyTap = (o: { seed: number; pitch?: number }) => {
+  const p = o.pitch ?? 1;
+  const down = knock({ f: 420 * p, t60: 0.04, seed: o.seed });
+  const up = svf(noise(0.015, o.seed + 5), 2600 * p, 1.5, "band");
+  const out = new Float64Array(down.length + len(0.06));
+  for (let i = 0; i < down.length; i++) out[i] += down[i];
+  const j0 = len(0.045);
+  for (let i = 0; i < up.length; i++) out[j0 + i] += up[i] * 0.35 * adEnv(i, 0.0005, 0.012);
   return out;
 };

@@ -29,8 +29,8 @@ const { db } = await import("./dsp.ts");
 
 const args = process.argv.slice(2);
 const TARGET = -14;
-const CEILING = -1.5;
-const WET = db(-3);
+const CEILING = -2.5; // sample peak; leaves room for inter-sample peaks and AAC encoding
+const WET = db(-6); // close and fairly dry: the room is only a hint
 
 const mixdown = (only) => {
   const { dry, send, cues } = buildScore(DURATION, only);
