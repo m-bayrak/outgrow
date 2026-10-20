@@ -47,6 +47,20 @@
       "commit": "585104d",
       "summary": "The soul flies an S-curve out of the wings; a spark writes Break / the shape. / Keep / becoming.",
       "basedOn": "t3"
+    },
+    {
+      "id": "04",
+      "title": "Comments ending",
+      "author": "claude",
+      "date": "2026-10-20",
+      "parent": "03",
+      "duration": 24.6,
+      "video": "media/outgrow/04-claude-comments.mp4",
+      "poster": "media/outgrow/04-claude-comments.jpg",
+      "source": "projects/outgrow/src/claude",
+      "commit": "d3073ee",
+      "summary": "The soul inhales the old words, writes Meaning / in the / comments., then enters lines that converge on a comment bubble beside the real button.",
+      "basedOn": "m1"
     }
   ],
   "studies": [
@@ -248,6 +262,17 @@
       "image": "media/outgrow/studies/a1.jpg",
       "source": "projects/outgrow/references/images/shorts-comment-arrow-schematic.png",
       "note": "A curved orange arrow toward the comment button. Proposed, not in the film."
+    },
+    {
+      "id": "m1",
+      "title": "Meaning in the comments",
+      "author": "owner",
+      "date": "2026-10-20",
+      "parent": "03",
+      "status": "chosen",
+      "image": "media/outgrow/studies/m1.jpg",
+      "source": "projects/outgrow/references/images/meaning-in-the-comments-target.png",
+      "note": "Target frame for the comments ending. In the film the bubble moves slightly down and left, the text sits lower and the soul's trace is gone, so the bubble is the focus."
     }
   ]
 }
