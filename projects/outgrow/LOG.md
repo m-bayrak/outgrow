@@ -67,3 +67,8 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Code: `src/claude/src/finale.ts` (score and layout), `Comments.tsx` (render), `shapes.ts` (soul outlines moved out of `Outgrow.tsx`); inhale added to `Title.tsx`; duration and a touch wave in `timeline.ts`.
 - Published `docs/media/outgrow/04-claude-comments.{mp4,jpg}`; the target frame is study m1 (`basedOn` of 04). Decision row in `BRIEF.md`; idea `ideas/2026-10-20-comments-ending.md` marked chosen.
 - Open: the owner's original Ukrainian request for this ending is not in `prompts/` (only its translated summary in the idea file); check on a real phone that the bubble reads as pointing to the button; the master is not attached to a Release.
+
+## 2026-10-20 · claude · claude/master-downloads
+- GitHub Releases with full-quality masters: `outgrow-03` (16.5 s, 32.1 MB; verified against the 03 web copy) and `outgrow-04` (24.6 s, 38.5 MB).
+- Versions can name their master in `project.json` (`master.url`, `master.size`); `build-site-data.mjs` checks it is a Release download link; the site shows "Download master (… MB)" next to the code link. `AGENTS.md` step 6 says how.
+- Open: no master on record for 01 (Codex) or 02.

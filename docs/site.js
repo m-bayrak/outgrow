@@ -218,6 +218,7 @@ const select = (project, nodes, id, fromClick = false) => {
   const player = byId("player");
   const still = byId("still");
   const source = byId("source");
+  const master = byId("master");
 
   if (n.kind === "version") {
     still.hidden = true;
@@ -230,7 +231,14 @@ const select = (project, nodes, id, fromClick = false) => {
     byId("summary").textContent = n.summary;
     source.href = `${REPO}/tree/main/${n.source}`;
     source.textContent = `Code for version ${n.id}`;
+    // the full-quality master lives in a GitHub Release; the player shows the web copy
+    master.hidden = !n.master;
+    if (n.master) {
+      master.href = n.master.url;
+      master.textContent = `Download master (${(n.master.size / 1e6).toFixed(1)} MB)`;
+    }
   } else {
+    master.hidden = true;
     player.pause();
     player.hidden = true;
     still.hidden = false;

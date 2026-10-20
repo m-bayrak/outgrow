@@ -254,6 +254,14 @@ h1 {
   color: var(--quiet);
 }
 
+.master {
+  margin-left: 18px;
+}
+
+.master[hidden] {
+  display: none;
+}
+
 .prompts {
   margin-top: 20px;
   max-width: 52ch;

@@ -1,5 +1,6 @@
 // Collects every projects/*/project.json into docs/data/projects.json for the site.
-// Checks that each version's video and poster exist under docs/. No dependencies.
+// Checks that each version's video and poster exist under docs/, and that an
+// optional full-quality master points at a GitHub Release asset. No dependencies.
 // Usage: node scripts/build-site-data.mjs
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -23,6 +24,11 @@ for (const p of projects) {
     if (v.parent !== null && !ids.has(v.parent)) problems.push(`${p.id} ${v.id}: parent ${v.parent} must be listed earlier`);
     for (const key of ["video", "poster"]) {
       if (!v[key] || !existsSync(join(docs, v[key]))) problems.push(`${p.id} ${v.id}: missing docs/${v[key]}`);
+    }
+    if (v.master) {
+      const ok = /^https:\/\/github\.com\/[^/]+\/[^/]+\/releases\/download\/[^/]+\/[^/]+$/.test(v.master.url ?? "");
+      if (!ok) problems.push(`${p.id} ${v.id}: master.url must be a GitHub Release download link`);
+      if (!Number.isInteger(v.master.size) || v.master.size <= 0) problems.push(`${p.id} ${v.id}: master.size must be the file size in bytes`);
     }
   }
   // studies may hang off the brief (null), a version or another study, and versions may be based on a study
