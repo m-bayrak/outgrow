@@ -72,3 +72,8 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - GitHub Releases with full-quality masters: `outgrow-03` (16.5 s, 32.1 MB; verified against the 03 web copy) and `outgrow-04` (24.6 s, 38.5 MB).
 - Versions can name their master in `project.json` (`master.url`, `master.size`); `build-site-data.mjs` checks it is a Release download link; the site shows "Download master (… MB)" next to the code link. `AGENTS.md` step 6 says how.
 - Open: no master on record for 01 (Codex) or 02.
+
+## 2026-10-20 · codex · codex/latest-ideas
+- Added proposed idea records in ideas/: 2026-10-20-soul-becomes-pointer.md, 2026-10-20-period-becomes-pointer.md, 2026-10-20-larger-comment-bubble.md, 2026-10-20-phone-target-validation.md and 2026-10-20-comment-cta-copy-options.md. Each distinguishes historical alternatives from the approved version 04 baseline.
+- Added four agent-generated concept images in references/images/: comments-soul-pointer-study.png, comments-period-pointer-study.png, comments-contour-pointer-study.png and comments-bubble-high-study.png, with rows in references/REFERENCES.md. Existing m1 is byte-identical to the selected local concept and was not duplicated.
+- Open: whether to explore an alternative pointer/period transition, whether the 04 bubble needs resizing, which phone layouts define acceptance, overlap versus the currently approved beside-button placement, and whether to test alternate/pinned-comment wording. No decisions, code, version records or published media changed.

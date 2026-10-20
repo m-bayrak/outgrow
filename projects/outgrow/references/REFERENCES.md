@@ -77,3 +77,18 @@ No new third-party footage is included. Original public URLs and authors were no
 | Simple Motion Graphics with Opus 5.5 | Unverified / unknown | Whole clip; no precise range supplied: graphic treatment and pacing. |
 | WTF? | Unverified / unknown | Whole clip; no precise range supplied: dynamic graphic energy. |
 | Motion Design Showreel with Sonnet 5.5, On par with Opus 5.5 | Unverified / unknown | 00:00–00:05 radiating lines; 01:15–01:20 rapid concealed form transitions; 01:30–01:37 circles from a point. |
+
+## 2026-10-20: comments continuation concept archive
+
+These agent-generated stills record alternatives discussed before version 04. They are not new published studies or changes to 04. The final bubble concept is already stored as [m1](./images/meaning-in-the-comments-target.png) and is not duplicated. Its approved production layout is documented in BRIEF.md.
+
+| Image | What to take from it |
+| --- | --- |
+| [Soul pointer study](./images/comments-soul-pointer-study.png) | Orange seed and trail lead to a literal arrow; historical alternative, superseded by the request to remove the arrowhead. |
+| [Period pointer study](./images/comments-period-pointer-study.png) | The final period of becoming turns into a curved pointer while both messages coexist; proposed alternative to the approved inhale transition. |
+| [Contour pointer study](./images/comments-contour-pointer-study.png) | White contours carry orange energy toward a chevron; source composition for the later comment-bubble refinement, not a proposal to restore the arrowhead. |
+| [Higher bubble placement study](./images/comments-bubble-high-study.png) | First enlarged bubble edit, subsequently lowered in m1. Placement miss preserved for comparison, not an approved coordinate reference. |
+
+### External references: supplied phone UI (external, not stored)
+
+The owner supplied iPhone and Android YouTube screenshots and an overlay of them for placement analysis. Public source URLs were not supplied; no links or authors are guessed, and no screenshots, faces, account names or attachment files are committed. Only the distilled viewport-mapping approach is recorded in [the validation idea](../ideas/2026-10-20-phone-target-validation.md). Earlier externally linked UI examples above are separate sources, not substitutes for these specific device screenshots.
