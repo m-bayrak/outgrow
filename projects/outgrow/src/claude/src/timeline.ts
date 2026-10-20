@@ -196,7 +196,7 @@ export const soulHeading = (t: number, vel: Vec): number => {
 export type ShapeId = "circle" | "oval" | "eight" | "spiral" | "rosette" | "wings";
 
 /** Ordered morph track: hold a shape, then morph quickly to the next. */
-const SHAPE_TRACK: { shape: ShapeId; until: number; morph: number }[] = [
+export const SHAPE_TRACK: { shape: ShapeId; until: number; morph: number }[] = [
   { shape: "circle", until: 3.35, morph: 0.4 },
   { shape: "oval", until: 4.45, morph: 0.5 },
   { shape: "eight", until: 5.75, morph: 0.35 },

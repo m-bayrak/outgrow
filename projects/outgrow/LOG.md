@@ -93,3 +93,8 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Published `docs/media/outgrow/05-claude-comment-button.{mp4,jpg}`; decision row in `BRIEF.md`. The phone screenshots are third-party UI with personal details and are not stored; only the measurements are recorded.
 - Open: no release for 05 yet (the owner did not ask); re-check on both phones after upload.
 - Release `outgrow-05` holds the master (24.9 s, 38.7 MB); version 05 links it as "Download master".
+
+## 2026-10-20 · claude · claude/sound-effects
+- Stage 1 of sound effects for version 06: a deterministic synthesizer in `src/claude/audio/` (no samples) and the sound map in `ideas/2026-10-20-sound-effects.md`, generated from the cues, which read their times from the film's timeline. `SHAPE_TRACK` in `timeline.ts` is now exported for the morph cues; no visual change.
+- Full mix measures −14.1 LUFS integrated, −1.5 dBFS peak; two renders are byte-identical. Sketches (strike, string resonance, breakthrough, and two clips over the 05 master) were rendered locally, not committed.
+- Open: the owner's approval of the sketches; then the rough mix as a half-resolution draft; `scripts/encode-web.sh` strips audio (`-an`) and must keep it before 06 is published.
