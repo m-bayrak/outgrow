@@ -82,3 +82,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Added verbatim owner request bodies with English translations in prompts/2026-10-20-owner-comments-continuation.md and prompts/2026-10-20-owner-comment-bubble-refinement.md. They record historical creative input for 04 and m1, not approval of the new proposed alternatives. Third-party screenshots and attachment metadata are excluded.
 - Ran scripts/build-site-data.mjs and regenerated docs/data/projects.json to attach the requests. Verified original prompt strings, translations, local idea links, proposed statuses and unchanged version/study records; no third-party images added.
 - Open: owner review of the five proposals. Work is committed locally on codex/latest-ideas; no push, PR or merge requested.
+
+## 2026-10-20 · claude · claude/comments-studies
+- Built on Codex's `codex/latest-ideas` (PR #12): its four concept stills are now studies on the site. Under 03, group "Comment pointer studies": p1 soul pointer (explored), p2 period pointer (explored), p3 contour pointer (chosen); b1 first bubble (superseded) grew from p3, and m1 now hangs from b1, so the tree reads 03 → p3 → b1 → m1 → 04.
+- Web copies in `docs/media/outgrow/studies/`; site data rebuilt.
