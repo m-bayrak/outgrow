@@ -58,5 +58,5 @@ No blue, gold, grey fills or decorative colour, even when a reference uses them.
 ## Format
 
 - Vertical 1080 × 1920, 60 fps, 12–20 s for shorts. The first second must already move.
-- No audio unless a brief asks for it.
+- No audio unless a brief asks for it. When there is sound (Outgrow 06 on): effects only, no music, synthesized in code and deterministic, every cue tied to a timeline event. Soft, close and tactile, like ASMR — fingertip knocks, fine crackle, breath and rustle, glass bells, kalimba, pencil on paper, drops — never heavy low hits or harsh noise. Master to about −14 LUFS with true peaks under −1 dBFS; the film must still work muted.
 - Every frame is a pure function of its frame number: no `Math.random`, no clock. Seeded hashes only.

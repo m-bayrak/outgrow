@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Html5Audio, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { LINE_COUNT, type LinePoint, buildLine, lineOpacity } from "./contours";
 import { T, pullLine } from "./finale";
 import { Comments } from "./Comments";
@@ -220,6 +220,8 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
       </svg>
       <Title t={t} orange={orange} width={width} height={height} />
       <Comments t={t} orange={orange} white={white} lineWidth={lineWidth} width={width} height={height} />
+      {/* version 06: synthesized sound effects, rendered by audio/render.mjs from the same timeline */}
+      <Html5Audio src={staticFile("outgrow-sfx.wav")} />
     </AbsoluteFill>
   );
 };
