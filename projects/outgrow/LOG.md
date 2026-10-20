@@ -106,3 +106,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - `STYLE.md` (and the skill's copy) now describe the sound direction; decision row in `BRIEF.md`; idea file marked done; `src/claude/README.md` documents `audio/`.
 - Release `outgrow-06` holds the master (24.9 s, 39.7 MB, with sound); version 06 links it as "Download master". Branch pushed and PR opened at the owner's request.
 - Open: the skill's `assets/reference-src` copy does not include `audio/`.
+
+## 2026-10-21 · claude · claude/skill-audio
+- The `outgrow-style` skill now carries the sound: `assets/reference-audio/` (the version 06 `dsp.ts`, `master.ts`, `score.ts`, `render.mjs` and a README on what to reuse as is and what to rewrite), recipe section 9 "Sound" in `references/recipes.md`, a row in `SKILL.md`, and two sound lessons in `references/lessons.md`.
+- `assets/reference-src/` stays the version 03 snapshot; the README of `reference-audio/` says `score.ts` needs the version 06 sources from `projects/outgrow/src/claude/src/`.
