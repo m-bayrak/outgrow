@@ -22,7 +22,7 @@ import {
   smooth,
 } from "./math";
 import { T as C, TOUCH } from "./finale";
-import { FINAL_CAM, FLIGHT_END, FLIGHT_START, SEED_POS, cameraHandoff, flightPos, flightTangent, toWorldFinal } from "./ending";
+import { FLIGHT_END, FLIGHT_START, SEED_POS, cameraHandoff, finalCamAt, flightPos, flightTangent, toWorldFinal } from "./ending";
 
 export const DURATION = C.end;
 
@@ -239,7 +239,7 @@ export const WAVES: Wave[] = [
   { t: 10.3, origin: { x: 0, y: -60 }, amp: 18, speed: 1300, tint: 0.45 },
   { t: FLIGHT_END, origin: flightPos(FLIGHT_END), amp: 16, speed: 1300, tint: 0.5 },
   // the soul dives into the guiding lines and the wings feel it
-  { t: C.touch, origin: toWorldFinal(TOUCH), amp: 18, speed: 1300, tint: 0.8 },
+  { t: C.touch, origin: toWorldFinal(TOUCH, C.touch), amp: 18, speed: 1300, tint: 0.8 },
 ];
 
 // ---------------------------------------------------------------- camera
@@ -313,10 +313,11 @@ export const camera = (t: number): Camera => {
   // after the wings form, the camera hands over to the final framing as the soul flies
   const h = cameraHandoff(t);
   if (h > 0) {
+    const fin = finalCamAt(t);
     return {
-      center: mix(center, FINAL_CAM.center, h),
-      zoom: lerp(zoom, FINAL_CAM.zoom, h),
-      rot: lerp(rot, FINAL_CAM.rot, h),
+      center: mix(center, fin.center, h),
+      zoom: lerp(zoom, fin.zoom, h),
+      rot: lerp(rot, fin.rot, h),
       shake: { x: sx, y: sy },
     };
   }

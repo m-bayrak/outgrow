@@ -1,13 +1,14 @@
-// The comments ending (version 04): the soul inhales the old words, writes
-// "Meaning in the comments.", then enters a family of lines that converge on a
-// drawn comment bubble beside YouTube's real comment button.
-// Everything here is in screen space: the camera is at rest from ~12.6 s.
+// The comments ending (versions 04–05): the soul inhales the old words, writes
+// "Meaning in the comments.", then enters the left wing, whose top edge is drawn
+// out into lines that converge on a drawn comment bubble beside YouTube's real
+// comment button. Everything here is in screen space: the camera is at rest
+// from ~12.6 s, apart from a slow sink while the words are inhaled.
 
 import { FINAL_CAM, flightPos, flightTangent, toScreenFinal } from "./ending";
 import { type Vec, clamp, dampedSettle, inOutCubic, lerp, outCubic, progress, smooth } from "./math";
 
 export const T = {
-  inhale: 16.0, // the old letters start flowing into the soul
+  inhale: 16.0, // the old letters start flowing into the soul (the wings sink a little meanwhile)
   inhaleEnd: 17.0,
   launch: 17.1, // the soul leaves its hover
   line1Land: 17.5,
@@ -15,29 +16,33 @@ export const T = {
   line2Land: 18.2,
   line2End: 18.55,
   impact: 18.85, // lands on "comments."
-  dive: 19.05, // heads for the lower-left ends of the lines
-  touch: 19.5, // enters the lines
-  extend: 19.55, // the line tips start growing toward the bubble
-  arrive: 20.45, // the slowest tip reaches the converge point
-  bubble: 20.5, // the bubble outline is drawn from the converge point
-  bubbleEnd: 20.95,
-  reform: 20.95, // the soul re-forms at the converge point
-  burst: 21.2, // ...darts into the bubble and bursts
-  split: 21.45, // splits into three dots
-  typing: 21.6,
-  bars: 22.3, // the dots settle into the bubble's two bars
-  barsEnd: 22.6,
-  end: 24.6,
+  dive: 19.05, // heads for the top edge of the left wing
+  touch: 19.5, // enters the wing's lines
+  extend: 19.55, // the wing's top edge starts stretching toward the bubble
+  arrive: 20.75, // the slowest line reaches the converge point
+  bubble: 20.8, // the bubble outline is drawn from the converge point
+  bubbleEnd: 21.25,
+  reform: 21.25, // the soul re-forms at the converge point
+  burst: 21.5, // ...darts into the bubble and bursts
+  split: 21.75, // splits into three dots
+  typing: 21.9,
+  bars: 22.6, // the dots settle into the bubble's two bars
+  barsEnd: 22.9,
+  end: 24.9,
 } as const;
 
 // ---------------------------------------------------------------- layout
 
-/** Where the lines converge: the target icon's left point plus the owner's offset (≈21 down, 25 left). */
-export const CONVERGE: Vec = { x: 819, y: 1151 };
-
-/** The bubble body, to the right of the converge point; YouTube's real button is just beyond its right edge. */
-export const BUBBLE = { left: CONVERGE.x, top: 1086, w: 166, h: 130, r: 32 };
+/**
+ * The bubble sits just left of YouTube's comment button, level with it.
+ * Measured on an iPhone and an Android phone (in this frame's pixels): the
+ * button's centre is at x 954–995, y 1254–1280, and the action column starts
+ * at x ≈ 927, so the bubble ends before x 910.
+ */
+export const BUBBLE = { left: 755, top: 1206, w: 150, h: 118, r: 28 };
 export const BUBBLE_CENTER: Vec = { x: BUBBLE.left + BUBBLE.w / 2, y: BUBBLE.top + BUBBLE.h / 2 };
+/** Where the wing's lines converge: the bubble's left point. */
+export const CONVERGE: Vec = { x: BUBBLE.left, y: BUBBLE_CENTER.y };
 
 /** The bubble outline as one stroke, starting where the lines arrive (clockwise, tail at the lower left). */
 export const bubblePath = (() => {
@@ -52,69 +57,110 @@ export const bubblePath = (() => {
     `A${r} ${r} 0 0 1 ${rgt} ${t + r}`,
     `L${rgt} ${bot - r}`,
     `A${r} ${r} 0 0 1 ${rgt - r} ${bot}`,
-    `L${l + 64} ${bot}`,
-    `L${l + 24} ${bot + 36}`,
-    `L${l + 28} ${bot}`,
+    `L${l + 58} ${bot}`,
+    `L${l + 22} ${bot + 32}`,
+    `L${l + 26} ${bot}`,
     `A${r - 4} ${r - 4} 0 0 1 ${l} ${bot - r + 4}`,
     `L${l} ${CONVERGE.y}`,
   ].join("");
 })();
 
+const { x: cx, y: cy } = BUBBLE_CENTER;
 /** Three typing dots, and the capsules they become (the bubble's two text bars). */
 export const DOTS: { dot: Vec; bar: [Vec, Vec] }[] = [
-  { dot: { x: BUBBLE_CENTER.x - 34, y: BUBBLE_CENTER.y }, bar: [{ x: 862, y: 1132 }, { x: 904, y: 1132 }] },
-  { dot: { x: BUBBLE_CENTER.x, y: BUBBLE_CENTER.y }, bar: [{ x: 904, y: 1132 }, { x: 944, y: 1132 }] },
-  { dot: { x: BUBBLE_CENTER.x + 34, y: BUBBLE_CENTER.y }, bar: [{ x: 862, y: 1170 }, { x: 912, y: 1170 }] },
+  { dot: { x: cx - 30, y: cy }, bar: [{ x: cx - 36, y: cy - 17 }, { x: cx + 2, y: cy - 17 }] },
+  { dot: { x: cx, y: cy }, bar: [{ x: cx + 2, y: cy - 17 }, { x: cx + 38, y: cy - 17 }] },
+  { dot: { x: cx + 30, y: cy }, bar: [{ x: cx - 36, y: cy + 17 }, { x: cx + 10, y: cy + 17 }] },
 ];
 
-/** The guiding lines: they enter at the left edge and converge on CONVERGE. */
-export const GUIDE_COUNT = 12;
-const guideCtrl = (i: number): Vec[] => {
-  const s = i / (GUIDE_COUNT - 1);
-  return [
-    { x: -30, y: 1238 + 92 * s },
-    { x: 300, y: 1084 + 120 * s },
-    { x: 600, y: 1112 + 62 * s },
-    CONVERGE,
-  ];
-};
-const bezier = (c: Vec[], u: number): Vec => {
+// ---------------------------------------------------------------- the wing pulled into lines
+
+/** Lines of the left wing whose top edge is drawn out toward the bubble. */
+export const PULL_FROM = 12;
+/** Samples of each line that form the upper-left lobe's top edge (the tip side, then the node side). */
+const WINDOW: [number, number] = [363, 383];
+/** Where the soul touches: the middle of the outermost line's top edge, after the sink. */
+export const TOUCH: Vec = { x: 92, y: 1286 };
+
+type P = Vec & { orange: number };
+
+const cubic = (a: Vec, b: Vec, c: Vec, d: Vec, u: number): Vec => {
   const v = 1 - u;
-  const a = v * v * v;
-  const b = 3 * v * v * u;
-  const d = 3 * v * u * u;
-  const e = u * u * u;
-  return { x: a * c[0].x + b * c[1].x + d * c[2].x + e * c[3].x, y: a * c[0].y + b * c[1].y + d * c[2].y + e * c[3].y };
+  return {
+    x: v * v * v * a.x + 3 * v * v * u * b.x + 3 * v * u * u * c.x + u * u * u * d.x,
+    y: v * v * v * a.y + 3 * v * v * u * b.y + 3 * v * u * u * c.y + u * u * u * d.y,
+  };
 };
-export const GUIDE_SAMPLES = 120;
-export const GUIDES: Vec[][] = Array.from({ length: GUIDE_COUNT }, (_, i) => {
-  const c = guideCtrl(i);
-  return Array.from({ length: GUIDE_SAMPLES + 1 }, (_, k) => bezier(c, k / GUIDE_SAMPLES));
-});
 
-/** Short stubs at the left edge that the soul dives into (fraction of each line). */
-export const STUB = 0.085;
-/** Where the soul touches the stubs. */
-export const TOUCH: Vec = { x: 64, y: 1262 };
+/** One leg from a point on the wing to the converge point, leaving partly along the wing's own tangent. */
+const leg = (from: Vec, tangent: Vec, u: number): Vec => {
+  const L = Math.hypot(CONVERGE.x - from.x, CONVERGE.y - from.y);
+  // mostly toward the bubble, so no leg hooks back on itself
+  const dir = unit({ x: tangent.x * 0.3 + ((CONVERGE.x - from.x) / L) * 0.7, y: tangent.y * 0.3 + ((CONVERGE.y - from.y) / L) * 0.7 }, { x: 0, y: 0 });
+  const c1 = { x: from.x + dir.x * L * 0.4, y: from.y + dir.y * L * 0.4 };
+  const c2 = { x: CONVERGE.x - L * 0.45, y: CONVERGE.y };
+  return cubic(from, c1, c2, CONVERGE, u);
+};
 
-/** How far line i is drawn (0..1) and where its orange band runs, at time t. */
-export const guideState = (i: number, t: number) => {
-  const stub = STUB * outCubic(progress(t, T.impact, T.touch - 0.05));
-  const lag = 0.09 * Math.abs(i - (GUIDE_COUNT - 1) / 2) / ((GUIDE_COUNT - 1) / 2);
-  const grow = inOutCubic(progress(t, T.extend + lag * 0.5, T.arrive - 0.09 + lag));
-  const head = lerp(stub, 1, grow);
-  // the soul is now the orange in the lines: a band at the leading end that
-  // drains into the converge point once the lines arrive
-  const lit = smooth(progress(t, T.touch - 0.04, T.touch + 0.08));
-  const drain = smooth(progress(t, T.arrive, T.reform + 0.05));
-  const from = lerp(Math.max(0, head - 0.3), 1, drain);
-  return { head, from, orange: lit * (1 - smooth(progress(t, T.reform, T.reform + 0.1))) };
+/** How far line i has been drawn out (0 = wing as it was, 1 = converged), and its orange band. */
+export const pullState = (i: number, t: number) => {
+  const k = (i - PULL_FROM) / (23 - PULL_FROM); // 0 inner … 1 outer
+  const lag = 0.22 * (1 - k); // the outer lines, touched first, lead
+  const p = progress(t, T.extend + lag * 0.4, T.arrive - 0.22 + lag);
+  const e = inOutCubic(p) + 0.04 * Math.max(0, dampedSettle(t - (T.arrive - 0.22 + lag), 3, 6)) * (p >= 1 ? 1 : 0);
+  const lit = smooth(progress(t, T.touch - 0.03, T.touch + 0.1)) * (1 - smooth(progress(t, T.reform, T.reform + 0.1)));
+  const drain = smooth(progress(t, T.arrive, T.reform));
+  return { e, lit, drain };
+};
+
+/**
+ * Line i of the wing in screen space, with its top edge drawn out into a
+ * hairpin that reaches the converge point. The line stays one closed curve.
+ */
+export const pullLine = (pts: P[], i: number, t: number): P[] => {
+  if (i < PULL_FROM || t < T.touch - 0.05) return pts;
+  const { e, lit, drain } = pullState(i, t);
+  const [a, b] = WINDOW;
+  const tanA = unit(pts[a + 1], pts[a]);
+  const tanB = unit(pts[b - 1], pts[b]);
+  const n = 140;
+  const mid: P[] = [];
+  for (let k = 0; k <= n; k++) {
+    const v = k / n;
+    // the wing as it was, resampled more densely
+    const f = a + v * (b - a);
+    const j = Math.min(b - 1, Math.floor(f));
+    const q = f - j;
+    const orig = {
+      x: lerp(pts[j].x, pts[j + 1].x, q),
+      y: lerp(pts[j].y, pts[j + 1].y, q),
+      orange: lerp(pts[j].orange, pts[j + 1].orange, q),
+    };
+    // the hairpin: out from the tip side to the bubble, back to the node side
+    const h = v < 0.5 ? leg(pts[a], tanA, v * 2) : leg(pts[b], tanB, (1 - v) * 2);
+    // orange is the soul inside the lines: a band at the leading tip that drains into the bubble
+    const w = lerp(0.2, 0.03, drain);
+    const band = Math.exp(-Math.pow((v - 0.5) / w, 2)) * lit * (1 - 0.6 * drain);
+    const flash = Math.exp(-Math.max(0, t - T.touch) * 5) * lit;
+    // ease in from the wing at both ends, so the curve keeps its own tangent there (no kinks)
+    const ends = smooth(clamp(Math.min(v, 1 - v) / 0.3));
+    const m = e * ends;
+    mid.push({ x: lerp(orig.x, h.x, m), y: lerp(orig.y, h.y, m), orange: clamp(Math.max(orig.orange, band, flash * 0.7)) });
+  }
+  return [...pts.slice(0, a), ...mid, ...pts.slice(b + 1)];
+};
+
+const unit = (to: Vec, from: Vec): Vec => {
+  const dx = to.x - from.x;
+  const dy = to.y - from.y;
+  const l = Math.hypot(dx, dy) || 1;
+  return { x: dx / l, y: dy / l };
 };
 
 // ---------------------------------------------------------------- the soul
 
 /** The soul's hover point, in screen space, as version 03 left it. */
-const hover = (t: number) => toScreenFinal(flightPos(t));
+const hover = (t: number) => toScreenFinal(flightPos(t), t);
 export const HOVER_HEADING = (() => {
   const tan = flightTangent(1);
   return Math.atan2(tan.y, tan.x) + FINAL_CAM.rot;
