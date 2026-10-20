@@ -38,6 +38,7 @@ Start from the reference implementation in [`assets/reference-src/`](assets/refe
 | A flight along a curve into a designed final frame | Flight and target frame |
 | Words that burst in or are written by a spark | Typography |
 | Timing that never goes dead | Pacing |
+| Synthesized sound effects tied to the timeline (when a brief asks) | Sound — code in [`assets/reference-audio/`](assets/reference-audio/) |
 
 Keep every frame a pure function of its frame number: no `Math.random`, no clock, no state carried between frames. Seeded hashes only. This is what makes Studio scrubbing, stills and renders agree.
 

@@ -12,6 +12,7 @@ Tuned building blocks from the Outgrow Claude version. File names refer to [`../
 6. Typography
 7. Pacing
 8. Project setup
+9. Sound
 
 ## 1. Contour field (`contours.ts`)
 
@@ -85,3 +86,12 @@ Render: one SVG path per line (`M…L…Z`), stroke 2.4 px, white. Orange overla
 - Remotion 4 project: `pnpm install`, `pnpm dev`, `pnpm lint`. Composition 1080 × 1920, 60 fps, `defaultProps` for colours and line width.
 - Node from Homebrew; with Node ≥ 25 there is no corepack, so install pnpm with Homebrew.
 - Add Remotion packages with `pnpm exec remotion add <pkg>` to keep versions aligned.
+
+## 9. Sound (`../assets/reference-audio/`)
+
+- Only when a brief asks for it. Effects only, no music, all synthesized in code (no samples), deterministic, committed as a WAV in `public/` and played with `<Html5Audio>`.
+- Every cue reads its time from the timeline constants, so a timing change moves the sound with it. The soul's `charge(t)` is the anticipation breath's own envelope.
+- Tone the owner approved for Outgrow 06: soft, close, tactile, like ASMR. Strikes are a fingertip knock plus fine crackle where the rings are pressed; lines answer with two soft kalimba notes in a fifth; waves are a brush stroke panned across the stereo field with a thin crackle trail; the breakthrough is a thin shell cracking open close to the ear, a breath out, glass bells and kalimba rising through D major; letters are pencil strokes; the bubble is a pencil stroke, a water drop, muted key taps, quiet kalimba on each signal arc. Keep everything in one key (D).
+- The owner rejected the first palette's deep thumps, torn-noise burst and all strings at once as too hard; kept only the light glass bells, the flight's rustle and the spark's glass note.
+- Mix: about −14 LUFS integrated, sample ceiling −2.5 dBFS so the true peak stays near −1.8 after AAC; high-pass the reverb send (~240 Hz) and the master (~32 Hz); keep the room only a hint (wet −6 dB). If the limiter has to take more than ~4 dB, lower the loudest transients instead.
+- Check without ears: `ffmpeg -af ebur128=peak=true` for loudness and true peak, `showspectrumpic` for balance, two renders compared byte for byte, and the audio cross-correlated against the WAV after the render (offset 0 ms). The owner judges the sound itself: send short clips over the picture.

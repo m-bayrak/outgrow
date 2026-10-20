@@ -17,3 +17,5 @@ Problems met while making Outgrow, each with what fixed it. Check the stills and
 | A page shows old content after publishing | Browser and GitHub Pages cache (10 min) | Version asset URLs (`site.js?v=N`) and fetch data with `cache: "no-cache"` |
 | A prompt pasted into another agent arrives broken | A fenced code block nested inside a fenced block | Describe formats in words; never nest fences in a prompt meant for copying |
 | Third-party screenshots end up in a public repo | Rule only mentioned videos | Link anything made by someone else; commit only owner- or agent-made images |
+| The first sound sketch felt hard and heavy to the owner | Deep pitched thumps, a torn-noise burst and every string at once | Go soft and close (ASMR): knocks, fine crackle, breath, kalimba, glass; no heavy lows |
+| Thumps vanish on a phone | Their energy sits below ~100 Hz | Put the weight in 100–300 Hz harmonics and a click, or use a higher knock |
