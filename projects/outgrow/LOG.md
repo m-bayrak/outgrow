@@ -104,4 +104,5 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Owner approved the ASMR mix. Version 06 "Sound" (parent 05, 24.9 s): the composition plays `src/claude/public/outgrow-sfx.wav` (`pnpm sfx`); the picture is identical to 05 (PSNR ∞ against the 05 master), audio offset 0 ms against the WAV, master −14.3 LUFS, true peak −1.9 dBFS.
 - `scripts/encode-web.sh` now keeps the master's audio (AAC 160 kb/s) instead of `-an`. Published `docs/media/outgrow/06-claude-sound.{mp4,jpg}` (15.6 MB, with sound); site data rebuilt. The site's player autoplays muted, as before, and the viewer can unmute it.
 - `STYLE.md` (and the skill's copy) now describe the sound direction; decision row in `BRIEF.md`; idea file marked done; `src/claude/README.md` documents `audio/`.
-- Open: the master (`out/outgrow-v6-final.mp4`, 39.7 MB) is not attached to a release yet; release `outgrow-06`, push and PR wait for the owner. The skill's `assets/reference-src` copy does not include `audio/`.
+- Release `outgrow-06` holds the master (24.9 s, 39.7 MB, with sound); version 06 links it as "Download master". Branch pushed and PR opened at the owner's request.
+- Open: the skill's `assets/reference-src` copy does not include `audio/`.
