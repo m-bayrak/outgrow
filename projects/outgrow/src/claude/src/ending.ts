@@ -25,9 +25,15 @@ const W = 1080;
 const H = 1920;
 
 /** Screen → world under the final camera. */
-const toWorldFinal = (s: Vec): Vec => {
+export const toWorldFinal = (s: Vec): Vec => {
   const local = rotate({ x: (s.x - W / 2) / FINAL_CAM.zoom, y: (s.y - H / 2) / FINAL_CAM.zoom }, -FINAL_CAM.rot);
   return { x: local.x + FINAL_CAM.center.x, y: local.y + FINAL_CAM.center.y };
+};
+
+/** World → screen under the final camera (the camera is at rest from ~12.6 s). */
+export const toScreenFinal = (p: Vec): Vec => {
+  const r = rotate({ x: p.x - FINAL_CAM.center.x, y: p.y - FINAL_CAM.center.y }, FINAL_CAM.rot);
+  return { x: r.x * FINAL_CAM.zoom + W / 2, y: r.y * FINAL_CAM.zoom + H / 2 };
 };
 
 /** The S-curve as it should read on the final frame (screen px, bottom → top). */

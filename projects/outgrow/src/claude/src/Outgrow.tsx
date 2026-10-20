@@ -1,8 +1,11 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { LINE_COUNT, type LinePoint, buildLine, lineOpacity } from "./contours";
+import { T } from "./finale";
+import { Comments } from "./Comments";
 import { FLIGHT_START, SEED_POS, flightPoint, flightProgress } from "./ending";
-import { type Vec, TAU, clamp, hash01, rotate } from "./math";
+import { type Vec, TAU, clamp, hash01, progress, rotate, smooth } from "./math";
+import { soulShape, taperedPolygon } from "./shapes";
 import { Title } from "./Title";
 import {
   type Camera,
@@ -132,10 +135,15 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
     }
     const trailD = trail.length ? trail.map((p, k) => `${k ? "L" : "M"}${f1(p.x)} ${f1(p.y)}`).join("") : "";
 
-    return { lines, soul, tail, rays, ft, tailTop, tailBottom, trailD };
+    // version 04: the old trace fades while the words are inhaled; from the
+    // launch on the soul is drawn in screen space by <Comments>
+    const traceOpacity = 1 - smooth(progress(t, T.inhale + 0.3, T.inhaleEnd + 0.1));
+    const soulHere = t < T.launch;
+
+    return { lines, soul, tail, rays, ft, tailTop, tailBottom, trailD, traceOpacity, soulHere };
   }, [t, width, height, fps]);
 
-  const { lines, soul, tail, rays, ft, tailTop, tailBottom, trailD } = scene;
+  const { lines, soul, tail, rays, ft, tailTop, tailBottom, trailD, traceOpacity, soulHere } = scene;
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
@@ -173,8 +181,9 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
           )}
         </g>
 
-        {ft > 0 ? (
+        {ft > 0 && traceOpacity > 0 ? (
           <line
+            opacity={traceOpacity}
             x1={tailTop.x}
             y1={tailTop.y}
             x2={tailBottom.x}
@@ -185,11 +194,11 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
           />
         ) : null}
 
-        {trailD ? (
-          <path d={trailD} fill="none" stroke={orange} strokeWidth={lineWidth} strokeLinecap="round" strokeLinejoin="round" />
+        {trailD && traceOpacity > 0 ? (
+          <path d={trailD} opacity={traceOpacity} fill="none" stroke={orange} strokeWidth={lineWidth} strokeLinecap="round" strokeLinejoin="round" />
         ) : null}
 
-        {tail ? <path d={tail} fill={orange} opacity={0.85 * (1 - soul.seed)} /> : null}
+        {tail && soulHere ? <path d={tail} fill={orange} opacity={0.85 * (1 - soul.seed)} /> : null}
 
         {rays.map((r, k) =>
           r.o > 0.01 ? (
@@ -197,12 +206,15 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
           ) : null,
         )}
 
-        <g transform={`translate(${f1(soul.x)} ${f1(soul.y)}) rotate(${f1(soul.angle)})`}>
-          <ellipse rx={soul.rx * 2.2} ry={soul.ry * 2.2} fill={orange} opacity={0.45} filter="url(#glow)" />
-          <path d={soulShape(soul.rx, soul.ry, soul.seed)} fill={orange} />
-        </g>
+        {soulHere ? (
+          <g transform={`translate(${f1(soul.x)} ${f1(soul.y)}) rotate(${f1(soul.angle)})`}>
+            <ellipse rx={soul.rx * 2.2} ry={soul.ry * 2.2} fill={orange} opacity={0.45} filter="url(#glow)" />
+            <path d={soulShape(soul.rx, soul.ry, soul.seed)} fill={orange} />
+          </g>
+        ) : null}
       </svg>
       <Title t={t} orange={orange} width={width} height={height} />
+      <Comments t={t} orange={orange} white={white} lineWidth={lineWidth} width={width} height={height} />
     </AbsoluteFill>
   );
 };
@@ -213,41 +225,3 @@ const pick = (r: { x1: number; y1: number; x2: number; y2: number }) => ({
   x2: r.x2,
   y2: r.y2,
 });
-
-/**
- * Soul outline in local space (x along the heading). A round body that
- * sharpens into a teardrop seed: blunt end leading, point trailing.
- */
-const soulShape = (rx: number, ry: number, seed: number) => {
-  const n = 48;
-  let d = "";
-  for (let k = 0; k <= n; k++) {
-    const a = (k / n) * TAU;
-    // pinch the trailing side into a point as the soul becomes a seed
-    const back = Math.max(0, -Math.cos(a));
-    const pinch = 1 - seed * 0.75 * Math.pow(back, 1.6);
-    const x = Math.cos(a) * rx * (1 + seed * 0.25 * back);
-    const y = Math.sin(a) * ry * pinch;
-    d += `${k ? "L" : "M"}${f1(x)} ${f1(y)}`;
-  }
-  return d + "Z";
-};
-
-/** Filled tail polygon: full width at the soul, tapering to nothing. */
-const taperedPolygon = (pts: Vec[], width: number) => {
-  if (pts.length < 3) return null;
-  const left: Vec[] = [];
-  const right: Vec[] = [];
-  for (let k = 0; k < pts.length; k++) {
-    const a = pts[Math.max(0, k - 1)];
-    const b = pts[Math.min(pts.length - 1, k + 1)];
-    const dx = b.x - a.x;
-    const dy = b.y - a.y;
-    const len = Math.hypot(dx, dy) || 1;
-    const w = width * Math.pow(1 - k / (pts.length - 1), 1.4);
-    left.push({ x: pts[k].x - (dy / len) * w, y: pts[k].y + (dx / len) * w });
-    right.push({ x: pts[k].x + (dy / len) * w, y: pts[k].y - (dx / len) * w });
-  }
-  const ring = [...left, ...right.reverse()];
-  return ring.map((p, j) => `${j ? "L" : "M"}${f1(p.x)} ${f1(p.y)}`).join("") + "Z";
-};

@@ -2,13 +2,16 @@ import { loadFont } from "@remotion/google-fonts/InterTight";
 import { measureText } from "@remotion/layout-utils";
 import React, { useEffect, useMemo, useState } from "react";
 import { continueRender, delayRender } from "remotion";
-import { FIRST_BASELINE, LINES, LINE_STEP, SOUL_FINAL_SCREEN, SPARK, TEXT_LEFT } from "./ending";
+import { T } from "./finale";
+import { FIRST_BASELINE, LINES, LINE_STEP, SOUL_FINAL_SCREEN, SPARK, TEXT_LEFT, flightPos, toScreenFinal } from "./ending";
 import {
   type Vec,
   clamp,
   dampedSettle,
   inOutCubic,
+  inQuad,
   lerp,
+  mix,
   outBack,
   outCubic,
   progress,
@@ -151,7 +154,39 @@ export const Title: React.FC<{ t: number; orange: string; width: number; height:
   }, [handle]);
 
   const P = useMemo(() => (layout ? keyPoints(layout) : null), [layout]);
-  if (!layout || !P || t < SPARK.birth - 0.05) return null;
+  // version 04: the soul inhales the words, nearest letter first
+  const ranks = useMemo(() => {
+    if (!layout || !P) return null;
+    const soul = toScreenFinal(flightPos(T.inhale));
+    const items: { key: string; d: number }[] = [];
+    layout.lines.forEach((line, i) =>
+      line.glyphs.forEach((g, j) => {
+        const x = TEXT_LEFT + g.x + g.w / 2;
+        const y = line.baseline - layout.size * 0.35;
+        items.push({ key: `${i}-${j}`, d: Math.hypot(x - soul.x, y - soul.y) });
+      }),
+    );
+    items.sort((a, b) => a.d - b.d);
+    return new Map(items.map((it, k) => [it.key, k / (items.length - 1)]));
+  }, [layout, P]);
+  if (!layout || !P || !ranks || t < SPARK.birth - 0.05 || t > T.inhaleEnd + 0.05) return null;
+
+  /** Pull a resting letter into the soul; null once it is gone. */
+  const soulNow = toScreenFinal(flightPos(t));
+  const inhale = (key: string, pos: Vec) => {
+    if (t < T.inhale) return { pos, shrink: 1, heat: 0 };
+    const t0 = lerp(T.inhale, T.inhaleEnd - 0.34, ranks.get(key) ?? 1);
+    const p = progress(t, t0, t0 + 0.34);
+    if (p >= 1) return null;
+    const e = inQuad(p);
+    const dx = soulNow.x - pos.x;
+    const dy = soulNow.y - pos.y;
+    const l = Math.hypot(dx, dy) || 1;
+    // a slight swirl, so the letters spiral in rather than slide
+    const swirl = 60 * Math.sin(Math.PI * p);
+    const q = mix(pos, soulNow, e);
+    return { pos: { x: q.x - (dy / l) * swirl, y: q.y + (dx / l) * swirl }, shrink: lerp(1, 0.08, e), heat: smooth(p) };
+  };
 
   const spark = sparkAt(t, P);
   const impacts = [
@@ -195,6 +230,11 @@ export const Title: React.FC<{ t: number; orange: string; width: number; height:
         const end = i === 1 ? SPARK.line2End : SPARK.line4End;
         heat = 1 - Math.max(clamp((sx - (left + g.w)) / 260), progress(t, end, end + 0.4));
       }
+      const sucked = inhale(`${i}-${j}`, pos);
+      if (!sucked) return;
+      pos = sucked.pos;
+      scale *= sucked.shrink;
+      heat = Math.max(heat, sucked.heat);
       const fill = def.orange ? orange : mixColor(WHITE, ORANGE, clamp(heat) * 0.9);
       const dy = layout.size * 0.35;
       letters.push(
@@ -231,6 +271,15 @@ export const Title: React.FC<{ t: number; orange: string; width: number; height:
       />
     );
   });
+
+  // the full stop goes last of its line, the same way
+  const lastLine = layout.lines.length - 1;
+  const dotGone = inhale(`${lastLine}-${layout.lines[lastLine].glyphs.length - 1}`, spark.pos);
+  if (dotGone) {
+    spark.pos = dotGone.pos;
+    spark.r *= dotGone.shrink;
+    spark.white *= 1 - dotGone.heat;
+  } else spark.visible = false;
 
   const sx = 1 + 0.6 * spark.squash;
   const sy = 1 - 0.38 * spark.squash;

@@ -12,6 +12,7 @@ All files below were supplied for this project and are stored next to this file 
 | [`Ruptured Shell, Blooming Rosette-4.png`](./images/Ruptured%20Shell%2C%20Blooming%20Rosette-4.png) | Breakthrough energy: an internal amber bloom and a shell that begins to rupture. |
 | [`Six hypnotic contour pattern studies.png`](./images/Six%20hypnotic%20contour%20pattern%20studies.png) | Intermediate contour vocabulary: spirals, pinches, figure eights, and flowing ribbons. |
 | [`Tiny Seed's Figure-Eight Escape.png`](./images/Tiny%20Seed's%20Figure-Eight%20Escape.png) | The orange point escaping through an asymmetric figure-eight geometry; useful for the middle section. |
+| [`meaning-in-the-comments-target.png`](./images/meaning-in-the-comments-target.png) | Target frame for the comments ending (version 04): "Meaning in the comments.", lines converging on an orange comment bubble. Owner's changes are in `ideas/2026-10-20-comments-ending.md`. |
 | [`trace-of-freedom-orange-verbs.png`](./images/trace-of-freedom-orange-verbs.png) | Target frame for the text ending (version 03): wings low, an orange S-trace up to the soul, the words **Break** / the shape. / **Keep** / becoming. |
 | [`Symmetric_winged_seed_linework.png_2K_20261016192546.jpg`](./images/Symmetric_winged_seed_linework.png_2K_20261016192546.jpg) | Final-form direction: continuous, clean white contours form a symmetric winged seed around the vertical orange core. |
 

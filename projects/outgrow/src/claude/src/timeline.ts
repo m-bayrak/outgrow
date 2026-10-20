@@ -21,9 +21,10 @@ import {
   progress,
   smooth,
 } from "./math";
-import { FINAL_CAM, FLIGHT_END, FLIGHT_START, SEED_POS, cameraHandoff, flightPos, flightTangent } from "./ending";
+import { T as C, TOUCH } from "./finale";
+import { FINAL_CAM, FLIGHT_END, FLIGHT_START, SEED_POS, cameraHandoff, flightPos, flightTangent, toWorldFinal } from "./ending";
 
-export const DURATION = 16.5;
+export const DURATION = C.end;
 
 /** The film's beats, used for stills and for reasoning about timing. */
 export const BEATS = {
@@ -164,6 +165,9 @@ export const soulRadius = (t: number) => {
       { t: 10.6, v: 58 },
       { t: FLIGHT_START + 0.3, v: 40 },
       { t: FLIGHT_END, v: 36 },
+      // it grows a little with every letter it inhales
+      { t: C.inhale, v: 36 },
+      { t: C.inhaleEnd, v: 46 },
     ],
     t,
   );
@@ -234,6 +238,8 @@ export const WAVES: Wave[] = [
   { t: 8.25, origin: soulPos(8.25), amp: 46, speed: 1500, tint: 1 },
   { t: 10.3, origin: { x: 0, y: -60 }, amp: 18, speed: 1300, tint: 0.45 },
   { t: FLIGHT_END, origin: flightPos(FLIGHT_END), amp: 16, speed: 1300, tint: 0.5 },
+  // the soul dives into the guiding lines and the wings feel it
+  { t: C.touch, origin: toWorldFinal(TOUCH), amp: 18, speed: 1300, tint: 0.8 },
 ];
 
 // ---------------------------------------------------------------- camera
