@@ -68,7 +68,7 @@ Every visible step forward is a **new** version. Never overwrite or delete an ex
 3. Add an entry to `versions` in `projects/<p>/project.json` (copy the shape of the last one; `parent` is the version it grew from, or `null` for a fresh interpretation of the brief).
 4. Run `node scripts/build-site-data.mjs` and commit the regenerated `docs/data/projects.json`.
 5. Append to `LOG.md`.
-6. Masters are not committed. When the owner asks, attach the master to a GitHub Release tagged `<p>-<NN>`.
+6. Masters are not committed. When the owner asks, attach the master to a GitHub Release tagged `<p>-<NN>` (asset `<p>-<NN>-<author>-<slug>-master.mp4`), then add `"master": {"url": "<release download link>", "size": <bytes>}` to that version in `project.json` and rebuild the site data. The site plays the web copy and offers the master as a download.
 
 ## Showing a study on the site
 

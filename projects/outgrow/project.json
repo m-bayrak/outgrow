@@ -46,7 +46,11 @@
       "source": "projects/outgrow/src/claude",
       "commit": "585104d",
       "summary": "The soul flies an S-curve out of the wings; a spark writes Break / the shape. / Keep / becoming.",
-      "basedOn": "t3"
+      "basedOn": "t3",
+      "master": {
+        "url": "https://github.com/m-bayrak/outgrow/releases/download/outgrow-03/outgrow-03-claude-text-master.mp4",
+        "size": 32133515
+      }
     },
     {
       "id": "04",
@@ -60,7 +64,11 @@
       "source": "projects/outgrow/src/claude",
       "commit": "d3073ee",
       "summary": "The soul inhales the old words, writes Meaning / in the / comments., then enters lines that converge on a comment bubble beside the real button.",
-      "basedOn": "m1"
+      "basedOn": "m1",
+      "master": {
+        "url": "https://github.com/m-bayrak/outgrow/releases/download/outgrow-04/outgrow-04-claude-comments-master.mp4",
+        "size": 38528876
+      }
     }
   ],
   "studies": [
