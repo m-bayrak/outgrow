@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
 import { LINE_COUNT, type LinePoint, buildLine, lineOpacity } from "./contours";
-import { T } from "./finale";
+import { T, pullLine } from "./finale";
 import { Comments } from "./Comments";
 import { FLIGHT_START, SEED_POS, flightPoint, flightProgress } from "./ending";
 import { type Vec, TAU, clamp, hash01, progress, rotate, smooth } from "./math";
@@ -75,7 +75,12 @@ export const Outgrow: React.FC<OutgrowProps> = ({ orange, white, lineWidth }) =>
     const S = (p: Vec) => toScreen(p, cam, width, height);
 
     const lines = Array.from({ length: LINE_COUNT }, (_, i) => {
-      const pts = buildLine(i, t).map((p: LinePoint) => ({ ...S(p), orange: p.orange }));
+      // version 05: the left wing's top edge is drawn out toward the comment bubble
+      const pts = pullLine(
+        buildLine(i, t).map((p: LinePoint) => ({ ...S(p), orange: p.orange })),
+        i,
+        t,
+      );
       return { d: closedPath(pts), runs: orangeRuns(pts), opacity: lineOpacity(i, t) };
     });
 

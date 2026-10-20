@@ -6,14 +6,12 @@ import {
   BUBBLE,
   BUBBLE_CENTER,
   DOTS,
-  GUIDES,
   HOVER_HEADING,
   T,
   TOUCH,
   type WritePoints,
   barMorph,
   bubblePath,
-  guideState,
   soulScreen,
   soulScreenRadius,
   soulScreenSeed,
@@ -29,8 +27,8 @@ const WEIGHT = 800;
 const TEXT_LEFT = 100;
 /** "comments." spans this many pixels, as on the target frame. */
 const WIDEST_LINE_PX = 772;
-/** Baseline of "comments.": low, just above the guiding lines. */
-const LAST_BASELINE = 1012;
+/** Baseline of "comments.": low, just above the wing's drawn-out lines (version 05: 100 px lower). */
+const LAST_BASELINE = 1112;
 
 type Line = { text: string; mode: "glide" | "impact" };
 const LINES: Line[] = [
@@ -75,21 +73,6 @@ const mixColor = (a: [number, number, number], b: [number, number, number], t: n
 
 const f1 = (n: number) => n.toFixed(1);
 const polyline = (pts: Vec[]) => pts.map((p, k) => `${k ? "L" : "M"}${f1(p.x)} ${f1(p.y)}`).join("");
-
-/** Points of a sampled line between fractions a and b. */
-const slice = (pts: Vec[], a: number, b: number): Vec[] => {
-  const n = pts.length - 1;
-  const at = (u: number) => {
-    const x = clamp(u) * n;
-    const i = Math.min(n - 1, Math.floor(x));
-    return mix(pts[i], pts[i + 1], x - i);
-  };
-  if (b <= a) return [];
-  const out = [at(a)];
-  for (let k = Math.ceil(a * n); k < b * n; k++) if (k / n > a) out.push(pts[k]);
-  out.push(at(b));
-  return out;
-};
 
 /** Angle from a to b along the shorter way round. */
 const lerpAngle = (a: number, b: number, t: number) => {
@@ -207,15 +190,6 @@ export const Comments: React.FC<{ t: number; orange: string; white: string; line
     trace = polyline(pts);
   }
 
-  // ---- the guiding lines
-  const guides = GUIDES.map((pts, i) => {
-    const g = guideState(i, t);
-    if (g.head <= 0.001) return null;
-    const body = polyline(slice(pts, 0, g.head));
-    const band = g.orange > 0.01 ? polyline(slice(pts, g.from, g.head)) : "";
-    return { body, band, orange: g.orange };
-  });
-
   // ---- the bubble
   const draw = outCubic(progress(t, T.bubble, T.bubbleEnd));
   const calm = Math.max(0, t - T.barsEnd);
@@ -294,15 +268,6 @@ export const Comments: React.FC<{ t: number; orange: string; white: string; line
       </defs>
 
       <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-        {guides.map((g, i) => (g ? <path key={`w${i}`} d={g.body} stroke={white} strokeWidth={lineWidth} /> : null))}
-        {guides.map((g, i) =>
-          g && g.band ? (
-            <g key={`o${i}`}>
-              <path d={g.band} stroke={orange} strokeWidth={lineWidth * 4} opacity={0.35 * g.orange} filter="url(#c-soft)" />
-              <path d={g.band} stroke={orange} strokeWidth={lineWidth * 1.15} opacity={g.orange} />
-            </g>
-          ) : null,
-        )}
         {trace ? <path d={trace} stroke={orange} strokeWidth={lineWidth} opacity={traceFade} /> : null}
       </g>
 

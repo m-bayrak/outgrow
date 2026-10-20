@@ -12,6 +12,7 @@ import {
   outCubic,
   progress,
   rotate,
+  smooth,
 } from "./math";
 
 export const FLIGHT_START = 11.0;
@@ -21,19 +22,37 @@ export const SEED_POS: Vec = { x: 0, y: -330 };
 /** Camera at rest for the final frame: wings low, soul high on the right. */
 export const FINAL_CAM = { center: { x: -201, y: -1860 }, zoom: 0.68, rot: 0.06 };
 
+/** Version 05: while the old words are inhaled the wings sink this far (screen px), making room for lower text. */
+const SINK = 100;
+const SINK_START = 16.0;
+const SINK_END = 17.1;
+
+/** The final camera at time t: at rest, then a slow sink of the whole scene. */
+export const finalCamAt = (t: number) => {
+  const s = smooth(progress(t, SINK_START, SINK_END));
+  const shift = rotate({ x: 0, y: -SINK / FINAL_CAM.zoom }, -FINAL_CAM.rot);
+  return {
+    center: { x: FINAL_CAM.center.x + shift.x * s, y: FINAL_CAM.center.y + shift.y * s },
+    zoom: FINAL_CAM.zoom,
+    rot: FINAL_CAM.rot,
+  };
+};
+
 const W = 1080;
 const H = 1920;
 
-/** Screen → world under the final camera. */
-export const toWorldFinal = (s: Vec): Vec => {
-  const local = rotate({ x: (s.x - W / 2) / FINAL_CAM.zoom, y: (s.y - H / 2) / FINAL_CAM.zoom }, -FINAL_CAM.rot);
-  return { x: local.x + FINAL_CAM.center.x, y: local.y + FINAL_CAM.center.y };
+/** Screen → world under the final camera at time t (before the sink by default). */
+export const toWorldFinal = (s: Vec, t = 0): Vec => {
+  const cam = finalCamAt(t);
+  const local = rotate({ x: (s.x - W / 2) / cam.zoom, y: (s.y - H / 2) / cam.zoom }, -cam.rot);
+  return { x: local.x + cam.center.x, y: local.y + cam.center.y };
 };
 
-/** World → screen under the final camera (the camera is at rest from ~12.6 s). */
-export const toScreenFinal = (p: Vec): Vec => {
-  const r = rotate({ x: p.x - FINAL_CAM.center.x, y: p.y - FINAL_CAM.center.y }, FINAL_CAM.rot);
-  return { x: r.x * FINAL_CAM.zoom + W / 2, y: r.y * FINAL_CAM.zoom + H / 2 };
+/** World → screen under the final camera at time t (the camera is at rest from ~12.6 s). */
+export const toScreenFinal = (p: Vec, t = 0): Vec => {
+  const cam = finalCamAt(t);
+  const r = rotate({ x: p.x - cam.center.x, y: p.y - cam.center.y }, cam.rot);
+  return { x: r.x * cam.zoom + W / 2, y: r.y * cam.zoom + H / 2 };
 };
 
 /** The S-curve as it should read on the final frame (screen px, bottom → top). */

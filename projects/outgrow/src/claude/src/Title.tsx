@@ -157,7 +157,7 @@ export const Title: React.FC<{ t: number; orange: string; width: number; height:
   // version 04: the soul inhales the words, nearest letter first
   const ranks = useMemo(() => {
     if (!layout || !P) return null;
-    const soul = toScreenFinal(flightPos(T.inhale));
+    const soul = toScreenFinal(flightPos(T.inhale), T.inhale);
     const items: { key: string; d: number }[] = [];
     layout.lines.forEach((line, i) =>
       line.glyphs.forEach((g, j) => {
@@ -172,7 +172,7 @@ export const Title: React.FC<{ t: number; orange: string; width: number; height:
   if (!layout || !P || !ranks || t < SPARK.birth - 0.05 || t > T.inhaleEnd + 0.05) return null;
 
   /** Pull a resting letter into the soul; null once it is gone. */
-  const soulNow = toScreenFinal(flightPos(t));
+  const soulNow = toScreenFinal(flightPos(t), t);
   const inhale = (key: string, pos: Vec) => {
     if (t < T.inhale) return { pos, shrink: 1, heat: 0 };
     const t0 = lerp(T.inhale, T.inhaleEnd - 0.34, ranks.get(key) ?? 1);
