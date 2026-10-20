@@ -119,6 +119,20 @@
               "text": "Ось опорний кадр до якого прямуємо.\n[target frame: projects/outgrow/references/images/trace-of-freedom-orange-verbs.png]\nІз останньої анімації що ти зробив потрібно перейти до фігури яка в цьому кадрі. Думаю якось фігура зміститься щоб долучилась що вона внизу, а потім помаранчевий обʼєкт-душа підлітає по такій кривій вгору і завмирає.\nДалі із помаранчевої душі вилітає інша така сам і де вона приземляється чи стрибає там зявляються слова.\nОсь схожі ефекти як тут на 6 чи 8 секунді\n[typography reference video: see \"External references\" in projects/outgrow/references/REFERENCES.md]\n\nУсе має бути динамічно, як ти і робив для шортс\nАле спочатку дай відповідь, як ти хрохкмів і які варіанти пропонуєш?\n\n1. Продовжуємо старе\n2. Так\n3. «удар» для дієслів і «ковзання» для решти."
             }
           ]
+        },
+        {
+          "id": "04",
+          "title": "Comments ending",
+          "author": "claude",
+          "date": "2026-10-20",
+          "parent": "03",
+          "duration": 24.6,
+          "video": "media/outgrow/04-claude-comments.mp4",
+          "poster": "media/outgrow/04-claude-comments.jpg",
+          "source": "projects/outgrow/src/claude",
+          "commit": "d3073ee",
+          "summary": "The soul inhales the old words, writes Meaning / in the / comments., then enters lines that converge on a comment bubble beside the real button.",
+          "basedOn": "m1"
         }
       ],
       "studies": [
@@ -608,6 +622,17 @@
               "text": "мені потрібно картинка шаблон дисплея шортс із даними щоб я міг дати ШІ приклад щоб він рпозумів як розмістити стрілку щоб вона вказувала на іконку коментар"
             }
           ]
+        },
+        {
+          "id": "m1",
+          "title": "Meaning in the comments",
+          "author": "owner",
+          "date": "2026-10-20",
+          "parent": "03",
+          "status": "chosen",
+          "image": "media/outgrow/studies/m1.jpg",
+          "source": "projects/outgrow/references/images/meaning-in-the-comments-target.png",
+          "note": "Target frame for the comments ending. In the film the bubble moves slightly down and left, the text sits lower and the soul's trace is gone, so the bubble is the focus."
         }
       ]
     }

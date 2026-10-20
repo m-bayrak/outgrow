@@ -61,3 +61,9 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-10-20 · claude · claude/outgrow-style-skill
 - Added the reusable skill `skills/outgrow-style/`: the working process with the owner, the style (copy of `STYLE.md`), tuned recipes (contour field, soul, impacts and waves, camera, flight to a target frame, typography, pacing), a lessons table of past traps and fixes, the Claude lineage source as a reference implementation, and the `stills.sh` / `strip.sh` checking scripts.
 - Linked into `~/.claude/skills/outgrow-style` on the owner's machine; `AGENTS.md` and `CLAUDE.md` point agents to it.
+
+## 2026-10-20 · claude · claude/comments-ending
+- Version 04 "Comments ending" (parent 03, 24.6 s): the soul inhales "Break the shape. Keep becoming.", writes Meaning / in the / **comments.**, dives into 12 guiding lines that converge on a drawn comment bubble slightly left of YouTube's real button, and settles as three typing dots that become the bubble's bars; ~2 s calm pulse. Owner approved the open points, the stills and the draft.
+- Code: `src/claude/src/finale.ts` (score and layout), `Comments.tsx` (render), `shapes.ts` (soul outlines moved out of `Outgrow.tsx`); inhale added to `Title.tsx`; duration and a touch wave in `timeline.ts`.
+- Published `docs/media/outgrow/04-claude-comments.{mp4,jpg}`; the target frame is study m1 (`basedOn` of 04). Decision row in `BRIEF.md`; idea `ideas/2026-10-20-comments-ending.md` marked chosen.
+- Open: the owner's original Ukrainian request for this ending is not in `prompts/` (only its translated summary in the idea file); check on a real phone that the bubble reads as pointing to the button; the master is not attached to a Release.
