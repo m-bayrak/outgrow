@@ -1,7 +1,7 @@
 ---
 date: 2026-10-20
 author: claude
-status: in progress
+status: done
 ---
 
 # Sound effects
@@ -69,4 +69,4 @@ status: in progress
 | 22.60 | Dots become the bubble's bars | a soft kalimba chord, D major |
 | 22.90 | Calm pulse: signal arcs toward the comment button | quiet kalimba notes A–D–F♯, one per arc, every 1.15 s |
 
-**Next.** Owner listens to the ASMR sketches (strikes, breakthrough and flight, words and inhale, the comments ending, and the whole film at half resolution). Then the final render and version 06.
+**Next.** Done: the owner approved the ASMR mix; it is version 06.
