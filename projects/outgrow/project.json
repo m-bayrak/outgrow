@@ -86,6 +86,23 @@
         "url": "https://github.com/m-bayrak/outgrow/releases/download/outgrow-05/outgrow-05-claude-comment-button-master.mp4",
         "size": 38653028
       }
+    },
+    {
+      "id": "06",
+      "title": "Sound",
+      "author": "claude",
+      "date": "2026-10-21",
+      "parent": "05",
+      "duration": 24.9,
+      "video": "media/outgrow/06-claude-sound.mp4",
+      "poster": "media/outgrow/06-claude-sound.jpg",
+      "source": "projects/outgrow/src/claude",
+      "commit": "23515b2",
+      "summary": "The same picture as 05 with sound: soft, close effects synthesized in code and tied to every event — knocks and crackle for the strikes, glass bells, kalimba, rustle, pencil strokes, drops and key taps. No music.",
+      "master": {
+        "url": "https://github.com/m-bayrak/outgrow/releases/download/outgrow-06/outgrow-06-claude-sound-master.mp4",
+        "size": 39665081
+      }
     }
   ],
   "studies": [

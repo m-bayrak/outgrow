@@ -11,8 +11,9 @@ A 24.9-second, 1080 × 1920, 60 fps rework of **Outgrow**: denser pacing, a came
 - [`src/finale.ts`](./src/finale.ts) and [`src/Comments.tsx`](./src/Comments.tsx) — the comments ending (version 04), in screen space: the soul writes the new words, the wing's top edge drawn out into lines, the bubble, typing dots and the calm pulse.
 - [`src/shapes.ts`](./src/shapes.ts) — the soul and tail outlines shared by both.
 - [`src/Outgrow.tsx`](./src/Outgrow.tsx) — projects everything through the camera and draws it as SVG.
+- [`audio/`](./audio/) — the sound effects (version 06): a small synthesis kit, a score whose cues read their times from the timeline, and mastering to −14 LUFS. `pnpm sfx` writes [`public/outgrow-sfx.wav`](./public/outgrow-sfx.wav), which the composition plays; re-run it after any timing change.
 
-Every frame is a pure function of its frame number (no `Math.random`, no clock), so scrubbing and rendering always agree.
+Every frame is a pure function of its frame number (no `Math.random`, no clock), so scrubbing and rendering always agree. The sound is deterministic too: the same code writes the same WAV, byte for byte.
 
 | Time | Beat |
 | --- | --- |
@@ -36,6 +37,7 @@ Every frame is a pure function of its frame number (no `Math.random`, no clock),
 pnpm install
 pnpm dev            # Remotion Studio
 pnpm lint
+pnpm sfx            # re-render the sound effects WAV
 scripts/stills.sh   # key stills + out/sheet.png
 pnpm exec remotion render src/index.ts Outgrow out/outgrow-claude.mp4 --codec=h264 --crf=18
 ```
