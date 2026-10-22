@@ -128,3 +128,8 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - At the owner's request, prepared all cover work for a local commit: original PNGs, web study JPEGs, exact generation prompts, idea, reference index, manifest and generated site data. Marked cv1 explored and cv2 chosen; recorded the cover decision in BRIEF.md.
 - Verified study sources, web images, parent links, prompt attachments and unchanged animation versions; checked the diff for whitespace errors.
 - No push, pull request or merge requested.
+
+## 2026-10-22 · codex · codex/cover-ideas
+- Owner approved publishing the cover studies through a pull request and merge into main.
+- Rebuilt and validated site data: six animation versions and 24 studies, including cv1 and the chosen cv2 cover. Existing animation versions and code are unchanged.
+- Next: verify GitHub Pages publishes the merged cover studies.
