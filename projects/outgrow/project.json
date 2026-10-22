@@ -362,6 +362,28 @@
       "image": "media/outgrow/studies/m1.jpg",
       "source": "projects/outgrow/references/images/meaning-in-the-comments-target.png",
       "note": "Target frame for the comments ending. In the film the bubble moves slightly down and left, the text sits lower and the soul's trace is gone, so the bubble is the focus."
+    },
+    {
+      "id": "cv1",
+      "title": "Three cover directions",
+      "author": "codex",
+      "date": "2026-10-22",
+      "parent": "06",
+      "status": "explored",
+      "image": "media/outgrow/studies/cv1.jpg",
+      "source": "projects/outgrow/references/images/cover-directions-triptych.png",
+      "note": "Generated cover concepts, left to right: Outgrow, Break the shape, Keep becoming. Proposed artwork, not exact frames from the animation."
+    },
+    {
+      "id": "cv2",
+      "title": "Outgrow — orange GROW",
+      "author": "codex",
+      "date": "2026-10-22",
+      "parent": "cv1",
+      "status": "chosen",
+      "image": "media/outgrow/studies/cv2.jpg",
+      "source": "projects/outgrow/references/images/cover-outgrow-orange-grow.png",
+      "note": "Owner selected the first cover direction and requested orange GROW with white OUT. Standalone vertical cover refinement."
     }
   ]
 }

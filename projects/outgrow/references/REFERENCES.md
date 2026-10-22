@@ -92,3 +92,10 @@ These agent-generated stills record alternatives discussed before version 04. Th
 ### External references: supplied phone UI (external, not stored)
 
 The owner supplied iPhone and Android YouTube screenshots and an overlay of them for placement analysis. Public source URLs were not supplied; no links or authors are guessed, and no screenshots, faces, account names or attachment files are committed. Only the distilled viewport-mapping approach is recorded in [the validation idea](../ideas/2026-10-20-phone-target-validation.md). Earlier externally linked UI examples above are separate sources, not substitutes for these specific device screenshots.
+
+## 2026-10-22: cover concepts
+
+| Image | What to take from it |
+| --- | --- |
+| [Cover triptych](./images/cover-directions-triptych.png) | Agent-generated concepts for version 06: iconic wings, elastic resistance, and released flight. Compare composition and headline; not exact animation frames. |
+| [Outgrow, orange GROW](./images/cover-outgrow-orange-grow.png) | First cover direction selected by owner; OUT white and GROW orange. Standalone vertical refinement. |

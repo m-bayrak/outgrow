@@ -110,3 +110,21 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-10-21 · claude · claude/skill-audio
 - The `outgrow-style` skill now carries the sound: `assets/reference-audio/` (the version 06 `dsp.ts`, `master.ts`, `score.ts`, `render.mjs` and a README on what to reuse as is and what to rewrite), recipe section 9 "Sound" in `references/recipes.md`, a row in `SKILL.md`, and two sound lessons in `references/lessons.md`.
 - `assets/reference-src/` stays the version 03 snapshot; the README of `reference-audio/` says `score.ts` needs the version 06 sources from `projects/outgrow/src/claude/src/`.
+
+## 2026-10-22 · codex · codex/cover-ideas
+- Reviewed the latest published animation, version 06, its poster, brief, style and sampled video frames for cover ideas.
+- Recorded three proposed directions in `ideas/2026-10-22-cover-directions.md`: Outgrow (recommended), Break the shape, and Keep becoming.
+- Open: owner's choice before making cover stills. No artwork or published media changed.
+
+## 2026-10-22 · codex · codex/cover-ideas
+- Generated and visually reviewed the three requested cover concepts as `references/images/cover-directions-triptych.png`; archived the exact generation prompt and added proposed study cv1 under version 06.
+- Open: owner selection and refinement. No commit, push or PR requested.
+
+## 2026-10-22 · codex · codex/cover-ideas
+- Owner selected the first cover and asked for orange GROW. Generated and visually reviewed `references/images/cover-outgrow-orange-grow.png`, with white OUT and orange GROW; added study cv2 under cv1.
+- Open: owner review of the refined cover. No commit, push or PR requested.
+
+## 2026-10-22 · codex · codex/cover-ideas
+- At the owner's request, prepared all cover work for a local commit: original PNGs, web study JPEGs, exact generation prompts, idea, reference index, manifest and generated site data. Marked cv1 explored and cv2 chosen; recorded the cover decision in BRIEF.md.
+- Verified study sources, web images, parent links, prompt attachments and unchanged animation versions; checked the diff for whitespace errors.
+- No push, pull request or merge requested.
