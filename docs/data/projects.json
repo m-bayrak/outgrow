@@ -750,6 +750,48 @@
               "text": "Ця найцікавіша ідея.\nАле кінець стрілки потрібно забрати.\nТи і так цікаво зобразив напрямок фокусу.\nА втому місці потрібно намалювати іконку коментаря оранжевого кольору.\nІ конка повинна бути розміщена в місці щоб вона частково попадала і на айфон і на андроїд.\nТакож вона повинна бути більшою за стандартний розмір іконки, щоб збільшити вірошіодність попадання\nНадпис “comment” зробити помаранчевим"
             }
           ]
+        },
+        {
+          "id": "cv1",
+          "title": "Three cover directions",
+          "author": "codex",
+          "date": "2026-10-22",
+          "parent": "06",
+          "status": "explored",
+          "image": "media/outgrow/studies/cv1.jpg",
+          "source": "projects/outgrow/references/images/cover-directions-triptych.png",
+          "note": "Generated cover concepts, left to right: Outgrow, Break the shape, Keep becoming. Proposed artwork, not exact frames from the animation.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-22-cover-triptych.md",
+              "title": "Three cover directions",
+              "date": "2026-10-22",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Create a polished concept comparison sheet showing THREE DISTINCT VIDEO COVER DESIGNS SIDE BY SIDE, each a complete tall 9:16 poster, overall canvas about 27:16 landscape. Use the attached contact sheet ONLY as visual reference for the existing Outgrow animation: smooth mathematical white contour lines, orange soul, black ground. Do NOT reproduce the contact sheet grid. Make exactly three equal vertical panels separated by narrow dark charcoal gutters. No surrounding mockup, no paper texture, no panel numbers, no labels outside the designs.\n\nAll three: pure black #000000 background, precise thin unbroken white contour curves in dense families of about 24 parallel lines, single vivid orange #ff6a00 glowing small protagonist (soul/seed), no other hues, no stars, no photography, no 3D, no gradients on background. Clean premium generative vector motion design aesthetic. Strong legibility at thumbnail size. Bold condensed sans-serif typography like Inter Tight ExtraBold 800, tight tracking, left aligned. English copy spelled exactly.\n\nLEFT POSTER — iconic OUTGROW. Text 'OUTGROW' in large white caps at top with generous margins. Below, large elegant symmetrical white contour wings opening up and outward, narrow vertical waist around 65% of poster height, looping lower lobes. An orange elongated seed rising through the center above the waist with a fine short orange vertical tail. This is the finished winged form in the reference's second row, second panel. Maintain black breathing space around title, central glowing orange focal point. Shape fills middle/lower 65%, visually iconic.\n\nMIDDLE POSTER — tension. Two-line headline near upper left: 'Break' in orange, then 'the shape.' in white. In the lower 65% a large closed white concentric oval shell being stretched upward-right elastically by a small bright orange soul pressing from INSIDE near its upper-right boundary. Curves tightly bend and briefly turn orange at contact, an orange energy pulse follows the contours, but no torn or broken strokes. Slight diagonal tilt, strong focused physical tension. Keep headline separate from linework.\n\nRIGHT POSTER — freedom. Two-line headline upper left: 'Keep' in orange, then 'becoming.' in white, fit entirely inside panel with margins. In the bottom third, low cropped white contour wings with a slender central upward passage, like reference row two panel three. A tiny glowing orange soul has flown high above wings on right side, trailing an elegant thin S-shaped orange flight path rising from the wing waist. Lots of pure black space between text and wings. Quiet and spacious. Ensure orange trail does not intersect headline.\n\nThese are cover concept stills, precise coherent graphic design, not busy collage. Each of the three covers must be substantially different in silhouette and story, with razor-sharp typography and linework."
+            }
+          ]
+        },
+        {
+          "id": "cv2",
+          "title": "Outgrow — orange GROW",
+          "author": "codex",
+          "date": "2026-10-22",
+          "parent": "cv1",
+          "status": "chosen",
+          "image": "media/outgrow/studies/cv2.jpg",
+          "source": "projects/outgrow/references/images/cover-outgrow-orange-grow.png",
+          "note": "Owner selected the first cover direction and requested orange GROW with white OUT. Standalone vertical cover refinement.",
+          "prompts": [
+            {
+              "file": "projects/outgrow/prompts/2026-10-22-orange-grow-cover.md",
+              "title": "Orange GROW cover refinement",
+              "date": "2026-10-22",
+              "author": "codex",
+              "tool": "ChatGPT image generation",
+              "text": "Edit the supplied triptych: deliver ONLY the FIRST (leftmost) cover as a standalone vertical 9:16 image, filling the entire canvas, no gutters or other panels. Preserve the original left poster composition, contour wing geometry, line spacing, black background, orange seed, title position, margins, font, typography size and proportions as closely as possible. Make exactly one design change: in the title OUTGROW, keep the first three letters OUT pure white, and change the last four letters GROW to solid vivid orange #ff6a00 matching the seed. It must read OUTGROW as one uninterrupted word on one line, no space, with OUT white and GROW orange. Preserve the white wing contours and orange glowing central seed and fine tail. No new text, no labels, no mockup, no border. Crisp premium graphic design."
+            }
+          ]
         }
       ]
     }
