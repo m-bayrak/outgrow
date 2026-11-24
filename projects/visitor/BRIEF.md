@@ -29,6 +29,8 @@ Three thoughts come to one house. The first two are given the key automatically 
 | | 6 | **The choice.** The arm curls back holding the key close, the soul is bright. Strong waves only outdoors, stopping at the house. Inside, the lines are flat and the house is straight. |
 | 13.5–18 s | 7 | **The visitor.** The soul rests against the inside of the door, cradled in its waves; the key lies apart on the floor. The same tangle, relaxed into 7–8 soft loops, leans on the outside. Nothing connects them but the shared ground line. Phrase in the empty upper third: "A thought is a visitor." |
 
+Ending in detail (planned, tune in the draft): 13.5–14.6 the soul rolls to the door and the tangle relaxes; 14.6–15.0 the soul settles and the spark leaves it; 15.0–15.6 "A thought"; 15.6–16.3 "is a visitor"; 16.3–16.5 the spark becomes the full stop; 16.5–18.0 hold.
+
 ## Art direction
 
 Follows [`STYLE.md`](../../STYLE.md). Specific to this piece:
@@ -42,7 +44,7 @@ Follows [`STYLE.md`](../../STYLE.md). Specific to this piece:
 
 Exceptions and proposals:
 
-- *Proposed:* the phrase's noun "visitor" is orange (`STYLE.md` says verbs).
+- The phrase's noun "visitor" is orange (`STYLE.md` says verbs): it is the word the film is about.
 - The house is drawn with single strokes, not a family of 20–30 contours. The families are the soul's lines and the waves.
 
 ## Where the stills depart from the approved references
@@ -67,9 +69,8 @@ Newest last. Add a row when a direction is settled with the owner.
 | 2026-11-24 | References for frames 1, 3, 4, 5 and 7 approved; 2 and 6 derived | Their parts already exist in the others |
 | 2026-11-24 | The steps are removed | The key must slide under the door along one ground line |
 | 2026-11-24 | Approved scope: project setup and seven coded stills with a contact sheet | Every further step needs the owner's explicit approval |
+| 2026-11-24 | The phrase is written by a small orange spark that leaves the resting soul, passes through the roof and writes letter by letter (orange, cooling to white; "visitor" stays orange), then becomes the full stop | The words come from the protagonist's motion while the soul itself stays at rest |
 
 ## Open questions
 
-- Does the soul become the full stop of the phrase? Only if it does not break the final rest.
-- "visitor" in orange: proposed, not confirmed.
 - Series rule (soul + one physical rule per film; the house only where needed): an agent proposal, not confirmed.
