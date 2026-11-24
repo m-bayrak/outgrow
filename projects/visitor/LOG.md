@@ -30,3 +30,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-11-24 · claude · claude/visitor-stills-602ddb
 - The owner approved the motion of draft 1.
 - Next, each only after a separate go-ahead: the two known flaws, the final 1080 × 1920 render, sound, publishing.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- Final master rendered as approved, with no changes to draft 1: 1080 × 1920, 60 fps, 18 s, h264 crf 18, silent, 8.1 MB, in the ignored `src/claude/out/visitor-master.mp4`. The two known flaws stay by the owner's choice.
+- Open: sound, publishing as version 01, push and pull request, each only after a go-ahead.
