@@ -816,7 +816,11 @@
           "poster": "media/visitor/01-claude-first-film.jpg",
           "source": "projects/visitor/src/claude",
           "commit": "7327b5c",
-          "summary": "Three thoughts knock at one house. Two are handed the key and rule it; the third is heard, kept company through the door, and never given it. With soft sound effects synthesized in code, no music."
+          "summary": "Three thoughts knock at one house. Two are handed the key and rule it; the third is heard, kept company through the door, and never given it. With soft sound effects synthesized in code, no music.",
+          "master": {
+            "url": "https://github.com/m-bayrak/outgrow/releases/download/visitor-01/visitor-01-claude-first-film-master.mp4",
+            "size": 8812868
+          }
         }
       ],
       "studies": []

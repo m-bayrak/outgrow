@@ -56,3 +56,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-11-24 · claude · claude/visitor-stills-602ddb
 - The site footer links to the other projects that have a version (`docs/index.html`, `site.js`, `site.css`; asset versions raised). Checked both ways in a local preview, desktop and phone width.
 - Open: push and pull request, the master in a GitHub Release, attaching prompts to the version.
+
+## 2026-11-24 · claude · claude/visitor-master-link
+- Version 01 was merged in pull request 18 and is live. The master is in release `visitor-01`; `project.json` links to it, so the site offers the download.
+- Open: attaching prompts to the version.
