@@ -72,6 +72,7 @@ Newest last. Add a row when a direction is settled with the owner.
 | 2026-11-24 | Approved scope: project setup and seven coded stills with a contact sheet | Every further step needs the owner's explicit approval |
 | 2026-11-24 | The phrase is written by a small orange spark that leaves the resting soul, passes through the roof and writes letter by letter (orange, cooling to white; "visitor" stays orange), then becomes the full stop | The words come from the protagonist's motion while the soul itself stays at rest |
 | 2026-11-24 | Frame 6 has its own reference: the waves come from the tangle and break against the house | The first version wrapped the house as in frame 3, as if the house itself made them |
+| 2026-11-24 | The seven coded stills are approved | Shape is settled before motion |
 
 ## Open questions
 

@@ -16,3 +16,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-11-24 · claude · claude/visitor-stills-602ddb
 - Frame 6 rebuilt from the owner's new reference (`references/images/frame-6-the-choice.png`, prompt 16): `surf` waves from the tangle, torn loops (`burst`), ground flat up to the porch, key held beside the soul. The other six stills are byte-identical to before.
 - Open: the owner's verdict on the stills. Nothing beyond stills is approved.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- The owner approved the seven stills.
+- Next: a half-resolution motion draft, only after a separate go-ahead.
