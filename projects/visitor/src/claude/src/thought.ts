@@ -151,6 +151,13 @@ const loopAt = (loops: Loop[], s: number): Loop => {
   return { x: at("x"), y: at("y"), rx: at("rx"), ry: at("ry"), rot: at("rot") };
 };
 
+// Where along the line (by length) a loop is torn out when the tangle is refused.
+const BURSTS = [
+  { u: 0.391, w: 0.0165, dx: 34, dy: -82 },
+  { u: 0.664, w: 0.015, dx: -16, dy: -34 },
+  { u: 0.612, w: 0.014, dx: 36, dy: 18 },
+];
+
 /**
  * The anxious tangle (relax 0) and the same line at rest (relax 1). It unwinds:
  * the number of turns falls while each loop travels to its resting place.
@@ -159,11 +166,13 @@ export const tangleThought = (
   relax: number,
   lean: number,
   phase = 0,
+  burst = 0, // loops torn outward
+  foot = 1373, // ground height under the tail
 ): Vec[] => {
   const turns = lerp(15.2, 7.3, relax);
   const pts: Vec[] = [];
   const M = 3000;
-  const tailEnd = mix(v(762, 1373), v(908, 1370), relax);
+  const tailEnd = mix(v(762, foot), v(908, 1370), relax);
   const tailMid = mix(v(806, 1340), v(880, 1366), relax);
   const tailSpan = lerp(0.028, 0.075, relax);
   for (let i = 0; i < M; i++) {
@@ -199,5 +208,16 @@ export const tangleThought = (
     }
     pts.push(p);
   }
-  return even(soften(pts, 9), 1800);
+  const line = even(soften(pts, 9), 1800);
+  if (!burst) return line;
+  return line.map((p, i) => {
+    const q = { ...p };
+    for (const b of BURSTS) {
+      const e = (i / (line.length - 1) - b.u) / b.w;
+      const g = burst * Math.exp(-e * e);
+      q.x += g * b.dx;
+      q.y += g * b.dy;
+    }
+    return q;
+  });
 };

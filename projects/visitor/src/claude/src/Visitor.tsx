@@ -136,7 +136,8 @@ export const Visitor: React.FC = () => {
     h.floor,
   ];
   const p = soul.power;
-  const glow = soul.r * lerp(3.4, 2.15, clamp(p));
+  const glow =
+    soul.r * (lerp(3.4, 2.15, clamp(p)) + 1.6 * Math.max(0, p - 1.2));
   const kh = h.keyhole;
 
   return (

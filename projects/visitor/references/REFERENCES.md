@@ -12,6 +12,7 @@ Made by the owner with ChatGPT; the prompts are in [`../prompts/`](../prompts/).
 | [`frame-3-spring-rules.png`](./images/frame-3-spring-rules.png) | Approved. Bent house, uneven waves, ribbon rooted in the floor, tendril on the key. |
 | [`frame-4-wheel-rules.png`](./images/frame-4-wheel-rules.png) | Approved. Bowl floor, clockwise waves, the whirl. Too thick; the house resembles a helmet. |
 | [`frame-5-the-pause.png`](./images/frame-5-the-pause.png) | Approved. Arm along the floor, key halfway, the dense tangle. |
+| [`frame-6-the-choice.png`](./images/frame-6-the-choice.png) | Waves that press against the right roof slope and the door and break off; ground flat inside, heaving outside; loops bursting from the tangle. Not the arm reaching for the door, the waves over the ridge, the thick lines, or the cut-off right edge. |
 | [`frame-7-the-visitor.png`](./images/frame-7-the-visitor.png) | Approved. The hammock of waves, the key apart, the relaxed tangle at the door. |
 
 ## External references (not stored)

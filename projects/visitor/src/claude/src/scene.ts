@@ -8,6 +8,7 @@ import {
   type House,
   type HouseWeights,
   type Ripple,
+  groundY,
   house,
 } from "./house";
 import {
@@ -20,7 +21,7 @@ import {
   swept,
 } from "./soulLines";
 import { springThought, tangleThought, wheelThought } from "./thought";
-import { type WaveLine, type WaveState, knock, waves } from "./waves";
+import { type WaveLine, type WaveState, knock, surf, waves } from "./waves";
 
 export const KEY_LENGTH = 104;
 
@@ -50,8 +51,6 @@ const noWave: WaveState = {
   amount: 0,
   bounce: 0,
   swirl: 0,
-  jag: 0,
-  right: 0,
   below: 0,
   phase: 0,
   guest,
@@ -217,32 +216,20 @@ const frames: (() => Scene)[] = [
   },
   // 6 — the choice
   () => {
-    const r = ground(0, 8, 2.2, 3.2);
+    const r = { ...ground(0, 24, 4.2, 4.6), from: 668 };
     const h = house(STILL, r);
-    const soul = { ...v(290, 1260), r: 48, power: 1.15 };
-    const ring = v(374, 1254);
+    const soul = { ...v(300, 1258), r: 49, power: 1.5 };
+    const ring = v(476, 1254);
     return {
       ...base,
       house: h,
       ripple: r,
       soul,
       lines: curledArm(soul, ring),
-      thought: tangleThought(0, -0.045, 0.5),
+      thought: tangleThought(0, -0.03, 0, 1, groundY(762, r)),
       tip: 0,
-      key: { ring, angle: -1.75 },
-      waves: waves(
-        h,
-        {
-          ...noWave,
-          amount: 1,
-          bounce: 0.35,
-          jag: 1,
-          right: 1,
-          below: 1,
-          guest: { x: 800, y: 1185, rx: 95, ry: 185 },
-        },
-        r,
-      ),
+      key: { ring, angle: Math.PI },
+      waves: surf(1),
     };
   },
   // 7 — the visitor

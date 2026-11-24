@@ -184,11 +184,11 @@ export const curledArm = (soul: Vec, ring: Vec): Gesture => {
       line[0],
       line[16],
       line[34],
-      v(soul.x + 40, lerp(1312, 1322, s)),
-      v(soul.x + 100, lerp(1322, 1336, s)),
-      v(soul.x + 158, lerp(1318, 1340, s)),
-      v(lerp(soul.x + 188, soul.x + 206, s), lerp(1284, 1290, s)),
-      v(lerp(soul.x + 180, soul.x + 198, s), lerp(1246, 1240, s)),
+      v(soul.x + 46, lerp(1318, 1326, s)),
+      v(soul.x + 118, lerp(1326, 1337, s)),
+      v(soul.x + 186, lerp(1322, 1339, s)),
+      v(lerp(soul.x + 226, soul.x + 240, s), lerp(1292, 1294, s)),
+      v(lerp(soul.x + 222, soul.x + 238, s), lerp(1254, 1248, s)),
       ...g,
     ];
     return sample(ctrl, POINTS);

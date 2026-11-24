@@ -3,15 +3,13 @@
 // never enter the room. Polar around the middle of the floor.
 
 import { type Vec, clamp, hash01, lerp, smooth, TAU } from "./math";
-import { v, wobble } from "./curves";
+import { spline, v, wobble } from "./curves";
 import { FLOOR, type House, type Ripple, groundY, silhouette } from "./house";
 
 export type WaveState = {
   amount: number; // 0..1
   bounce: number; // vertical lobes (spring)
   swirl: number; // clockwise sweep (wheel)
-  jag: number; // anxious (tangle)
-  right: number; // emphasis on the porch side
   below: number; // strata under the ground line
   phase: number;
   guest: { x: number; y: number; rx: number; ry: number };
@@ -105,8 +103,7 @@ export const waves = (h: House, w: WaveState, ripple: Ripple): WaveLine[] => {
           ) +
         4 * hash01(k + 5);
       const sweep = lerp(1, 0.3 + 1.2 * smooth(s), w.swirl);
-      const porch = lerp(1, 0.55 + 1.0 * s, w.right);
-      return a + gap * sweep * porch;
+      return a + gap * sweep;
     });
     const spread = k / (COUNT - 1);
     const s0 = lerp(-0.02, 0.02 + 0.2 * hash01(k + 60), w.swirl);
@@ -138,11 +135,7 @@ export const waves = (h: House, w: WaveState, ripple: Ripple): WaveLine[] => {
               0.5 + 0.5 * Math.sin(TAU * (3.4 * s - 0.55 * spread) + w.phase),
               1.2,
             ) +
-            26 * spread * (0.5 + 0.5 * wobble(s * 3, 310 + (k % 3)))) +
-        w.jag *
-          46 *
-          (0.2 + spread) *
-          (0.5 + 0.5 * wobble(s * 8 + k * 0.13, 81));
+            26 * spread * (0.5 + 0.5 * wobble(s * 3, 310 + (k % 3))));
       const r = r0[i] + (acc[i] * 0.78 + lobe * 0.85) * anis;
       let x = C.x + d.x * r;
       let y = C.y + d.y * r;
@@ -157,8 +150,7 @@ export const waves = (h: House, w: WaveState, ripple: Ripple): WaveLine[] => {
       const tone =
         lerp(1.25, 0.24, Math.pow(spread, 0.8)) *
         (0.62 + 0.38 * hash01(k * 3 + 8));
-      const edge = lerp(1, 0.35 + 0.65 * s, w.right);
-      alpha.push(w.amount * tone * breath * ends * edge);
+      alpha.push(w.amount * tone * breath * ends);
     }
     out.push({ pts, alpha });
   }
@@ -194,8 +186,7 @@ export const waves = (h: House, w: WaveState, ripple: Ripple): WaveLine[] => {
           w.below *
           lerp(0.7, 0.14, k / (strata - 1)) *
           smooth(clamp(t / 0.16)) *
-          smooth(clamp((1 - t) / 0.16)) *
-          lerp(1, smooth(t), w.right),
+          smooth(clamp((1 - t) / 0.16)),
       );
     }
     out.push({ pts, alpha });
@@ -225,3 +216,144 @@ export const knock = (at: Vec, age: number): WaveLine[] =>
     }
     return { pts, alpha };
   });
+
+// Drawn by hand, from the tangle's torn loops to the wall they break against.
+const SURF: Vec[][] = [
+  [
+    v(862, 1008),
+    v(898, 955),
+    v(900, 880),
+    v(872, 806),
+    v(815, 764),
+    v(760, 728),
+    v(690, 700),
+    v(622, 714),
+    v(562, 744),
+    v(508, 768),
+    v(467, 768),
+  ],
+  [
+    v(850, 1006),
+    v(880, 950),
+    v(880, 888),
+    v(848, 836),
+    v(795, 812),
+    v(735, 772),
+    v(668, 742),
+    v(612, 760),
+    v(574, 794),
+    v(538, 806),
+    v(506, 800),
+    v(489, 785),
+  ],
+  [
+    v(838, 1004),
+    v(860, 955),
+    v(858, 908),
+    v(826, 868),
+    v(778, 846),
+    v(715, 810),
+    v(650, 788),
+    v(606, 806),
+    v(584, 838),
+    v(560, 848),
+    v(540, 838),
+  ],
+  [
+    v(822, 1004),
+    v(842, 965),
+    v(838, 926),
+    v(806, 896),
+    v(760, 878),
+    v(708, 864),
+    v(656, 874),
+    v(633, 898),
+    v(625, 926),
+  ],
+  [
+    v(806, 1004),
+    v(822, 975),
+    v(812, 942),
+    v(776, 920),
+    v(735, 900),
+    v(695, 886),
+    v(665, 898),
+    v(652, 924),
+    v(650, 952),
+  ],
+  [
+    v(790, 1006),
+    v(800, 982),
+    v(785, 957),
+    v(750, 946),
+    v(715, 930),
+    v(691, 932),
+    v(678, 958),
+    v(681, 990),
+    v(676, 1020),
+  ],
+  [
+    v(774, 1010),
+    v(778, 990),
+    v(758, 975),
+    v(728, 966),
+    v(704, 972),
+    v(693, 998),
+    v(688, 1028),
+    v(676, 1056),
+  ],
+  [
+    v(755, 1020),
+    v(750, 1005),
+    v(732, 997),
+    v(713, 1006),
+    v(701, 1034),
+    v(689, 1064),
+    v(675, 1088),
+  ],
+];
+const SPRAY: Vec[] = [
+  v(880, 1018),
+  v(910, 985),
+  v(912, 930),
+  v(897, 880),
+  v(903, 830),
+  v(916, 796),
+];
+
+/**
+ * Surf: the tangle sends waves, the calm house stops them. Each line breaks off
+ * against the right roof slope or the door; nothing passes left of that wall.
+ */
+export const surf = (amount: number): WaveLine[] => {
+  const wallX = (y: number) =>
+    y >= 974 ? 666 : lerp(448, 666, clamp((y - 754) / (974 - 754)));
+  const N = 160;
+  const out: WaveLine[] = SURF.map((ctrl, k) => {
+    const tone = lerp(0.8, 1, hash01(k + 540)) * lerp(0.85, 1, clamp(k / 3));
+    const pts: Vec[] = [];
+    const alpha: number[] = [];
+    for (let i = 0; i <= N; i++) {
+      const t = i / N;
+      const p = spline(ctrl, t);
+      p.x = Math.max(p.x, wallX(p.y) + 5);
+      pts.push(p);
+      alpha.push(
+        amount *
+          tone *
+          lerp(0.5, 1, smooth(clamp((t - 0.1) / 0.6))) *
+          smooth(clamp(t / 0.12)) *
+          smooth(clamp((1 - t) / 0.06)),
+      );
+    }
+    return { pts, alpha };
+  });
+  const pts = Array.from({ length: 101 }, (_, i) => spline(SPRAY, i / 100));
+  out.push({
+    pts,
+    alpha: pts.map(
+      (_, i) => amount * 0.55 * smooth(clamp(i / 12)) * (1 - i / 100),
+    ),
+  });
+  return out;
+};

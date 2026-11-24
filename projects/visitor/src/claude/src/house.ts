@@ -16,11 +16,16 @@ export type Ripple = {
   outside: number;
   phase: number;
   tempo: number;
+  /** The waves exist only right of this x: the ground is flat up to the porch. */
+  from?: number;
 };
 
 export const groundY = (x: number, r: Ripple) => {
   const s = (a: number, b: number) => 1 / (1 + Math.exp(-((x - a) / b) * 4));
-  const inside = s(80, 24) * (1 - s(672, 24));
+  const inside =
+    r.from === undefined
+      ? s(80, 24) * (1 - s(672, 24))
+      : 1 - s(r.from + 14, 28);
   const amp = lerp(r.outside, r.inside, inside);
   const w =
     Math.sin((x / 330) * r.tempo * Math.PI + r.phase) * 0.8 +

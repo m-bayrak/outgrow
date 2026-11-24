@@ -12,3 +12,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-11-24 · claude · claude/visitor-stills-602ddb
 - The owner chose how the phrase is written: variant A, a spark from the soul that ends as the full stop. Recorded in `BRIEF.md` with planned timing; nothing built yet.
 - Open: feedback on the stills, then approval for a motion draft. Frame 7 still shows a white full stop; under this decision it becomes the orange spark.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- Frame 6 rebuilt from the owner's new reference (`references/images/frame-6-the-choice.png`, prompt 16): `surf` waves from the tangle, torn loops (`burst`), ground flat up to the porch, key held beside the soul. The other six stills are byte-identical to before.
+- Open: the owner's verdict on the stills. Nothing beyond stills is approved.
