@@ -39,3 +39,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - First sound mix: `src/claude/audio/` (voices and mastering copied from Outgrow 06, new `score.ts`), `node audio/render.mjs` writes `public/visitor-sfx.wav`; `--map` prints every cue. Event times moved into `E` and `SPARK` in `timeline.ts`; frame 740 is identical to before.
 - Measured, not heard: −16 LUFS, true peak under −1 dBFS, two renders byte-identical before the last two level changes; the pause falls to about −57 dBFS peak.
 - Preview is draft 1 with the sound (ignored `out/`). Open: the owner's ear, then muxing into the master without rendering the picture again. Publishing and push are not approved.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- The owner found the rustles unpleasant, like audio noise (about 11 s). Second mix: every noise voice is replaced (key slide: glass touches; creaks, wheel and tangle: wooden ticks; breath and storm: warm tone; letters: tiny kalimba notes). Only the 15–20 ms touches inside knocks and the lock click keep any noise. The spectrogram shows no broadband bands; two renders are byte-identical.
+- Open: the owner's ear on the second mix; then mux into the master.

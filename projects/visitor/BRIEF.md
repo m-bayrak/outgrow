@@ -42,7 +42,7 @@ Follows [`STYLE.md`](../../STYLE.md). Specific to this piece:
 - **Key:** teeth in the keyhole, ring at the thought.
 - **The tangle in frames 5 and 7 is the same line:** 7 is a relaxation of 5.
 
-- **Sound:** effects only, soft and close. Each thought has its own material (spring: kalimba and drops; wheel: rolling rustle; tangle: crackle and pencil), the key is small glass and metal, the house is wood and speaks only while it is ruled. The pause is silence, then the gentlest knock. The storm sounds only on the right, muffled.
+- **Sound:** effects only, soft and close. Each thought has its own material (spring: kalimba and drops; wheel: round wooden turns; tangle: restless wooden ticks), the key is small glass and metal, the house is wood and speaks only while it is ruled. The pause is silence, then the gentlest knock. The storm sounds only on the right, muffled.
 
 Exceptions and proposals:
 
@@ -80,6 +80,7 @@ Newest last. Add a row when a direction is settled with the owner.
 | 2026-11-24 | The motion of draft 1 is approved | Timing and motion are settled before the final render |
 | 2026-11-24 | The final is rendered from draft 1 as it is | The owner accepts the two small known flaws |
 | 2026-11-24 | The film gets sound effects (no music), synthesized in `src/claude/audio/` from the timeline; first mix awaits the owner's ear | The story rests on knocks and one silence |
+| 2026-11-24 | No sustained noise in the sound: no hiss, rustle, breath noise, crackle or pencil | The owner found the rustles unpleasant, like audio noise |
 
 ## Open questions
 

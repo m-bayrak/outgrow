@@ -2,16 +2,15 @@
 // film's timeline, so when the picture moves the sound moves with it.
 //
 // Each thought has its own material: the spring is kalimba and drops, the wheel
-// is a rolling rustle, the tangle is nervous crackle and pencil. The key is
-// small glass and metal; the soul is warm tone and breath. The house answers in
+// is round wooden turns, the tangle is restless wooden ticks. There is no
+// sustained noise anywhere (the owner found hiss unpleasant). The key is
+// small glass and metal; the soul is warm tone. The house answers in
 // wood, only while a thought holds the key. The pause is true silence.
 
 import { BEAT, E, SPARK, handAt, soulAt, wheelWeight } from "../src/timeline";
 import {
   Bus,
-  SR,
   clamp,
-  crackle,
   db,
   drop,
   keyTap,
@@ -20,9 +19,7 @@ import {
   modal,
   noise,
   onePole,
-  scratch,
   shape,
-  svf,
   tine,
   warmTone,
 } from "./dsp";
@@ -68,54 +65,67 @@ export const buildScore = (
     dry.addMono(t, sig, db(gain), pan);
     send.addMono(t, sig, db(gain) * wet, pan);
   };
-  const grains = (
-    t: number,
-    o: {
-      seconds: number;
-      density: (t: number) => number;
-      tone?: number;
-      width?: number;
-    },
-    gain: number,
-    wet: number,
-    pan = 0,
-  ) => {
-    const s = crackle({ ...o, seed: seed++ });
-    const gl = 1 - Math.max(0, pan);
-    const gr = 1 + Math.min(0, pan);
-    dry.addStereo(t, s.L, s.R, db(gain) * gl, db(gain) * gr);
-    send.addStereo(t, s.L, s.R, db(gain) * wet * gl, db(gain) * wet * gr);
-  };
-  const cue = (t: number, event: string, sound: string) =>
-    cues.push({ t, event, sound });
-  const air = (
+  /** Scattered soft wooden ticks: texture made of touches, never of hiss. */
+  const ticks = (
     t0: number,
     seconds: number,
-    env: (t: number) => number,
-    fc: (t: number) => number,
+    rate: (t: number) => number,
+    f: number,
     gain: number,
-    pan: (t: number) => number,
-    q = 0.9,
-    wet = 0.25,
-    muffle = 0,
+    pan: number,
   ) => {
-    const side = () => {
-      let x = svf(noise(seconds, seed++), (i) => fc(i / SR), q, "band");
-      if (muffle) x = onePole(x, muffle);
-      return shape(x, env);
-    };
-    const a = side();
-    const b = side();
-    const l = new Float64Array(a.length);
-    const r = new Float64Array(a.length);
-    for (let i = 0; i < a.length; i++) {
-      const p = clamp(pan(i / SR), -1, 1);
-      l[i] = (0.75 * a[i] + 0.25 * b[i]) * (1 - Math.max(0, p));
-      r[i] = (0.25 * a[i] + 0.75 * b[i]) * (1 + Math.min(0, p));
+    const r = noise(0.02, seed++);
+    let i = 0;
+    for (let t = 0.01; t < seconds; i++) {
+      const k = rate(t);
+      if (k > 0.5)
+        put(
+          t0 + t,
+          modal(
+            [
+              { f: f * (1 + 0.28 * r[i % 900]), a: 1, t60: 0.05 },
+              { f: f * 2.4, a: 0.2, t60: 0.02 },
+            ],
+            0.002,
+            seed++,
+          ),
+          gain - 6 * Math.abs(r[(i + 300) % 900]),
+          pan + 0.15 * r[(i + 600) % 900],
+          0.15,
+        );
+      t += (1 / Math.max(6, k)) * (1 + 0.5 * r[(i + 100) % 900]);
     }
-    dry.addStereo(t0, l, r, db(gain));
-    send.addStereo(t0, l, r, db(gain) * wet);
   };
+  /** A swell of warm tone: breath, gust, glow. */
+  const swell = (
+    t0: number,
+    seconds: number,
+    notes: number[],
+    env: (t: number) => number,
+    gain: number,
+    pan: number,
+    bright = 900,
+  ) =>
+    notes.forEach((m, k) =>
+      put(
+        t0,
+        onePole(
+          shape(
+            warmTone({ freq: midi(m), seconds, seed: seed++, harmonics: 3 }),
+            (t) =>
+              env(t) *
+              clamp(t / 0.04, 0, 1) *
+              clamp((seconds - t) / 0.08, 0, 1),
+          ),
+          bright,
+        ),
+        gain,
+        pan + (k - (notes.length - 1) / 2) * 0.15,
+        0.35,
+      ),
+    );
+  const cue = (t: number, event: string, sound: string) =>
+    cues.push({ t, event, sound });
   const bump =
     (seconds: number, p = 1) =>
     (t: number) =>
@@ -153,7 +163,7 @@ export const buildScore = (
     t60 = 0.12,
     wet = 0.15,
   ) => put(t, knock({ f, t60, seed: seed++ }), gain, pan, wet);
-  /** Old wood giving a little: a low, grainy, gliding rub. */
+  /** Old wood giving a little: a run of tiny low knocks that slip faster or slower. */
   const creak = (
     t0: number,
     seconds: number,
@@ -162,50 +172,50 @@ export const buildScore = (
     gain: number,
     pan: number,
   ) => {
-    const x = new Float64Array(Math.round(seconds * SR));
-    const src = svf(
-      noise(seconds, seed++),
-      (i) => f0 + (f1 - f0) * (i / x.length),
-      14,
-      "band",
-    );
-    const n = noise(seconds, seed++);
-    let g = 0;
-    for (let i = 0; i < x.length; i++) {
-      if (i % 420 === 0) g = 0.35 + 0.65 * Math.abs(n[i]);
-      x[i] = src[i] * g * bump(seconds)(i / SR);
+    let i = 0;
+    for (let t = 0; t < seconds; i++) {
+      const u = t / seconds;
+      put(
+        t0 + t,
+        modal(
+          [
+            { f: (f0 + (f1 - f0) * u) * 0.62, a: 1, t60: 0.07 },
+            { f: (f0 + (f1 - f0) * u) * 1.5, a: 0.25, t60: 0.03 },
+          ],
+          0.003,
+          seed++,
+        ),
+        gain - 12 + 6 * Math.sin(Math.PI * u),
+        pan,
+        0.2,
+      );
+      t += 0.05 - 0.018 * Math.sin(Math.PI * u) + 0.006 * Math.sin(i * 2.3);
     }
-    put(t0, onePole(x, 2600), gain, pan, 0.2);
   };
   /** The key slides on the floor: brightness and level follow the hand's speed. */
   const slide = (a: number, b: number, gain: number) => {
-    const seconds = b - a;
-    const speed = (t: number) =>
-      clamp(
-        Math.abs(handAt(a + t + 0.008).x - handAt(a + t - 0.008).x) /
-          0.016 /
-          600,
-        0,
-        1.2,
+    // one small glass touch for every step the key travels
+    let last = handAt(a).x;
+    let n = 0;
+    for (let t = a; t <= b; t += 0.004) {
+      const x = handAt(t).x;
+      if (Math.abs(x - last) < 19) continue;
+      last = x;
+      put(
+        t,
+        modal(
+          [
+            { f: 1250 + 70 * ((n * 3) % 5), a: 1, t60: 0.09 },
+            { f: 2900, a: 0.12, t60: 0.04 },
+          ],
+          0.002,
+          seed++,
+        ),
+        gain - 2 + 2 * Math.sin(n++ * 1.7),
+        panX(x),
+        0.2,
       );
-    air(
-      a,
-      seconds,
-      (t) =>
-        speed(t) * clamp(t / 0.02, 0, 1) * clamp((seconds - t) / 0.012, 0, 1),
-      (t) => 2200 + 1500 * speed(t),
-      gain,
-      (t) => panX(handAt(a + t).x),
-      2.2,
-      0.08,
-    );
-    grains(
-      a,
-      { seconds, density: (t) => 260 * speed(t), tone: 4600, width: 0.3 },
-      gain + 3,
-      0.08,
-      panX(600),
-    );
+    }
   };
   const letters = (
     a: number,
@@ -215,18 +225,15 @@ export const buildScore = (
     x0: number,
     x1: number,
   ) => {
+    const scale = [N.D5, N.E5, N.Fs5, N.A5];
     for (let j = 0; j < count; j++) {
       const u = (j + 0.5) / count;
       put(
         a + u * (b - a),
-        scratch({
-          seconds: 0.05 + 0.02 * Math.abs(Math.sin(j * 1.9)),
-          seed: seed++,
-          tone: 3000 + 500 * Math.sin(j * 2.7),
-        }),
-        gain - 2 * Math.abs(Math.sin(j * 1.7)),
+        tine({ freq: midi(scale[(j * 3) % 4]), t60: 0.22, seed: seed++ }),
+        gain - 5 - 2 * Math.abs(Math.sin(j * 1.7)),
         panX(x0 + (x1 - x0) * u),
-        0.15,
+        0.25,
       );
     }
   };
@@ -282,23 +289,11 @@ export const buildScore = (
     cue(E.knock2, "Wheel knocks, once", "one round, confident knock");
     E.knock3.forEach((t, k) => {
       tap(t, 178 + 6 * k, -8 + k, DOOR, 0.1);
-      grains(
-        t,
-        {
-          seconds: 0.18,
-          density: (x) => 900 * Math.exp(-x / 0.04),
-          tone: 2500,
-          width: 0.3,
-        },
-        -17,
-        0.1,
-        DOOR,
-      );
     });
     cue(
       E.knock3[0],
       "Tangle knocks, three times",
-      "three close, dry, rising knocks with nervous crackle",
+      "three close, dry, rising knocks",
     );
     tap(E.gentle, 250, -27, DOOR, 0.16, 0.3);
     cue(
@@ -320,12 +315,8 @@ export const buildScore = (
       slide(push[0] - 0.02, push[1], -22);
       ting(push[1] - 0.02, -25, panX(700), 2500, 0.4);
       // the tendril winds round it
-      put(
-        take - 0.16,
-        scratch({ seconds: 0.16, seed: seed++, tone: 4200 }),
-        -25,
-        PORCH,
-        0.15,
+      [0, 1, 2].forEach((k) =>
+        ting(take - 0.15 + 0.05 * k, -31, PORCH, 1700 + 220 * k, 0.12),
       );
       ting(take + 0.02, -24, PORCH, 2650, 0.5);
       put(click - 0.07, keyTap({ seed: seed++, pitch: 2.4 }), -14, DOOR, 0.15);
@@ -344,7 +335,7 @@ export const buildScore = (
     cue(
       E.push1[0],
       "The key goes under the door",
-      "metal sliding on the floor, following the hand's speed; a tiny ting outside",
+      "small glass touches, one per step the key travels; a tiny ting outside",
     );
     cue(
       E.click1,
@@ -355,15 +346,6 @@ export const buildScore = (
     cue(E.push2[0], "The key again, twice as fast", "the same sounds, shorter");
     cue(E.click2, "Click: the wheel has the key", "the same click");
     const back = (t: number, span: number) => {
-      air(
-        t,
-        span * 0.5,
-        bump(span * 0.5),
-        (x) => 900 + 2600 * x,
-        -23,
-        (x) => 0.5 - x,
-        1.4,
-      );
       [0.2, 0.33, 0.43].forEach((u, k) =>
         ting(
           t + u * span * 1.3,
@@ -372,13 +354,6 @@ export const buildScore = (
           2300 + 260 * k,
           0.3,
         ),
-      );
-      put(
-        t + span * 0.55,
-        scratch({ seconds: 0.2, seed: seed++, tone: 3400 }),
-        -25,
-        panX(520),
-        0.1,
       );
       // the light comes home
       const home = t + span * 1.2;
@@ -392,7 +367,7 @@ export const buildScore = (
     cue(
       E.bored,
       "The key is thrown back, the light returns",
-      "a flick of air, tings skipping on the floor, a rising drop and two warm notes",
+      "tings skipping on the floor, a rising drop and two warm notes",
     );
     ting(10.3, -27, panX(520), 2100, 0.5);
     slide(E.push3, E.halt, -21);
@@ -414,62 +389,19 @@ export const buildScore = (
   // ------------------------------------------------ the soul
   if (want("soul")) {
     // asleep: one breath of its lines
-    air(
-      0.1,
-      1.2,
-      bump(1.2, 2),
-      (t) => 500 + 250 * Math.sin(t * 2),
-      -31,
-      () => panX(290),
-      0.8,
-      0.2,
-      1800,
-    );
+    swell(0.1, 1.3, [N.D3, N.A3], bump(1.3, 2), -33, panX(290));
     // the arm reaches
     for (const [a, b] of [
       [1.25, 1.8],
       [6.7, 6.95],
       [10.15, 10.6],
     ]) {
-      grains(
-        a,
-        {
-          seconds: b - a,
-          density: (t) => 110 * bump(b - a)(t),
-          tone: 3000,
-          width: 0.3,
-        },
-        -19,
-        0.15,
-        panX(400),
-      );
-      air(
-        a,
-        b - a,
-        bump(b - a),
-        () => 1300,
-        -29,
-        () => panX(400),
-        1,
+      [N.A3, N.D4, N.E4].forEach((m, k) =>
+        note(a + ((b - a) * (k + 0.5)) / 3, m, -24, panX(360 + 50 * k), 0.4),
       );
     }
-    cue(
-      1.25,
-      "The lines become an arm",
-      "fine thread-like crackle and a little air",
-    );
+    cue(1.25, "The lines become an arm", "three soft low kalimba notes");
     // choosing: breath in, warmth
-    air(
-      E.choose,
-      0.65,
-      (t) =>
-        Math.pow(clamp(t / 0.6, 0, 1), 1.6) * clamp((0.65 - t) / 0.06, 0, 1),
-      (t) => 500 + 1200 * t,
-      -21,
-      () => panX(310),
-      0.8,
-      0.15,
-    );
     [N.D3, N.A3, N.Fs4].forEach((m, k) => {
       const x = warmTone({
         freq: midi(m),
@@ -498,7 +430,7 @@ export const buildScore = (
     cue(
       E.choose,
       "The choice: the key comes back",
-      "a breath in, a warm D major swell, three kalimba notes as the hand closes",
+      "a warm D major swell, three kalimba notes as the hand closes",
     );
     // rolling to the door
     const s = E.rest - E.roll;
@@ -510,25 +442,22 @@ export const buildScore = (
         0,
         1,
       );
-    air(
-      E.roll,
-      s,
-      (t) => speed(t) * clamp((s - t) / 0.05, 0, 1),
-      () => 600,
-      -19,
-      (t) => panX(soulAt(E.roll + t).x),
-      0.7,
-      0.2,
-      1600,
+    [0.16, 0.32, 0.46, 0.59, 0.72, 0.86].forEach((u, k) =>
+      tap(
+        E.roll + s * u,
+        150 + 12 * (k % 3),
+        -22 + 2 * speed(s * u),
+        panX(soulAt(E.roll + s * u).x),
+        0.1,
+        0.2,
+      ),
     );
-    grains(
+    swell(E.roll, s + 0.3, [N.A3, N.D4], bump(s + 0.3), -31, panX(450));
+    cue(
       E.roll,
-      { seconds: s, density: (t) => 120 * speed(t), tone: 2400, width: 0.4 },
-      -20,
-      0.15,
-      panX(450),
+      "The soul rolls to the door",
+      "soft wooden touches and a low warm tone",
     );
-    cue(E.roll, "The soul rolls to the door", "a soft, dark roll over threads");
     tap(E.rest - 0.12, 165, -17, panX(600), 0.2, 0.25);
     [N.D4, N.A4].forEach((m, k) =>
       note(E.rest - 0.1 + 0.05 * k, m, -20, panX(590), 2.0),
@@ -568,20 +497,11 @@ export const buildScore = (
         tap(low, 130, -11, 0, 0.16);
         creak(low - 0.1, 0.22, 480, 260, -12, 0);
       }
-      air(
-        peak - 0.12,
-        0.5,
-        bump(0.5, 1.4),
-        (t) => 700 + 700 * t,
-        -23,
-        (t) => (k % 2 ? 1 : -1) * (0.5 - 1.6 * t),
-        0.7,
-      );
     }
     cue(
       E.click1 + 0.3,
       "The house bounces",
-      "wood creaks up, kalimba and a springing drop for the toss; a soft wooden thump down",
+      "wood gives in a run of low ticks, kalimba and a springing drop for the toss; a soft wooden thump down",
     );
     creak(E.bored + 0.02, 0.35, 520, 240, -12, 0);
     tap(6.0, 190, -15, panX(290), 0.14);
@@ -600,18 +520,22 @@ export const buildScore = (
       env: (t: number) => number,
       gain: number,
       pan: (t: number) => number,
-    ) =>
-      air(
-        t0,
-        seconds,
-        (t) => env(t) * (0.6 + 0.4 * Math.sin(t * 34)),
-        (t) => 620 + 160 * Math.sin(t * 34),
-        gain,
-        pan,
-        1.1,
-        0.15,
-        2600,
-      );
+    ) => {
+      // a round thing turning: soft wooden touches, a little uneven
+      for (
+        let t = 0.02, k = 0;
+        t < seconds;
+        t += 0.085 + 0.02 * Math.sin(k * 2.1), k++
+      )
+        tap(
+          t0 + t,
+          205 + 45 * (k % 3),
+          gain - 4 + 20 * Math.log10(Math.max(0.05, Math.min(1, env(t)))),
+          clamp(pan(t), -0.7, 0.7),
+          0.08,
+          0.2,
+        );
+    };
     roll(
       6.12,
       0.55,
@@ -619,9 +543,9 @@ export const buildScore = (
       -14,
       (t) => 0.7 - 0.4 * t,
     );
-    cue(6.15, "The wheel rolls in", "a rolling rustle from the right");
+    cue(6.15, "The wheel rolls in", "soft wooden turns from the right");
     roll(E.bored2 + 0.1, 0.65, bump(0.65), -15, (t) => 0.35 + 0.5 * t);
-    cue(E.bored2 + 0.1, "The wheel rolls off", "the same rustle, leaving");
+    cue(E.bored2 + 0.1, "The wheel rolls off", "the same turns, leaving");
     const s = E.bored2 - E.click2 + 0.3;
     roll(
       E.click2,
@@ -642,32 +566,22 @@ export const buildScore = (
         -13,
         k ? 0.2 : -0.2,
       );
-    air(
+    swell(
       E.click2 + 0.02,
       s,
-      (t) =>
-        clamp(t / 0.15, 0, 1) *
-        clamp((s - t) / 0.35, 0, 1) *
-        (0.7 + 0.3 * Math.sin(t * 4.2)),
-      (t) => 800 + 350 * Math.sin(t * 4.2),
-      -20,
-      (t) => 0.55 * Math.sin(t * 4.2 - 1.2),
-      0.8,
+      [N.G3, N.D4],
+      (t) => bump(s)(t) * (0.65 + 0.35 * Math.sin(t * 9)),
+      -28,
+      0,
     );
-    put(
-      E.click2 + 0.05,
-      scratch({ seconds: 0.4, seed: seed++, tone: 1500 }),
-      -18,
-      0.1,
-      0.2,
-    );
+    put(E.click2 + 0.05, drop({ f0: 260, f1: 560, t60: 0.2 }), -20, 0.1, 0.3);
     [N.G3, N.D4].forEach((m, k) =>
       note(E.click2 + 0.28 + 0.06 * k, m, -18, 0.15, 1.2),
     );
     cue(
       E.click2 + 0.05,
       "The house rolls like a bowl",
-      "wood twisting, circling air, the soul sliding up the wall",
+      "wood twisting, a slow wavering tone, a drop for the soul going up the wall",
     );
     creak(E.bored2 + 0.02, 0.32, 480, 230, -12, 0);
     tap(9.0, 190, -16, panX(290), 0.14);
@@ -675,97 +589,49 @@ export const buildScore = (
 
   // ------------------------------------------------ the tangle
   if (want("tangle")) {
-    grains(
+    ticks(
       9.1,
-      {
-        seconds: 1.75,
-        density: (t) =>
-          260 *
-          clamp(t / 0.3, 0, 1) *
-          (0.5 + 0.5 * Math.sin(t * 9) ** 2) *
-          clamp((1.75 - t) / 0.12, 0, 1),
-        tone: 2700,
-        width: 0.4,
-      },
-      -17,
-      0.1,
+      1.72,
+      (t) =>
+        20 *
+        clamp(t / 0.3, 0, 1) *
+        (0.45 + 0.55 * Math.sin(t * 9) ** 2) *
+        clamp((1.72 - t) / 0.12, 0, 1),
+      620,
+      -18,
       PORCH,
     );
-    for (let k = 0; k < 6; k++)
-      put(
-        9.15 + 0.27 * k,
-        scratch({ seconds: 0.16, seed: seed++, tone: 1700 + 260 * (k % 3) }),
-        -21,
-        PORCH,
-        0.12,
-      );
-    cue(9.1, "The tangle arrives", "dry, restless crackle and scribbling");
+    cue(9.1, "The tangle arrives", "dry, restless wooden ticks");
     // the storm stays outside: gusts on the right, muffled, breaking on the wall
     const g0 = E.storm;
     const period = (2 * Math.PI) / 11;
-    air(
+    swell(
       g0 - 0.05,
       1.5,
+      [45, 50, 52],
       (t) =>
         clamp(t / 0.2, 0, 1) *
         clamp((1.5 - t) / 0.5, 0, 1) *
-        (0.6 + 0.4 * Math.sin((t * 11) / 1)),
-      (t) => 520 + 240 * Math.sin(t * 11),
-      -10,
-      () => 0.5,
-      0.6,
-      0.3,
-      1500,
+        (0.55 + 0.45 * Math.sin(t * 11)),
+      -24,
+      0.5,
+      600,
     );
     for (let k = 0; k < 3; k++) {
       const t = g0 + 0.28 + k * period * 0.75;
-      grains(
-        t,
-        {
-          seconds: 0.4,
-          density: (x) => 800 * Math.exp(-x / 0.08),
-          tone: 2300,
-          width: 0.4,
-        },
-        -14 - k,
-        0.2,
-        0.4,
-      );
-      tap(t, 120, -15 - k, 0.3, 0.14);
+      tap(t, 120, -13 - k, 0.35, 0.16);
+      ticks(t, 0.28, (x) => 45 * Math.exp(-x / 0.12), 480, -17 - k, 0.4);
     }
     cue(
       E.storm,
       "The storm breaks on the house",
-      "muffled gusts on the right only, crackling where they hit the wall; none on the left",
+      "low muffled tone gusts and knocks on the right only",
     );
     // it lets go
-    air(
-      E.calm + 0.05,
-      1.3,
-      (t) =>
-        clamp(t / 0.15, 0, 1) *
-        Math.exp(-t / 0.5) *
-        clamp((1.3 - t) / 0.3, 0, 1),
-      (t) => 1100 - 500 * t,
-      -19,
-      () => PORCH,
-      0.7,
-      0.3,
-      2400,
+    [N.A4, N.Fs4, N.E4, N.D4, N.A3].forEach((m, k) =>
+      note(E.calm + 0.12 + 0.2 * k + 0.02 * k * k, m, -20 - k, PORCH, 1.1),
     );
-    for (let k = 0; k < 5; k++)
-      put(
-        E.calm + 0.15 + 0.22 * k,
-        scratch({ seconds: 0.3, seed: seed++, tone: 1900 - 160 * k }),
-        -24 - k,
-        PORCH,
-        0.2,
-      );
-    cue(
-      E.calm,
-      "The tangle lets go",
-      "a long breath out, slow loops of pencil settling",
-    );
+    cue(E.calm, "The tangle lets go", "five kalimba notes stepping down");
   }
 
   // ------------------------------------------------ the phrase
@@ -787,26 +653,13 @@ export const buildScore = (
         0.5,
       );
     bell(SPARK.leave, N.A5, -25, panX(570));
-    air(
-      SPARK.leave,
-      SPARK.line1 - SPARK.leave + 0.1,
-      bump(0.45),
-      (t) => 900 + 1800 * t,
-      -27,
-      (t) => 0.2 - 2 * t,
-      1.2,
-    );
-    cue(
-      SPARK.leave,
-      "A spark leaves the soul",
-      "one small glass note and a thread of air",
-    );
+    cue(SPARK.leave, "A spark leaves the soul", "one small glass note");
     letters(SPARK.line1, SPARK.end1, "Athought".length, -19, 80, 640);
     letters(SPARK.line2, SPARK.end2, "isavisitor".length, -19, 80, 640);
     cue(
       SPARK.line1,
       "The phrase is written",
-      "one soft pencil stroke per letter",
+      "one tiny kalimba note per letter",
     );
     tap(SPARK.stop, 300, -20, panX(680), 0.08);
     [N.D4, N.A4, N.Fs5].forEach((m, k) =>
