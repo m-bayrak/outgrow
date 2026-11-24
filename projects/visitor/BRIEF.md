@@ -74,6 +74,7 @@ Newest last. Add a row when a direction is settled with the owner.
 | 2026-11-24 | Frame 6 has its own reference: the waves come from the tangle and break against the house | The first version wrapped the house as in frame 3, as if the house itself made them |
 | 2026-11-24 | The seven coded stills are approved | Shape is settled before motion |
 | 2026-11-24 | A half-resolution motion draft is approved to start | The stills are settled |
+| 2026-11-24 | The motion of draft 1 is approved | Timing and motion are settled before the final render |
 
 ## Open questions
 

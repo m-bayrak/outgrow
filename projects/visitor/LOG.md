@@ -26,3 +26,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - Stills 1–6 are unchanged; still 7 now ends in the orange spark dot.
 - Known: when the soul lands back on its bed (about 5.95 s and 8.95 s) the line ends whip for 2–3 frames; as the key is seated (about 7.4 s) the wheel and the key overlap for a moment.
 - Open: the owner's feedback on the draft. Final render, sound and publishing are not approved.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- The owner approved the motion of draft 1.
+- Next, each only after a separate go-ahead: the two known flaws, the final 1080 × 1920 render, sound, publishing.
