@@ -29,7 +29,7 @@ Three thoughts come to one house. The first two are given the key automatically 
 | | 6 | **The choice.** The arm curls back holding the key close, the soul is bright. The tangle's strong waves stay outdoors and break off at the house. Inside, the lines are flat and the house is straight. |
 | 13.5–18 s | 7 | **The visitor.** The soul rests against the inside of the door, cradled in its waves; the key lies apart on the floor. The same tangle, relaxed into 7–8 soft loops, leans on the outside. Nothing connects them but the shared ground line. Phrase in the empty upper third: "A thought is a visitor." |
 
-Ending in detail (planned, tune in the draft): 13.5–14.6 the soul rolls to the door and the tangle relaxes; 14.6–15.0 the soul settles and the spark leaves it; 15.0–15.6 "A thought"; 15.6–16.3 "is a visitor"; 16.3–16.5 the spark becomes the full stop; 16.5–18.0 hold.
+Ending in detail (planned, tune in the draft): 13.3–14.7 the key is laid down, the soul rolls to the door and the tangle relaxes; 14.65–15.0 the spark leaves the soul; 15.0–15.6 "A thought"; 15.75–16.3 "is a visitor"; 16.3–16.55 the spark becomes the full stop; 16.55–18.0 hold.
 
 ## Art direction
 
@@ -73,6 +73,7 @@ Newest last. Add a row when a direction is settled with the owner.
 | 2026-11-24 | The phrase is written by a small orange spark that leaves the resting soul, passes through the roof and writes letter by letter (orange, cooling to white; "visitor" stays orange), then becomes the full stop | The words come from the protagonist's motion while the soul itself stays at rest |
 | 2026-11-24 | Frame 6 has its own reference: the waves come from the tangle and break against the house | The first version wrapped the house as in frame 3, as if the house itself made them |
 | 2026-11-24 | The seven coded stills are approved | Shape is settled before motion |
+| 2026-11-24 | A half-resolution motion draft is approved to start | The stills are settled |
 
 ## Open questions
 

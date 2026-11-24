@@ -20,3 +20,9 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-11-24 · claude · claude/visitor-stills-602ddb
 - The owner approved the seven stills.
 - Next: a half-resolution motion draft, only after a separate go-ahead.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- First motion draft of the whole 18 s (`src/claude/src/timeline.ts`, `Phrase.tsx`; composition `Visitor`), 540 × 960, no sound, rendered to the ignored `out/`. Reviewed as frame strips, not watched in real time. Frame 740 rendered twice gives the same checksum; lint passes.
+- Stills 1–6 are unchanged; still 7 now ends in the orange spark dot.
+- Known: when the soul lands back on its bed (about 5.95 s and 8.95 s) the line ends whip for 2–3 frames; as the key is seated (about 7.4 s) the wheel and the key overlap for a moment.
+- Open: the owner's feedback on the draft. Final render, sound and publishing are not approved.

@@ -325,7 +325,11 @@ const SPRAY: Vec[] = [
  * Surf: the tangle sends waves, the calm house stops them. Each line breaks off
  * against the right roof slope or the door; nothing passes left of that wall.
  */
-export const surf = (amount: number): WaveLine[] => {
+export const surf = (
+  amount: number,
+  front = 2, // how far the waves have travelled, 1 = at the wall
+  gust: number | null = null, // phase of the travelling crests
+): WaveLine[] => {
   const wallX = (y: number) =>
     y >= 974 ? 666 : lerp(448, 666, clamp((y - 754) / (974 - 754)));
   const N = 160;
@@ -336,11 +340,20 @@ export const surf = (amount: number): WaveLine[] => {
     for (let i = 0; i <= N; i++) {
       const t = i / N;
       const p = spline(ctrl, t);
+      if (gust !== null)
+        p.y +=
+          8 * Math.sin(Math.PI * t) * Math.sin(TAU * 1.6 * t - gust + k * 0.6);
       p.x = Math.max(p.x, wallX(p.y) + 5);
       pts.push(p);
+      const crest =
+        gust === null
+          ? 1
+          : 0.72 + 0.28 * Math.sin(TAU * 1.2 * t - gust + k * 0.35);
       alpha.push(
         amount *
           tone *
+          crest *
+          smooth(clamp((front - t) / 0.15)) *
           lerp(0.5, 1, smooth(clamp((t - 0.1) / 0.6))) *
           smooth(clamp(t / 0.12)) *
           smooth(clamp((1 - t) / 0.06)),

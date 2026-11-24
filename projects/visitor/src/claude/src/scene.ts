@@ -25,13 +25,14 @@ import { type WaveLine, type WaveState, knock, surf, waves } from "./waves";
 
 export const KEY_LENGTH = 104;
 
-export type Key = { ring: Vec; angle: number };
+export type Key = { ring: Vec; angle: number; scale?: number };
 export type Scene = {
   house: House;
   ripple: Ripple;
   soul: Vec & { r: number; power: number };
   lines: Gesture;
   thought: Vec[];
+  guests?: { pts: Vec[]; tip: number }[]; // every thought on stage, when there can be more than one
   tip: number; // share of the thought, at its end, that thins into a tendril
   key: Key | null;
   waves: WaveLine[];
@@ -40,14 +41,14 @@ export type Scene = {
 };
 
 const STILL: HouseWeights = { spring: 0, wheel: 0 };
-const ground = (
+export const ground = (
   inside: number,
   outside: number,
   phase = 0.6,
   tempo = 1.5,
 ): Ripple => ({ inside, outside, phase, tempo });
 const guest = { x: 800, y: 1190, rx: 120, ry: 190 };
-const noWave: WaveState = {
+export const noWave: WaveState = {
   amount: 0,
   bounce: 0,
   swirl: 0,
@@ -57,9 +58,9 @@ const noWave: WaveState = {
 };
 const base = { tip: 0.04, key: null, waves: [], ripples: [], phrase: false };
 /** The key lies just above the floor. */
-const onFloor = FLOOR - 12;
+export const onFloor = FLOOR - 12;
 /** A key whose teeth sit in the keyhole, its ring at `angle` from it. */
-const inKeyhole = (h: House, angle: number): Key => ({
+export const inKeyhole = (h: House, angle: number): Key => ({
   ring: v(
     h.keyhole.x + Math.cos(angle) * KEY_LENGTH,
     h.keyhole.y + Math.sin(angle) * KEY_LENGTH,

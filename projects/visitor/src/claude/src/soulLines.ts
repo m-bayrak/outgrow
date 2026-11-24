@@ -134,25 +134,26 @@ const fingersTo = (ring: Vec, rot: number, scale: number, k: number): Vec[] => {
 export const arm = (soul: Vec, ring: Vec): Gesture => ({
   pts: SPREAD.map((s, k) => {
     const x = soul.x;
+    const room = Math.min(1, (ring.x - 52 - soul.x) / 150); // the body gathers when the hand is near
     const top = [
       v(x - 125, 1342),
       v(x - 92, 1316),
       v(x - 50, 1297),
       v(x, 1293),
-      v(x + 44, 1303),
-      v(x + 88, 1326),
+      v(x + 44 * room, 1303),
+      v(x + 88 * room, 1326),
     ];
     const bot = [
       v(x - 135, 1369),
       v(x - 85, 1369),
       v(x - 38, 1362),
-      v(x + 12, 1352),
-      v(x + 60, 1351),
-      v(x + 100, 1356),
+      v(x + 12 * room, 1352),
+      v(x + 60 * room, 1351),
+      v(x + 100 * room, 1356),
     ];
     const wx = ring.x - 34;
-    const mid = lerp(x + 100, wx, 0.5);
-    const arch = Math.min(1, (wx - x - 100) / 60);
+    const mid = lerp(x + 100 * room, wx, 0.5);
+    const arch = Math.min(1, (wx - x - 100 * room) / 60);
     const ctrl = [
       ...top.map((p, i) => mix(p, bot[i], s)),
       v(mid - 14, lerp(1344, 1357, s) + 2 * arch),
@@ -203,6 +204,9 @@ export const ribbon = (soul: Vec, r: number): Gesture => ({
     const j = (n: number) => hash01(k * 5 + n + 300) - 0.5;
     const rootX =
       side < 0 ? lerp(172, 320, s * 2) : lerp(440, 592, (s - 0.5) * 2);
+    // the trunk shortens as the soul falls
+    const up = (y: number) =>
+      1228 - ((1228 - y) * (1228 - soul.y)) / (1228 - 861);
     const trunk = 372 + side * 34;
     const ctrl = [
       v(rootX, 1346 + j(1) * 36),
@@ -210,11 +214,11 @@ export const ribbon = (soul: Vec, r: number): Gesture => ({
       v(lerp(rootX, trunk, 0.5), 1330 + j(3) * 34),
       v(lerp(rootX, trunk, 0.75), 1292 + j(4) * 26),
       v(lerp(rootX, trunk, 0.93), 1228 + j(5) * 18),
-      v(trunk + side * 14 + j(6) * 12, 1150),
-      v(356 + side * 44 + j(7) * 8, 1060),
-      v(368 + side * 36 + j(8) * 6, 985),
-      v(lerp(390, soul.x, 0.5) + side * 18, 930),
-      v(soul.x - 1 + side * 8, lerp(930, soul.y + r, 0.62)),
+      v(trunk + side * 14 + j(6) * 12, up(1150)),
+      v(356 + side * 44 + j(7) * 8, up(1060)),
+      v(368 + side * 36 + j(8) * 6, up(985)),
+      v(lerp(390, soul.x, 0.5) + side * 18, up(930)),
+      v(soul.x - 1 + side * 8, lerp(up(930), soul.y + r, 0.62)),
       v(soul.x + side * 3, soul.y + r * 0.8),
     ];
     return sample(ctrl, POINTS).map((p) => ({
@@ -227,31 +231,41 @@ export const ribbon = (soul: Vec, r: number): Gesture => ({
 });
 
 /** Frame 4: swept behind the soul along the bowl. `bowl` gives the floor. */
-export const swept = (soul: Vec, r: number, bowl: Vec[]): Gesture => ({
-  pts: SPREAD.map((s, k) => {
-    const j = (n: number) => hash01(k * 7 + n + 600) - 0.5;
-    const on = (t: number, up: number) => {
-      const p = spline(bowl, t);
-      return v(p.x, p.y - up);
-    };
-    const lift = lerp(46, 3, s);
-    const root = 0.13 + ((k * 0.618) % 1) * 0.15;
-    const ctrl = [
-      on(root, 4 + ((k * 0.414) % 1) * 46),
-      on(root + 0.06, 6 + lift * 0.25 + j(1) * 10 + 6),
-      on(lerp(root, 0.5, 0.5), 8 + lift * 0.55 + j(2) * 16),
-      on(0.44 + j(3) * 0.04, 8 + lift * 0.85 + j(4) * 10),
-      on(0.53, 14 + lift * 0.95 + j(5) * 5),
-      on(0.6, 28 + lift * 0.85),
-      v(lerp(464, 480, s), lerp(1282, 1300, s)),
-      v(lerp(498, 503, s), lerp(1246, 1256, s)),
-      v(soul.x - 3 + s * 6, soul.y + r * 0.7),
-    ];
-    return sample(ctrl, POINTS);
-  }),
-  fadeIn: 0.2,
-  fadeOut: 0,
-});
+export const swept = (soul: Vec, r: number, bowl: Vec[]): Gesture => {
+  // on a nearly flat floor the soul may be further left than the bowl's far side
+  const reach = Math.min(
+    1,
+    Math.max(
+      0.4,
+      (soul.x - 66 - bowl[0].x) / (spline(bowl, 0.6).x - bowl[0].x),
+    ),
+  );
+  return {
+    pts: SPREAD.map((s, k) => {
+      const j = (n: number) => hash01(k * 7 + n + 600) - 0.5;
+      const on = (t: number, up: number) => {
+        const p = spline(bowl, t * reach);
+        return v(p.x, p.y - up);
+      };
+      const lift = lerp(46, 3, s);
+      const root = 0.13 + ((k * 0.618) % 1) * 0.15;
+      const ctrl = [
+        on(root, 4 + ((k * 0.414) % 1) * 46),
+        on(root + 0.06, 6 + lift * 0.25 + j(1) * 10 + 6),
+        on(lerp(root, 0.5, 0.5), 8 + lift * 0.55 + j(2) * 16),
+        on(0.44 + j(3) * 0.04, 8 + lift * 0.85 + j(4) * 10),
+        on(0.53, 14 + lift * 0.95 + j(5) * 5),
+        on(0.6, 28 + lift * 0.85),
+        v(soul.x + lerp(-54, -38, s), Math.min(1369, soul.y + lerp(66, 84, s))),
+        v(soul.x + lerp(-20, -15, s), soul.y + lerp(30, 40, s)),
+        v(soul.x - 3 + s * 6, soul.y + r * 0.7),
+      ];
+      return sample(ctrl, POINTS);
+    }),
+    fadeIn: 0.2,
+    fadeOut: 0,
+  };
+};
 
 /** Frame 7: a hammock against the door. */
 export const cradle = (soul: Vec): Gesture => {

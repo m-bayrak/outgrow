@@ -78,12 +78,24 @@ export const springThought = (
   );
 };
 
+/** Where the springy scribble's head ends and its tail begins. */
+export const springHead = (stretch: number, lean: number, dx: number): Vec => {
+  const k = stretch - 1;
+  const p = SPRING_HEAD[SPRING_HEAD.length - 1];
+  const up = 1373 - p.y;
+  return {
+    x: 815 + (p.x - 815) * (1 - k * 0.35) + dx + lean * up + k * 12,
+    y: 1373 - up * (1 + k) + wobble(p.x / 160, 3) * 8 * k,
+  };
+};
+
 /** The whirl: uneven overlapping turns with an open centre. */
 export const wheelThought = (
   c: Vec,
   spin: number,
   tail: Vec[],
   hook: Vec[],
+  roll = 0, // turns the bumps of the rim; the ends stay put
 ): Vec[] => {
   const turns = 5.55;
   const ring: Vec[] = [];
@@ -93,8 +105,12 @@ export const wheelThought = (
     const rx = 82 + 21 * wobble(u * 2.1, 11) + 6 * Math.sin(u * 13);
     const ry = 104 + 22 * wobble(u * 2.3, 23) + 6 * Math.cos(u * 11);
     const tilt = 0.45 + 0.2 * wobble(u * 1.8, 31);
-    const x = Math.cos(a) * rx;
-    const y = Math.sin(a) * ry;
+    const bump =
+      1 +
+      0.13 * (Math.cos(2 * (a - roll)) - Math.cos(2 * a)) +
+      0.08 * (Math.cos(a - roll) - Math.cos(a));
+    const x = Math.cos(a) * rx * bump;
+    const y = Math.sin(a) * ry * bump;
     ring.push({
       x:
         c.x +

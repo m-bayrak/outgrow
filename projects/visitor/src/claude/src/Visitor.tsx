@@ -1,16 +1,12 @@
-import { loadFont } from "@remotion/google-fonts/InterTight";
 import { useMemo } from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { H, PX, toPath, W } from "./curves";
 import { type Vec, clamp, lerp, smooth } from "./math";
 import { groundY } from "./house";
-import { KEY_LENGTH, type Key, scene } from "./scene";
+import { KEY_LENGTH, type Key, type Scene, scene } from "./scene";
+import { Phrase } from "./Phrase";
 import { LINES } from "./soulLines";
-
-const { fontFamily } = loadFont("normal", {
-  weights: ["800"],
-  subsets: ["latin"],
-});
+import { type Camera, film } from "./timeline";
 
 const ORANGE = "#ff6a00";
 const WHITE = "#ffffff";
@@ -47,7 +43,11 @@ const Faded: React.FC<{
 const along = (list: number[]) => (i: number) => list[Math.round(i)];
 
 /** One unbroken stroke that can thin into a tendril at its end. */
-const Thought: React.FC<{ pts: Vec[]; tip: number }> = ({ pts, tip }) => {
+const Thought: React.FC<{ pts: Vec[]; tip: number; z: number }> = ({
+  pts,
+  tip,
+  z,
+}) => {
   const cut = Math.round((pts.length - 1) * (1 - tip));
   const rest = pts.length - 1 - cut;
   const tail: React.ReactNode[] = [];
@@ -57,27 +57,27 @@ const Thought: React.FC<{ pts: Vec[]; tip: number }> = ({ pts, tip }) => {
       <path
         key={i}
         d={toPath(pts.slice(i, Math.min(pts.length, i + 3)))}
-        strokeWidth={lerp(THOUGHT, 2 * PX, t)}
+        strokeWidth={lerp(THOUGHT, 2 * PX, t) / z}
       />,
     );
   }
   return (
     <g stroke={WHITE} fill="none" strokeLinecap="round" strokeLinejoin="round">
-      <path d={toPath(pts.slice(0, cut + 1))} strokeWidth={THOUGHT} />
+      <path d={toPath(pts.slice(0, cut + 1))} strokeWidth={THOUGHT / z} />
       {tail}
     </g>
   );
 };
 
-const KeyShape: React.FC<{ k: Key }> = ({ k }) => {
+const KeyShape: React.FC<{ k: Key; z: number }> = ({ k, z }) => {
   const R = 10;
   const L = KEY_LENGTH - R;
-  const side = Math.cos(k.angle) < -0.2 ? -1 : 1; // the teeth always hang down
+  const side = Math.max(-1, Math.min(1, Math.cos(k.angle) * 5)); // the teeth always hang down
   return (
     <g
-      transform={`translate(${k.ring.x} ${k.ring.y}) rotate(${(k.angle * 180) / Math.PI})`}
+      transform={`translate(${k.ring.x} ${k.ring.y}) rotate(${(k.angle * 180) / Math.PI}) scale(${k.scale ?? 1})`}
       stroke={ORANGE}
-      strokeWidth={2.6 * PX}
+      strokeWidth={(2.6 * PX) / z / (k.scale ?? 1)}
       fill="none"
       strokeLinejoin="round"
       strokeLinecap="round"
@@ -90,28 +90,27 @@ const KeyShape: React.FC<{ k: Key }> = ({ k }) => {
   );
 };
 
-const Phrase: React.FC = () => (
-  <g
-    style={{
-      fontFamily,
-      fontWeight: 800,
-      fontSize: 132,
-      letterSpacing: "-0.018em",
-    }}
-    fill={WHITE}
-  >
-    <text x={76} y={268}>
-      A thought
-    </text>
-    <text x={76} y={406}>
-      is a <tspan fill={ORANGE}>visitor</tspan>.
-    </text>
-  </g>
-);
-
+/** The seven key frames. */
 export const Visitor: React.FC = () => {
   const frame = useCurrentFrame();
   const s = useMemo(() => scene(frame), [frame]);
+  return <Stage s={s} write={s.phrase ? DONE : 0} />;
+};
+
+/** The film. */
+export const VisitorFilm: React.FC = () => {
+  const t = useCurrentFrame() / 60;
+  const shot = useMemo(() => film(t), [t]);
+  return <Stage s={shot.scene} camera={shot.camera} write={t} />;
+};
+
+const DONE = 99;
+
+const Stage: React.FC<{ s: Scene; camera?: Camera; write: number }> = ({
+  s,
+  camera = { x: W / 2, y: H / 2, zoom: 1, shakeX: 0, shakeY: 0 },
+  write,
+}) => {
   const { house: h, soul, lines } = s;
   const ground = useMemo(
     () =>
@@ -152,67 +151,73 @@ export const Visitor: React.FC = () => {
           </radialGradient>
         </defs>
 
-        {[...s.waves, ...s.ripples].map((w, k) => (
-          <Faded
-            key={k}
-            pts={w.pts}
-            alpha={along(w.alpha)}
-            color={WHITE}
-            width={1.9 * PX}
-          />
-        ))}
-
-        <circle
-          cx={soul.x}
-          cy={soul.y}
-          r={glow}
-          fill="url(#glow)"
-          opacity={clamp(p * 0.85)}
-        />
-        {lines.pts.map((l, k) => {
-          const tone = lerp(0.95, 0.5, k / LINES) * lerp(0.75, 1, clamp(p));
-          return (
+        <g
+          transform={`translate(${camera.x + camera.shakeX} ${camera.y + camera.shakeY}) scale(${camera.zoom}) translate(${-camera.x} ${-camera.y})`}
+        >
+          {[...s.waves, ...s.ripples].map((w, k) => (
             <Faded
               key={k}
-              pts={l}
-              color={ORANGE}
-              width={1.9 * PX}
-              run={2}
-              alpha={(i) => {
-                const u = i / (l.length - 1);
-                const a = lines.fadeIn ? smooth(clamp(u / lines.fadeIn)) : 1;
-                const b = lines.fadeOut
-                  ? smooth(clamp((1 - u) / lines.fadeOut))
-                  : 1;
-                return tone * a * b;
-              }}
+              pts={w.pts}
+              alpha={along(w.alpha)}
+              color={WHITE}
+              width={(1.9 * PX) / camera.zoom}
             />
-          );
-        })}
-
-        <g
-          stroke={WHITE}
-          strokeWidth={THIN}
-          fill="none"
-          strokeLinejoin="round"
-          strokeLinecap="round"
-        >
-          {edges.map((e, k) => (
-            <path key={k} d={toPath(e)} />
           ))}
-          <ellipse cx={kh.x} cy={kh.y} rx={5} ry={9} />
-        </g>
-        <Faded
-          pts={ground}
-          color={WHITE}
-          width={THIN}
-          alpha={(i) => smooth(clamp(Math.min(i, 240 - i) / 26))}
-        />
 
-        <circle cx={soul.x} cy={soul.y} r={soul.r} fill={ORANGE} />
-        {s.key ? <KeyShape k={s.key} /> : null}
-        <Thought pts={s.thought} tip={s.tip} />
-        {s.phrase ? <Phrase /> : null}
+          <circle
+            cx={soul.x}
+            cy={soul.y}
+            r={glow}
+            fill="url(#glow)"
+            opacity={clamp(p * 0.85)}
+          />
+          {lines.pts.map((l, k) => {
+            const tone = lerp(0.95, 0.5, k / LINES) * lerp(0.75, 1, clamp(p));
+            return (
+              <Faded
+                key={k}
+                pts={l}
+                color={ORANGE}
+                width={(1.9 * PX) / camera.zoom}
+                run={2}
+                alpha={(i) => {
+                  const u = i / (l.length - 1);
+                  const a = lines.fadeIn ? smooth(clamp(u / lines.fadeIn)) : 1;
+                  const b = lines.fadeOut
+                    ? smooth(clamp((1 - u) / lines.fadeOut))
+                    : 1;
+                  return tone * a * b;
+                }}
+              />
+            );
+          })}
+
+          <g
+            stroke={WHITE}
+            strokeWidth={THIN / camera.zoom}
+            fill="none"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+          >
+            {edges.map((e, k) => (
+              <path key={k} d={toPath(e)} />
+            ))}
+            <ellipse cx={kh.x} cy={kh.y} rx={5} ry={9} />
+          </g>
+          <Faded
+            pts={ground}
+            color={WHITE}
+            width={THIN / camera.zoom}
+            alpha={(i) => smooth(clamp(Math.min(i, 240 - i) / 26))}
+          />
+
+          <circle cx={soul.x} cy={soul.y} r={soul.r} fill={ORANGE} />
+          {s.key ? <KeyShape k={s.key} z={camera.zoom} /> : null}
+          {(s.guests ?? [{ pts: s.thought, tip: s.tip }]).map((g, k) => (
+            <Thought key={k} pts={g.pts} tip={g.tip} z={camera.zoom} />
+          ))}
+        </g>
+        <Phrase t={write} from={soul} />
       </svg>
     </AbsoluteFill>
   );
