@@ -264,6 +264,10 @@ const main = async () => {
   document.title = project.title;
   byId("title").textContent = project.title;
   byId("statement").textContent = project.statement;
+  // the other pieces of the studio
+  for (const p of data.projects) {
+    if (p !== project && p.versions.length) byId("projects").append(el("a", { href: `?p=${p.id}` }, p.title));
+  }
   select(project, nodes, location.hash.slice(1));
   narrow.addEventListener("change", () => render(project, nodes, current));
 };
