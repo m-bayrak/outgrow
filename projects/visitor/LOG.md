@@ -43,3 +43,8 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-11-24 · claude · claude/visitor-stills-602ddb
 - The owner found the rustles unpleasant, like audio noise (about 11 s). Second mix: every noise voice is replaced (key slide: glass touches; creaks, wheel and tangle: wooden ticks; breath and storm: warm tone; letters: tiny kalimba notes). Only the 15–20 ms touches inside knocks and the lock click keep any noise. The spectrogram shows no broadband bands; two renders are byte-identical.
 - Open: the owner's ear on the second mix; then mux into the master.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- The owner approved the second mix. Muxed into the master without rendering the picture again (video stream identical): ignored `src/claude/out/visitor-master-sound.mp4`, 1080 × 1920, 60 fps, 18 s, AAC 320 kbit/s, −16 LUFS.
+- For the next film: the owner liked the pencil strokes under the written phrase; the dislike is of long rustles.
+- Open: publishing as version 01, push and pull request, each only after a go-ahead.

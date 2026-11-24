@@ -46,7 +46,7 @@ Follows [`STYLE.md`](../../STYLE.md). Specific to this piece:
 
 Exceptions and proposals:
 
-- *Proposed:* loudness −16 LUFS instead of about −14, so the knocks and the pause keep their contrast.
+- Loudness −16 LUFS instead of about −14, so the knocks and the pause keep their contrast.
 - The phrase's noun "visitor" is orange (`STYLE.md` says verbs): it is the word the film is about.
 - The house is drawn with single strokes, not a family of 20–30 contours. The families are the soul's lines and the waves.
 
@@ -80,7 +80,8 @@ Newest last. Add a row when a direction is settled with the owner.
 | 2026-11-24 | The motion of draft 1 is approved | Timing and motion are settled before the final render |
 | 2026-11-24 | The final is rendered from draft 1 as it is | The owner accepts the two small known flaws |
 | 2026-11-24 | The film gets sound effects (no music), synthesized in `src/claude/audio/` from the timeline; first mix awaits the owner's ear | The story rests on knocks and one silence |
-| 2026-11-24 | No sustained noise in the sound: no hiss, rustle, breath noise, crackle or pencil | The owner found the rustles unpleasant, like audio noise |
+| 2026-11-24 | No sustained noise in the sound: no hiss, rustle, breath noise or crackle (short pencil strokes are fine) | The owner found the rustles unpleasant, like audio noise |
+| 2026-11-24 | The second sound mix is approved at −16 LUFS | The owner also liked the first mix's pencil strokes under the phrase, but chose to keep this one as it is |
 
 ## Open questions
 
