@@ -328,10 +328,19 @@ h1 {
 
 .links {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 12px 24px;
   margin-top: 48px;
   font-size: 15px;
   color: var(--quiet);
+}
+
+.projects {
+  display: contents;
+}
+
+.projects a {
+  color: var(--line, #ffffff);
 }
 
 .noscript {

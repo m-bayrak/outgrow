@@ -1,0 +1,26 @@
+{
+  "id": "visitor",
+  "title": "A thought is a visitor",
+  "statement": "A thought can come and knock, but it rules the house only when you hand it the key.",
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 60
+  },
+  "versions": [
+    {
+      "id": "01",
+      "title": "First film",
+      "author": "claude",
+      "date": "2026-11-24",
+      "parent": null,
+      "duration": 18,
+      "video": "media/visitor/01-claude-first-film.mp4",
+      "poster": "media/visitor/01-claude-first-film.jpg",
+      "source": "projects/visitor/src/claude",
+      "commit": "7327b5c",
+      "summary": "Three thoughts knock at one house. Two are handed the key and rule it; the third is heard, kept company through the door, and never given it. With soft sound effects synthesized in code, no music."
+    }
+  ],
+  "studies": []
+}
