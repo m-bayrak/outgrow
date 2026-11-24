@@ -34,3 +34,8 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 ## 2026-11-24 · claude · claude/visitor-stills-602ddb
 - Final master rendered as approved, with no changes to draft 1: 1080 × 1920, 60 fps, 18 s, h264 crf 18, silent, 8.1 MB, in the ignored `src/claude/out/visitor-master.mp4`. The two known flaws stay by the owner's choice.
 - Open: sound, publishing as version 01, push and pull request, each only after a go-ahead.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- First sound mix: `src/claude/audio/` (voices and mastering copied from Outgrow 06, new `score.ts`), `node audio/render.mjs` writes `public/visitor-sfx.wav`; `--map` prints every cue. Event times moved into `E` and `SPARK` in `timeline.ts`; frame 740 is identical to before.
+- Measured, not heard: −16 LUFS, true peak under −1 dBFS, two renders byte-identical before the last two level changes; the pause falls to about −57 dBFS peak.
+- Preview is draft 1 with the sound (ignored `out/`). Open: the owner's ear, then muxing into the master without rendering the picture again. Publishing and push are not approved.

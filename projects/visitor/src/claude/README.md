@@ -13,4 +13,6 @@ Compositions: `Visitor` (the 18 s film, in draft) and `VisitorFrames` (key frame
 | `src/Phrase.tsx` | The spark and the phrase it writes |
 | `src/Visitor.tsx` | Drawing and camera |
 
+`audio/` synthesizes the sound (`pnpm sfx` writes `public/visitor-sfx.wav`).
+
 `pnpm install`, `pnpm dev`, `pnpm lint`; `scripts/stills.sh [1 … 7]` renders stills and `out/sheet.png`.

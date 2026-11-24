@@ -6,6 +6,7 @@ import { measureText } from "@remotion/layout-utils";
 import { useEffect, useMemo, useState } from "react";
 import { continueRender, delayRender } from "remotion";
 import { PX, spline, toPath, v } from "./curves";
+import { SPARK } from "./timeline";
 import {
   type Vec,
   clamp,
@@ -28,15 +29,7 @@ const LINES = [
   { text: "A thought", y: 268 },
   { text: "is a visitor", y: 406 },
 ];
-/** Seconds: the spark leaves, writes line 1, writes line 2, is the full stop. */
-const T = {
-  leave: 14.65,
-  line1: 15.0,
-  end1: 15.6,
-  line2: 15.75,
-  end2: 16.3,
-  stop: 16.55,
-};
+const T = SPARK;
 const DOT = 13;
 
 const layout = () => {

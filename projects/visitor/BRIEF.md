@@ -42,8 +42,11 @@ Follows [`STYLE.md`](../../STYLE.md). Specific to this piece:
 - **Key:** teeth in the keyhole, ring at the thought.
 - **The tangle in frames 5 and 7 is the same line:** 7 is a relaxation of 5.
 
+- **Sound:** effects only, soft and close. Each thought has its own material (spring: kalimba and drops; wheel: rolling rustle; tangle: crackle and pencil), the key is small glass and metal, the house is wood and speaks only while it is ruled. The pause is silence, then the gentlest knock. The storm sounds only on the right, muffled.
+
 Exceptions and proposals:
 
+- *Proposed:* loudness −16 LUFS instead of about −14, so the knocks and the pause keep their contrast.
 - The phrase's noun "visitor" is orange (`STYLE.md` says verbs): it is the word the film is about.
 - The house is drawn with single strokes, not a family of 20–30 contours. The families are the soul's lines and the waves.
 
@@ -76,6 +79,7 @@ Newest last. Add a row when a direction is settled with the owner.
 | 2026-11-24 | A half-resolution motion draft is approved to start | The stills are settled |
 | 2026-11-24 | The motion of draft 1 is approved | Timing and motion are settled before the final render |
 | 2026-11-24 | The final is rendered from draft 1 as it is | The owner accepts the two small known flaws |
+| 2026-11-24 | The film gets sound effects (no music), synthesized in `src/claude/audio/` from the timeline; first mix awaits the owner's ear | The story rests on knocks and one silence |
 
 ## Open questions
 

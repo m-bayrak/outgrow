@@ -1,5 +1,10 @@
 import { useMemo } from "react";
-import { AbsoluteFill, useCurrentFrame } from "remotion";
+import {
+  AbsoluteFill,
+  Html5Audio,
+  staticFile,
+  useCurrentFrame,
+} from "remotion";
 import { H, PX, toPath, W } from "./curves";
 import { type Vec, clamp, lerp, smooth } from "./math";
 import { groundY } from "./house";
@@ -101,7 +106,12 @@ export const Visitor: React.FC = () => {
 export const VisitorFilm: React.FC = () => {
   const t = useCurrentFrame() / 60;
   const shot = useMemo(() => film(t), [t]);
-  return <Stage s={shot.scene} camera={shot.camera} write={t} />;
+  return (
+    <>
+      <Html5Audio src={staticFile("visitor-sfx.wav")} />
+      <Stage s={shot.scene} camera={shot.camera} write={t} />
+    </>
+  );
 };
 
 const DONE = 99;

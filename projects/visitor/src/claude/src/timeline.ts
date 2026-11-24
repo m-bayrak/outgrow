@@ -74,33 +74,50 @@ const kv = (t: number, x: number, y: number, ease?: KeyT<Vec>["ease"]) => ({
 
 /** Where things happen, in seconds. Sound and motion both read from here. */
 export const E = {
+  hops: [0.3, 0.6],
   knock: [0.75, 1.0],
+  push1: [1.8, 2.3],
+  take1: 2.62,
   click1: 3.05,
   bored: 5.6,
   knock2: 6.72,
+  push2: [6.92, 7.12],
+  take2: 7.24,
   click2: 7.42,
   bored2: 8.65,
   knock3: [9.85, 10.1, 10.35],
+  push3: 10.62,
   halt: 10.95,
   gentle: 11.55,
   choose: 11.95,
   storm: 12.1,
   calm: 13.3,
   roll: 13.8,
+  keyDown: 13.98,
   rest: 14.6,
+};
+
+/** The spark: it leaves the soul, writes line 1, writes line 2, is the full stop. */
+export const SPARK = {
+  leave: 14.65,
+  line1: 15.0,
+  end1: 15.6,
+  line2: 15.75,
+  end2: 16.3,
+  stop: 16.55,
 };
 
 // ——— the house ———
 
-const BEAT = 0.64; // one bounce
+export const BEAT = 0.64; // one bounce
 const bounce = (t: number) => Math.cos((TAU * (t - E.click1 - 0.3)) / BEAT);
-const springWeight = (t: number) => {
+export const springWeight = (t: number) => {
   const on = ramp(t, E.click1, E.click1 + 0.28, outCubic);
   const off = t < E.bored ? 1 : 1 - ramp(t, E.bored, E.bored + 0.3);
   const ring = t > E.bored ? 0.16 * dampedSettle(t - E.bored - 0.2, 2.4, 5) : 0;
   return on * off * (0.44 + 0.62 * bounce(t)) - ring;
 };
-const wheelWeight = (t: number) =>
+export const wheelWeight = (t: number) =>
   t < E.bored2
     ? (t < E.click2
         ? 0
@@ -167,7 +184,7 @@ const rippleAt = (t: number): Ripple =>
 
 // ——— the soul ———
 
-const soulAt = (t: number) => {
+export const soulAt = (t: number) => {
   let p = keyedVec(
     [
       kv(0, 286, 1238),
@@ -269,22 +286,22 @@ const life = (t: number) =>
 
 const HALF = 644 - KEY_LENGTH / 2 + 5;
 
-const handAt = (t: number): Vec =>
+export const handAt = (t: number): Vec =>
   keyedVec(
     [
       kv(1.25, 470, 1354),
-      kv(1.8, 478, onFloor),
-      kv(2.3, 686, onFloor - 1, inOutCubic),
-      kv(2.62, 686, onFloor - 1),
+      kv(E.push1[0], 478, onFloor),
+      kv(E.push1[1], 686, onFloor - 1, inOutCubic),
+      kv(E.take1, 686, onFloor - 1),
       kv(3.05, 560, 1352),
       kv(6.75, 470, 1354),
-      kv(6.92, 486, onFloor),
-      kv(7.12, 686, onFloor - 1),
-      kv(7.24, 686, onFloor - 1),
+      kv(E.push2[0], 486, onFloor),
+      kv(E.push2[1], 686, onFloor - 1),
+      kv(E.take2, 686, onFloor - 1),
       kv(7.42, 590, 1352),
       kv(10.2, 470, 1354),
       kv(10.5, 480, onFloor),
-      kv(10.62, 492, onFloor),
+      kv(E.push3, 492, onFloor),
       kv(E.halt, HALF, onFloor, inCubic),
       kv(E.choose, HALF, onFloor),
       kv(12.22, 488, 1350),
@@ -364,7 +381,7 @@ const keyAt = (t: number, h: House): Key | null => {
   if (t < 10.28) return null;
   const turn = -Math.PI * ramp(t, 12.14, 12.6);
   if (t < E.calm) return { ring: hand, angle: turn, scale: grow(10.28) };
-  const u = ramp(t, E.calm, 13.98);
+  const u = ramp(t, E.calm, E.keyDown);
   return {
     ring: spline(
       [v(476, 1254), v(430, 1130), v(310, 1090), v(225, 1210), v(236, onFloor)],
