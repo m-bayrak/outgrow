@@ -48,3 +48,7 @@ Append-only. Every agent adds an entry when it finishes a piece of work (format 
 - The owner approved the second mix. Muxed into the master without rendering the picture again (video stream identical): ignored `src/claude/out/visitor-master-sound.mp4`, 1080 × 1920, 60 fps, 18 s, AAC 320 kbit/s, −16 LUFS.
 - For the next film: the owner liked the pencil strokes under the written phrase; the dislike is of long rustles.
 - Open: publishing as version 01, push and pull request, each only after a go-ahead.
+
+## 2026-11-24 · claude · claude/visitor-stills-602ddb
+- Prepared version 01 "First film" locally: `docs/media/visitor/01-claude-first-film.{mp4,jpg}` (3.7 MB, with sound), `project.json`, site data, README row. `?p=visitor` checked in a local preview on desktop and phone widths; the Outgrow page is unchanged.
+- Open: nothing on the site links to `?p=visitor` (the page opens Outgrow by default); prompts are not attached to the version (`used_for` is empty); no studies yet. Push, pull request and the master in a GitHub Release need a go-ahead.

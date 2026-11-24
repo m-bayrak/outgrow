@@ -9,7 +9,7 @@ Vertical motion pieces made in code: black ground, white linework, one orange so
 | Project | Statement | Versions |
 | --- | --- | --- |
 | [Outgrow](./projects/outgrow/) | Growth sometimes requires stepping beyond the boundaries that have become too confining. | 01 Codex · 02 Claude, wings · 03 Claude, text ending |
-| [A thought is a visitor](./projects/visitor/) | A thought can come and knock, but it rules the house only when you hand it the key. | In stills, nothing published yet |
+| [A thought is a visitor](./projects/visitor/) | A thought can come and knock, but it rules the house only when you hand it the key. | 01 Claude, first film |
 
 Each project keeps its brief, references, ideas, a shared work log and one Remotion source per lineage under `projects/<project>/`. Every published step is a separate video in `docs/media/<project>/`, listed in the project's `project.json`.
 
